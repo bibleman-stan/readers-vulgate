@@ -2,7 +2,10 @@
 
 **Date acquired:** 2026-05-27
 **Scope:** Latin NT treebanks for Vulgate reader substrate. Scope v1 = NT only (no gold Vulgate-OT treebank is known to exist — confirmed by survey of all current UD Latin treebanks; none contain OT material).
-**Landing directory:** `C:\Users\bibleman\repos\biblical-corpora\latin-substrate\`
+**Landing directory (relocated 2026-05-27):** `readers-vulgate/private/substrate/` (this repo's own
+gitignored folder, per "each project gets its intuitive data" — Stan). Moved out of the shared
+`biblical-corpora/` vendored container. Paths below that read `latin-substrate/X/` are now
+`private/substrate/X/` (e.g. `private/substrate/UD_Latin-PROIEL/`).
 
 ---
 
