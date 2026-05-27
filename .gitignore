@@ -1,0 +1,12 @@
+# This repo is PUBLIC. Private/working material goes in /private/ (never published).
+/private/
+!/private/README.md
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# OS / editor
+.DS_Store
+Thumbs.db
