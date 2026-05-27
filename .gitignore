@@ -1,5 +1,5 @@
 # This repo is PUBLIC. Private/working material goes in /private/ (never published).
-/private/
+/private/*
 !/private/README.md
 
 # Python
