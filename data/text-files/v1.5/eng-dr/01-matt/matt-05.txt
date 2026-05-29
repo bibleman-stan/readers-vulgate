@@ -28,16 +28,16 @@ Blessed are the peace-makers: for they shall be called the children of God.
 Blessed are they that suffer persecution for justice: for theirs is the Kingdom of Heaven.
 
 5:11
-Blessed are ye when they shall revile you,
+Blessed are ye
+when they shall revile you,
 and persecute you,
-& speak all that naught is against you,
-untruly, for my sake:
+& speak all that naught is against you, untruly, for my sake:
 
 5:12
-be glad & rejoice,
+be glad
+& rejoice,
 for your reward is very great in Heaven.
-For so they persecuted the Prophets,
-that were before you.
+For so they persecuted the Prophets, that were before you.
 
 5:13
 You are the salt of the earth.
@@ -135,12 +135,12 @@ And he that shall marry her that is dismissed;
 committeth adultery.
 
 5:34
-Again you have heard that it was said to them of old, Thou shalt not commit perjury: but thou shall perform thy oaths to our Lord.
-But I say to you not to swear at all:
+Again you have heard that it was said to them of old, Thou shalt not commit perjury: but thou shall perform thy oaths to our Lord. But I say to you not to swear at all:
 neither by heaven, because it is the throne of God:
 neither by the earth, because it is the foot-stool of his feet:
 neither by Jerusalem, because it is the city of the great King.
-Neither shalt thou swear by thy head, because thou canst not make one hair white or black.
+Neither shalt thou swear by thy head,
+because thou canst not make one hair white or black.
 
 5:37
 Let your talk be yea, yea:
@@ -181,8 +181,8 @@ that you may be the children of your father which is in heaven, who maketh his s
 and raineth upon just and unjust.
 
 5:46
-For if you love them that love you,
-what reward shall you have? Do not also the Publicans this?
+For if you love them that love you, what reward shall you have?
+Do not also the Publicans this?
 
 5:47
 And if you salute your brethren only, what do you more,
@@ -190,4 +190,3 @@ do not also the Heathen this?
 
 5:48
 Be you perfect therefore, as also your heavenly Father is perfect.
-

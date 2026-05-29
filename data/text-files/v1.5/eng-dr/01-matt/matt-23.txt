@@ -8,8 +8,8 @@ saying: Upon the chair of Moyses have sitten the Scribes and the Pharisees.
 All things therefore whatsoever they shall say to you,
 observe ye and do ye:
 but according to their works do ye not,
-for they say and do not.
-
+for they say
+and do not.
 
 23:4
 For they bind heavy burdens & importable:
@@ -17,10 +17,10 @@ For they bind heavy burdens & importable:
 but with a finger of their own they will not move them.
 
 23:5
-But they do all their works for to be seen of men.
+But they do all their works
+for to be seen of men.
 For they make broad their phylacteries,
 and enlarge their fringes.
-
 
 23:6
 And they love the first places at suppers, and the first chairs in the Synagogues, and salutations in the market-place, and to be called of men, Rabbi.
@@ -51,10 +51,10 @@ Woe to you Scribes and Pharisees, hypocrites:
 because you devour widows' houses, praying long prayers. For this you shall receive the greater judgement.
 
 23:15
-Woe to you Scribes and Pharisees,
-hypocrites:
+Woe to you Scribes and Pharisees, hypocrites:
 because you go round about the sea and the land,
-to make one proselyte: and when he is made, you make him the child of hell double more than yourselves.
+to make one proselyte:
+and when he is made, you make him the child of hell double more than yourselves.
 
 23:16
 Woe to you blind guides, that say,
@@ -81,8 +81,8 @@ And whosoever shall swear by the temple, sweareth by it and by him that dwelleth
 And he that sweareth by Heaven, sweareth by the throne of God, and by him that sitteth thereon.
 
 23:23
-Woe to you Scribes and Pharisees, hypocrites: because you tithe mint,
-and anise, and cummin,
+Woe to you Scribes and Pharisees, hypocrites:
+because you tithe mint, and anise, and cummin,
 and have left the weightier things of the law, judgement, and mercy, and faith.
 These things you ought to have done, & not to have omitted those.
 
@@ -90,13 +90,13 @@ These things you ought to have done, & not to have omitted those.
 Blind guides, that strain a gnat, and swallow a camel.
 
 23:25
-Woe to you Scribes and Pharisees,
-Hypocrites: because you make clean that on the outside of the cup and dish,
+Woe to you Scribes and Pharisees, Hypocrites:
+because you make clean that on the outside of the cup and dish,
 but within you are full of rapine and uncleanness.
 
 23:26
-Thou blind Pharisee,
-first make clean the inside of the cup and the dish that the outside may become clean.
+Thou blind Pharisee, first make clean the inside of the cup and the dish
+that the outside may become clean.
 
 23:27
 Woe to you Scribes and Pharisees, Hypocrites: because you are like to whited sepulchres, which outwardly appear unto men beautiful, but within are full of dead men's bones, and all filthiness.
@@ -106,10 +106,10 @@ So you also outwardly indeed appear to men just;
 but inwardly you are full of hypocrisy and iniquity.
 
 23:29
-Woe to you Scribes and Pharisees,
-Hypocrites:
+Woe to you Scribes and Pharisees, Hypocrites:
 because you build the Prophets' sepulchres,
 and garnish the monuments of just men,
+
 
 23:30
 and say: If we had been in our fathers' days, we had not been their fellows in the blood of the Prophets.
@@ -124,9 +124,9 @@ And fill you up the measure of your fathers.
 You serpents, viper's broods, how will you flee from the judgement of Hell?
 
 23:34
-Therefore behold I send unto you Prophets, and wise men,
-and Scribes,
-and of them you shall kill & crucify,
+Therefore behold I send unto you Prophets, and wise men, and Scribes,
+and of them you shall kill
+& crucify,
 and of them you shall scourge in your Synagogues,
 and persecute from city into city:
 
@@ -138,8 +138,8 @@ Amen I say to you,
 all these things shall come upon this generation.
 
 23:37
-Jerusalem, Jerusalem, which killest the Prophets,
-and stonest them that were sent to thee, how often would I gather together thy children as the hen doth gather together her chickens under her wings,
+Jerusalem, Jerusalem, which killest the Prophets, and stonest them that were sent to thee, how often would I gather together thy children
+as the hen doth gather together her chickens under her wings,
 and thou wouldest not?
 
 23:38
@@ -147,7 +147,6 @@ Behold, your house shall be left desert to you.
 
 23:39
 For I say to you,
-you shall not see me from hence forth till you say:
+you shall not see me from hence forth
+till you say:
 Blessed is he that cometh in the name of our Lord.
-
-

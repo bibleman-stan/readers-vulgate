@@ -5,8 +5,8 @@ And he spake also a parable to them that it behoveth always to pray, & not to be
 saying: There was a certain judge in a certain city, which feared not God, and of man made no account.
 
 18:3
-And there was a certain widow in that city, and she came to him,
-saying:
+And there was a certain widow in that city,
+and she came to him, saying:
 Revenge me of mine adversary.
 
 18:4
@@ -34,13 +34,13 @@ And he said also to certain that trusted in themselves as just, and despised oth
 
 18:10
 Two men went up into the Temple to pray:
-the one a Pharisee,
-and the other a Publican.
+
+the one a Pharisee, and the other a Publican.
 
 18:11
 The Pharisee standing, prayed thus with himself:
-God,
-I give thee thanks that I am not as the rest of men, extortioners, unjust, adulterers, as also this Publican.
+God, I give thee thanks
+that I am not as the rest of men, extortioners, unjust, adulterers, as also this Publican.
 
 18:12
 I fast twice in a week:
@@ -53,9 +53,9 @@ God be merciful to me a sinner.
 
 18:14
 Isay to you,
-this man went down into his house justified more than he: because every one that exalteth himself,
-shall be humbled; and he that humbleth himself,
-shall be exalted.
+this man went down into his house justified more than he:
+because every one that exalteth himself, shall be humbled;
+and he that humbleth himself, shall be exalted.
 
 18:15
 And they brought unto him infants also,
@@ -78,8 +78,8 @@ Good Master, by doing what, shall I possess everlasting life?
 
 18:19
 And Jesus said to him:
-Why doest thou call me good? None is good but only God.
-
+Why doest thou call me good?
+None is good but only God.
 
 18:20
 Thou knowest the commandments:
@@ -94,13 +94,13 @@ Who said:
 All these things have I kept from my youth.
 
 18:22
-Which Jesus hearing,
-said to him:
+Which Jesus hearing, said to him:
 Yet one thing thou lackest:
 Sell all that ever thou hast,
 & give to the poor,
 and thou shalt have treasure in Heaven:
-and come follow me.
+and come
+follow me.
 
 18:23
 He hearing these things, was stroken sad: because he was very rich.
@@ -121,8 +121,8 @@ He said to them:
 The things that are impossible with men, are possible with God.
 
 18:28
-And Peter said: Lo,
-we have left all things,
+And Peter said:
+Lo, we have left all things,
 and have followed thee.
 
 18:29
@@ -167,9 +167,9 @@ And he cried saying:
 Jesus son of David, have mercy upon me.
 
 18:39
-And they that went before,
-rebuked him,
-that he should hold his peace. But he cried much more,
+And they that went before, rebuked him,
+that he should hold his peace.
+But he cried much more,
 Son of David have mercy upon me.
 
 18:40
@@ -177,8 +177,8 @@ And Jesus standing commanded him to be brought unto him.
 And when he was come near, he asked him,
 
 18:41
-saying:
-What wilt thou that I do to thee? but he said:
+saying: What wilt thou that I do to thee?
+but he said:
 Lord, that I may see.
 
 18:42
@@ -190,4 +190,3 @@ thy faith hath made thee whole.
 And forthwith he saw,
 and followed him, magnifying God.
 And all the people as they saw it, gave praise to God.
-

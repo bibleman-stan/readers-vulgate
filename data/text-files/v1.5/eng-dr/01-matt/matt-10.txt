@@ -10,9 +10,9 @@ Simon Cananæus,
 & Judas Iscariote, who also betrayed him.
 
 10:5
-These twelve did Jesus send;
-commanding them, saying:
-Into the way of the Gentiles go ye not, and into the cities of the Samaritans enter ye not:
+These twelve did Jesus send; commanding them, saying:
+Into the way of the Gentiles go ye not,
+and into the cities of the Samaritans enter ye not:
 
 10:6
 but go rather to the sheep that are perished of the house of Israel.
@@ -36,9 +36,9 @@ Do not possess gold, nor silver, nor money in your purses:
 not a scrip for the way, neither two coats, neither shoes, neither rod. For the workman is worthy of his meat.
 
 10:11
-And into whatsoever city or town you shall enter,
-inquire who in it is worthy:
+And into whatsoever city or town you shall enter, inquire who in it is worthy:
 and there tarry till you go forth.
+
 
 10:12
 And when ye enter into the house, salute it, saying: Peace be to this house.
@@ -67,8 +67,8 @@ and in their Synagogues they will scourge you.
 And to presidents and to kings shall you be led for my sake, in testimony to them and the Gentiles.
 
 10:19
-But when they shall deliver you up,
-take no thought how or what to speak:
+But when they shall deliver you up, take no thought how
+or what to speak:
 for it shall be given you in that hour what to speak.
 
 10:20
@@ -157,7 +157,6 @@ He that receiveth a Prophet in the name of a Prophet, shall receive the reward o
 and he that receiveth a just man in the name of a just man, shall receive the reward of a just man.
 
 10:42
-And whosoever shall give drink to one of these little ones a cup of cold water, only in the name of a disciple,
-amen I say to you,
+And whosoever shall give drink to one of these little ones a cup of cold water, only in the name of a disciple, amen
+I say to you,
 he shall not lose his reward.
-

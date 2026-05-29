@@ -23,10 +23,10 @@ Lord, trouble not thyself.
 For I am not worthy that thou shouldest enter under my roof.
 
 7:7
-For the which cause neither did I think myself worthy to come to thee;
+For the which cause neither did I think myself worthy
+to come to thee;
 but say the word,
 and my servant shall be made whole.
-
 
 7:8
 For I also am a man subject to authority, having under me soldiers:
@@ -41,10 +41,10 @@ do this,
 and he doeth it.
 
 7:9
-Which Jesus hearing,
-marveled;
+Which Jesus hearing, marveled;
 and turning to the multitudes that followed him he said:
-Amen I say to you, neither in Israel have I found so great faith.
+Amen I say to you,
+neither in Israel have I found so great faith.
 
 7:10
 And they that were sent, being returned home, found the servant that had been sick, whole.
@@ -64,22 +64,22 @@ Whom when our Lord had seen, being moved with mercy upon her, he said to her:
 Weep not.
 
 7:14
-And he came near and touched the coffin.
+And he came near
+and touched the coffin.
 And they that carried it stood still;
 and he said:
-Young man,
-I say to thee,
+Young man, I say to thee,
 arise.
 
 7:15
-And he that was dead,
-sat up,
-and began to speak. And he gave him to his mother.
+And he that was dead, sat up,
+and began to speak.
+And he gave him to his mother.
 
 7:16
 And fear took them all;
-and they magnified God,
-saying, That a great Prophet is risen among us:
+and they magnified God, saying,
+That a great Prophet is risen among us:
 and, that God hath visited his people.
 
 7:17
@@ -89,8 +89,8 @@ And this saying went forth into all Jewry of him, & into all the country about.
 And John's disciples shewed him of all these things.
 
 7:19
-And John called two of his disciples, and sent them to Jesus,
-saying:
+And John called two of his disciples,
+and sent them to Jesus, saying:
 Art thou he that art to come;
 or expect we another?
 
@@ -105,32 +105,32 @@ or expect we another?
 and to many blind he gave sight.)
 
 7:22
-And answering,
-he said to them: Go & report to John what you have heard and seen:
-That the blind see,
+And answering, he said to them:
+Go & report to John what you have heard and seen: That the blind see,
 the lame walk,
 the lepers are made clean,
 the deaf hear,
 the dead rise again,
 
+
 7:23
 the poor are evangelized: and blessed is he whosoever shall not be scandalized in me.
 
 7:24
-And when John's messengers were departed,
-he began to say of John to the multitudes:
-What went you out into the desert to see? A reed moved with the wind?
+And when John's messengers were departed, he began to say of John to the multitudes:
+What went you out into the desert to see?
+A reed moved with the wind?
 
 7:25
-But what went you forth to see? A man clothed in soft garments? Behold they that are in costly apparel and delicacies,
-are in the house of kings.
-
+But what went you forth to see?
+A man clothed in soft garments?
+Behold they that are in costly apparel and delicacies, are in the house of kings.
 
 7:26
-But what went you out for to see? A Prophet? Certes I say to you,
+But what went you out for to see?
+A Prophet?
+Certes I say to you,
 and more than a Prophet.
-
-
 
 7:27
 This is he of whom it is written:
@@ -148,8 +148,8 @@ And all the people hearing and the Publicans, justified God, being baptized with
 But the Pharisees and the lawyers despised the counsel of God against themselves, being not baptized of him.
 
 7:31
-And our Lord said:
-Where unto then shall I liken the men of this generation, and whereunto are they like?
+And our Lord said: Where unto then shall I liken the men of this generation,
+and whereunto are they like?
 
 7:32
 They are like to children sitting in the market-place, and speaking one to another, and saying:
@@ -209,9 +209,9 @@ But he said to him:
 Thou hast judged rightly.
 
 7:44
-And turning to the woman,
-he said unto Simon:
-Doest thou see this woman? I entered into thy house,
+And turning to the woman, he said unto Simon:
+Doest thou see this woman?
+I entered into thy house,
 water to my feet thou didst not give;
 but she with tears hath watered my feet,
 and with her hairs hath wiped them.

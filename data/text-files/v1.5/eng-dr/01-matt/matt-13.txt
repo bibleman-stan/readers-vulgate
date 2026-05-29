@@ -11,9 +11,9 @@ and he spake to them many things in parables, saying:
 Behold the Sower went forth to sow.
 
 13:4
-And whiles he soweth,
-some fell by the way side,
-and the fowls of the air did come and eat it.
+And whiles he soweth, some fell by the way side,
+and the fowls of the air did come
+and eat it.
 
 13:5
 Other some also fell upon rocky places, where they had not much earth:
@@ -25,13 +25,13 @@ and because they had not root, they withered.
 
 13:7
 And other fell among thorns:
-and the thorns grew and choked them.
-
+and the thorns grew
+and choked them.
 
 13:8
-And other some fell upon good ground: and they yielded fruit,
-the one an hundredfold,
-the other threescore, and another thirty.
+And other some fell upon good ground:
+and they yielded fruit,
+the one an hundredfold, the other threescore, and another thirty.
 
 13:9
 He that hath ears to hear, let him hear.
@@ -46,9 +46,9 @@ Because to you it is given to know the mysteries of the Kingdom of Heaven:
 but to them it is not given.
 
 13:12
-For he that hath,
-to him shall be given,
-and he shall abound: but he that hath not, from him shall be taken away that also which he hath.
+For he that hath, to him shall be given,
+and he shall abound:
+but he that hath not, from him shall be taken away that also which he hath.
 
 13:13
 Therefore in parables I speak to them:
@@ -69,9 +69,9 @@ and with their ears they have heavily heard,
 and their eyes they have shut:
 lest at any time they may see with their eyes,
 and hear with their ears,
-and understand with their heart and be converted,
+and understand with their heart
+and be converted,
 and I may heal them.
-
 
 13:16
 But blessed are your eyes because they do see,
@@ -92,8 +92,8 @@ and catcheth away that which was sown in his heart:
 this is he that was sown by the way side.
 
 13:20
-And he that was sown upon rocky places:
-this is he that heareth the word, and incontinent receiveth it with joy,
+And he that was sown upon rocky places: this is he that heareth the word,
+and incontinent receiveth it with joy,
 
 13:21
 yet hath he not root in himself,
@@ -101,8 +101,8 @@ but is for a time:
 and when there falleth tribulation and persecution for the word, he is by and by scandalized.
 
 13:22
-And he that was sown among thorns,
-this is he that heareth the word, and the carefulness of this world and the deceitfulness of riches choket up the word,
+And he that was sown among thorns, this is he that heareth the word,
+and the carefulness of this world and the deceitfulness of riches choket up the word,
 and he becometh fruitless.
 
 13:23
@@ -167,8 +167,8 @@ and without parables he did not speak to them:
 
 
 13:35
-that it might be fulfilled which was spoken by the Prophet saying:
-I will open my mouth in parables, I will utter things hidden from the foundation of the world.
+that it might be fulfilled which was spoken by the Prophet saying: I will open my mouth in parables,
+I will utter things hidden from the foundation of the world.
 
 13:36
 Then having dismissed the multitudes, he came into the house,
@@ -235,9 +235,9 @@ and shall separate the evil from among the just.
 And shall cast them into the furnace of fire; there shall be weeping and gnashing of teeth.
 
 13:51
-Have ye understood all these things? They say to him,
+Have ye understood all these things?
+They say to him,
 Yea.
-
 
 13:52
 He said unto them:
@@ -269,4 +269,3 @@ There is not a Prophet without honour but in his own country, and in his own hou
 
 13:58
 And he wrought not many miracles there because of their incredulity.
-
