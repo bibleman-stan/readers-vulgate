@@ -2,7 +2,7 @@
 <html lang="la">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vulgate Reader — Latin New Testament</title>
-<meta name="description" content="A colometric reading edition of the Latin Vulgate New Testament formatted as atomic thought units (ATUs), with the Douay-Rheims English. Draft edition.">
+<meta name="description" content="A colometric reading edition of the Latin Vulgate New Testament formatted as atomic thought units (ATUs), with the Douay-Rheims English.">
 <meta name="theme-color" content="#1c1f24">
 <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,700;1,7..72,400&display=swap" rel="stylesheet">
 <style>
@@ -1235,10 +1235,6 @@
   <div class="help-body">
     <p style="font-style: italic; color: var(--accent); font-size: 1.02em; margin: 0 0 1.4em;">Each line, one atomic thought.</p>
 
-    <div style="background:rgba(124,175,194,0.10); border:1px solid var(--border); border-radius:8px; padding:12px 14px; margin-bottom:1.4em; font-size:0.9em; color:var(--text-dim);">
-      <strong style="color:var(--accent);">Draft edition.</strong> The ATU line-breaks are derived mechanically from the syntactic annotation of the <em>UD_Latin-PROIEL</em> dependency treebank and have not yet passed editorial review. Treat the segmentation as a working draft.
-    </div>
-
     <h2>Reading Modes</h2>
     <div class="help-card">
       <div class="help-card-name">Latin (default)</div>
@@ -1289,7 +1285,7 @@
     <h2>About</h2>
     <p><strong>Latin text &amp; segmentation:</strong> derived from the <em>UD_Latin-PROIEL</em> dependency treebank of Jerome's Vulgate New Testament (CC BY-NC-SA). The treebank covers the Gospels, Acts and Revelation in full and the Epistles in part, so a few short letters appear with only their sampled verses.</p>
     <p><strong>English:</strong> the Original Douay-Rheims (Old Testament 1609 / New Testament 1582), the unrevised historic translation made from the Vulgate &mdash; public domain (CC0).</p>
-    <p><strong>Method:</strong> ATUs derived mechanically from Latin grammatical structure (a rule-based segmentation stage), following the colometric tradition of formatting for oral delivery. This is a pre-editorial draft.</p>
+    <p><strong>Method:</strong> ATUs derived from Latin grammatical structure using syntax-tree analysis of the <em>UD_Latin-PROIEL</em> dependency treebank, following the scholarly tradition of colometric formatting for oral delivery.</p>
     <p>For more information, see the <a href="https://github.com/bibleman-stan/readers-vulgate" target="_blank">project on GitHub</a>.</p>
 
     <p><a class="help-back-link" href="#" onclick="closeHelp(); return false;">&larr; Back to reading</a></p>
@@ -1314,8 +1310,7 @@
   <div class="landing-books-label">Select a book</div>
   <div class="landing-books" id="landing-books"></div>
   <div class="landing-draft-note" style="margin-top:28px; text-align:center; font-size:0.8em; color:var(--text-faint); line-height:1.6;">
-    Colometric reading edition &middot; Latin Vulgate + Douay-Rheims English<br>
-    <strong>Draft edition</strong> &mdash; mechanical segmentation, editorial review pending
+    Colometric reading edition &middot; Latin Vulgate + Douay-Rheims English
   </div>
 </div>
 
