@@ -75,15 +75,69 @@ BOOKS = [
     ("REV",    "rev",    27,  "apocalypse.json"),
 ]
 
-# DR raw text still carries <sc>/<i> content markers; strip the tags, keep text.
-_TAG_RE = re.compile(r"</?(sc|i)>")
+# DR raw text still carries <sc>/<i> (small-caps/italic) and <cr>/<na> (cross-ref/
+# note) markers plus bracketed ref numbers; strip the markup, keep the words.
+_TAG_RE = re.compile(r"</?(sc|i|cr|na)>|\[[0-9]+\]")
 _WS_RE = re.compile(r"\s+")
+_CLAUSE_RE = re.compile(r"(?<=[.;:])\s+")   # major clause boundaries
+_COMMA_RE = re.compile(r"(?<=,)\s+")        # finer (comma) boundaries
 
 
 def clean_dr(text):
     text = _TAG_RE.sub("", text or "")
     text = _WS_RE.sub(" ", text).strip()
     return text
+
+
+def dr_span(dr, chap, vnum, tf_vnums):
+    """All DR text the TF verse `vnum` covers: DR verses from `vnum` up to (but
+    excluding) the next TF verse number present in this chapter. Recovers DR
+    verses with no TF home where the treebank folds verses (e.g. PROIEL merges
+    Matt 5:1-2 into one TF verse 5:1 -> DR 5:2 'And opening his mouth…' would
+    otherwise be dropped). When TF and DR agree, this is just the single verse."""
+    later = [t for t in tf_vnums if t > vnum]
+    nxt = min(later) if later else max((k[1] for k in dr if k[0] == chap),
+                                       default=vnum) + 1
+    parts = [dr[(chap, k)] for k in range(vnum, nxt)
+             if (chap, k) in dr and dr[(chap, k)]]
+    return " ".join(parts).strip()
+
+
+def split_dr_to_lines(dr_text, latin_lines):
+    """Interleave the DR text across a verse's Latin ATU lines, one English span
+    per line. The DR is a direct translation of the Vulgate, so clause order
+    tracks: split the DR into clause units (major boundaries, finer if too few)
+    and assign WHOLE clauses to lines (never broken mid-clause). When clause and
+    line counts match it is a clean 1:1 alignment (e.g. Matt 5:1); otherwise
+    consecutive clauses are grouped to lines weighted by Latin word-count. Always
+    returns exactly len(latin_lines) spans so the layers stay line-aligned."""
+    n = len(latin_lines)
+    if n == 0:
+        return []
+    if not dr_text:
+        return [""] * n
+    if n == 1:
+        return [dr_text]
+    clauses = [c.strip() for c in _CLAUSE_RE.split(dr_text) if c.strip()] or [dr_text]
+    if len(clauses) < n:                     # too coarse: split on commas too
+        finer = []
+        for c in clauses:
+            finer.extend(p.strip() for p in _COMMA_RE.split(c) if p.strip())
+        clauses = finer or clauses
+    if len(clauses) <= n:                    # one clause per line; pad the rest
+        return clauses + [""] * (n - len(clauses))
+    wc = [max(1, len(t.split())) for t in latin_lines]
+    total = sum(wc)
+    counts = [max(1, round(w / total * len(clauses))) for w in wc]
+    while sum(counts) > len(clauses):
+        counts[counts.index(max(counts))] -= 1
+    while sum(counts) < len(clauses):
+        counts[counts.index(min(counts))] += 1
+    out, ci = [], 0
+    for k in counts:
+        out.append(" ".join(clauses[ci:ci + k]))
+        ci += k
+    return out
 
 
 def load_dr(filename):
@@ -165,12 +219,14 @@ def main():
                     by_verse.append([ref, [], ln["verse"]])
                 by_verse[seen_ref[ref]][1].append(txt)
 
+            tf_vnums = sorted({vn for _, _, vn in by_verse})
             lat_blocks = []
             eng_blocks = []
             for ref, atu_lines, vnum in by_verse:
                 lat_blocks.append((ref, atu_lines))
-                # DR verse-level layer: whole DR verse on line 0, blanks after.
-                dr_text = dr.get((chap, vnum), "")
+                # DR layer: recover the full DR span this (possibly verse-folding)
+                # TF verse covers, then interleave it per ATU line.
+                dr_text = dr_span(dr, chap, vnum, tf_vnums)
                 book_verses += 1
                 cov["tf_verses"] += 1
                 if dr_text:
@@ -178,7 +234,7 @@ def main():
                     cov["dr_aligned"] += 1
                 else:
                     cov["dr_missing"][slug].append(f"{chap}:{vnum}")
-                en_lines = [dr_text] + [""] * (len(atu_lines) - 1)
+                en_lines = split_dr_to_lines(dr_text, atu_lines)
                 eng_blocks.append((ref, en_lines))
 
             write_chapter(LAT_DIR, slug, idx, chap, lat_blocks)

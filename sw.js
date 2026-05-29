@@ -11,7 +11,7 @@
  * Bump CACHE_VERSION on each deploy so old caches are purged. The in-app
  * "Refresh content" button also clears all caches.
  */
-const CACHE_VERSION = 'vulgate-v1.5-2026-05-29';
+const CACHE_VERSION = 'vulgate-v1.5-2026-05-29b';
 const SHELL = ['./', 'index.html'];
 
 self.addEventListener('install', (event) => {
