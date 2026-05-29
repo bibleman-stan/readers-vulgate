@@ -96,8 +96,7 @@ ut crastina die Paulum producas in concilium quasi aliquid certius inquisituri s
 
 23:21
 tu vero ne credideris illis
-insidiantur enim ei ex eis viri amplius quadraginta qui se devoverunt non manducare
-ne que bibere
+insidiantur enim ei ex eis viri amplius quadraginta qui se devoverunt non manducare ne que bibere
 donec interficiant eum
 et nunc parati sunt expectantes promissum tuum
 
@@ -138,14 +137,10 @@ ut irent cum eo
 reversi sunt ad castra
 
 23:33
-qui cum venissent Caesaream
-et tradidissent epistulam praesidi
-statuerunt ante illum et Paulum
+qui cum venissent Caesaream et tradidissent epistulam praesidi statuerunt ante illum et Paulum
 
 23:34
-cum legisset autem
-et interrogasset de qua provincia esset
-et cognoscens quia de Cilicia
+cum legisset autem et interrogasset de qua provincia esset et cognoscens quia de Cilicia
 audiam te
 inquit
 cum et accusatores tui venerint

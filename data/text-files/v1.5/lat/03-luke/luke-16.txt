@@ -13,8 +13,7 @@ iam enim non poteris vilicare
 
 16:3
 ait autem vilicus intra se
-quid faciam
-quia dominus meus aufert a me vilicationem
+quid faciam quia dominus meus aufert a me vilicationem
 fodere non valeo
 mendicare erubesco
 
@@ -90,9 +89,7 @@ et omnis in illud vim facit
 facilius est autem caelum et terram praeterire quam de lege unum apicem cadere
 
 16:18
-omnis qui dimittit uxorem suam
-et ducit alteram
-moechatur
+omnis qui dimittit uxorem suam et ducit alteram moechatur
 et qui dimissam a viro ducit moechatur
 
 16:19
@@ -108,8 +105,7 @@ sed et canes veniebant
 et lingebant ulcera eius
 
 16:22
-factum est autem ut moreretur mendicus
-et portaretur ab angelis in sinum Abrahae
+factum est autem ut moreretur mendicus et portaretur ab angelis in sinum Abrahae
 mortuus est autem et dives
 et sepultus est in inferno
 

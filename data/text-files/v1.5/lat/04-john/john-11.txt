@@ -33,12 +33,10 @@ et iterum vadis illuc
 11:9
 respondit Iesus
 nonne duodecim horae sunt diei
-si quis ambulaverit in die non offendit
-quia lucem huius mundi videt
+si quis ambulaverit in die non offendit quia lucem huius mundi videt
 
 11:10
-si autem ambulaverit nocte offendit
-quia lux non est in eo
+si autem ambulaverit nocte offendit quia lux non est in eo
 
 11:11
 haec ait
@@ -104,9 +102,7 @@ ego sum resurrectio et vita
 qui credit in me et si mortuus fuerit vivet
 
 11:26
-et omnis qui vivit
-et credit in me
-non morietur in aeternum
+et omnis qui vivit et credit in me non morietur in aeternum
 credis hoc
 
 11:27
@@ -130,9 +126,7 @@ sed erat adhuc in illo loco ubi occurrerat ei Martha
 11:31
 Iudaei igitur qui erant cum ea in domo
 et consolabantur eam
-cum vidissent Mariam quia cito surrexit
-et exiit
-secuti sunt eam dicentes quia
+cum vidissent Mariam quia cito surrexit et exiit secuti sunt eam dicentes quia
 vadit ad monumentum
 ut ploret ibi
 
@@ -144,9 +138,7 @@ et dixit ei
 Domine si fuisses hic non esset mortuus frater meus
 
 11:33
-Iesus ergo ut vidit eam plorantem
-et Iudaeos qui venerant cum ea plorantes
-fremuit spiritu
+Iesus ergo ut vidit eam plorantem et Iudaeos qui venerant cum ea plorantes fremuit spiritu
 et turbavit se ipsum
 et dixit
 
@@ -207,9 +199,7 @@ solvite eum
 et sinite abire
 
 11:45
-multi ergo ex Iudaeis qui venerant ad Mariam
-et viderant quae fecit
-crediderunt in eum
+multi ergo ex Iudaeis qui venerant ad Mariam et viderant quae fecit crediderunt in eum
 
 11:46
 quidam autem ex ipsis abierunt ad Pharisaeos
@@ -218,8 +208,7 @@ et dixerunt eis quae fecit Iesus
 11:47
 collegerunt ergo pontifices et Pharisaei concilium
 et dicebant
-quid facimus
-quia hic homo multa signa facit
+quid facimus quia hic homo multa signa facit
 
 11:48
 si dimittimus eum sic omnes credent in eum
@@ -234,9 +223,7 @@ et non tota gens pereat
 
 11:51
 hoc autem a se met ipso non dixit
-sed cum esset pontifex anni illius prophetavit quia Iesus moriturus erat pro gente
-et non tantum pro gente
-sed et ut filios Dei qui erant dispersi congregaret in unum
+sed cum esset pontifex anni illius prophetavit quia Iesus moriturus erat pro gente et non tantum pro gente sed et ut filios Dei qui erant dispersi congregaret in unum
 
 11:53
 ab illo ergo die cogitaverunt ut interficerent eum

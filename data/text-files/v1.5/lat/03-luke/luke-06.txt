@@ -1,8 +1,7 @@
 6:1
 factum est autem in sabbato secundoprimo
 cum transiret per sata
-vellebant discipuli eius spicas
-et manducabant confricantes manibus
+vellebant discipuli eius spicas et manducabant confricantes manibus
 
 6:2
 quidam autem Pharisaeorum dicebant illis
@@ -26,8 +25,7 @@ et dicebat illis quia
 dominus est Filius hominis etiam sabbati
 
 6:6
-factum est autem et in alio sabbato ut intraret in synagogam
-et doceret
+factum est autem et in alio sabbato ut intraret in synagogam et doceret
 et erat ibi homo
 et manus eius dextra erat arida
 
@@ -57,15 +55,11 @@ ipsi autem repleti sunt insipientia
 et conloquebantur ad invicem quidnam facerent Iesu
 
 6:12
-factum est autem in illis diebus exiit in montem orare
-et erat pernoctans in oratione Dei
+factum est autem in illis diebus exiit in montem orare et erat pernoctans in oratione Dei
 
 6:13
 et cum dies factus esset vocavit discipulos suos
-et elegit duodecim ex ipsis quos et apostolos nominavit Simonem quem cognominavit Petrum et Andream fratrem eius Iacobum et Iohannem Philippum et Bartholomeum Mattheum et Thomam Iacobum Alphei
-et Simonem qui vocatur Zelotes
-Iudam Iacobi
-et Iudam Scarioth qui fuit proditor
+et elegit duodecim ex ipsis quos et apostolos nominavit Simonem quem cognominavit Petrum et Andream fratrem eius Iacobum et Iohannem Philippum et Bartholomeum Mattheum et Thomam Iacobum Alphei et Simonem qui vocatur Zelotes Iudam Iacobi et Iudam Scarioth qui fuit proditor
 
 6:17
 et descendens cum illis stetit in loco campestri
@@ -87,10 +81,8 @@ et ipse elevatis oculis in discipulos suos dicebat
 beati pauperes quia vestrum est regnum Dei
 
 6:21
-beati qui nunc esuritis
-quia saturabimini
-beati qui nunc fletis
-quia ridebitis
+beati qui nunc esuritis quia saturabimini
+beati qui nunc fletis quia ridebitis
 
 6:22
 beati eritis
@@ -106,12 +98,10 @@ ecce enim merces vestra multa in caelo
 secundum haec enim faciebant prophetis patres eorum
 
 6:24
-verumtamen vae vobis divitibus
-quia habetis consolationem vestram
+verumtamen vae vobis divitibus quia habetis consolationem vestram
 
 6:25
-vae vobis qui saturati estis
-quia esurietis
+vae vobis qui saturati estis quia esurietis
 vae vobis
 qui ridetis nunc
 quia lugebitis
@@ -219,22 +209,16 @@ quid autem vocatis me Domine Domine
 et non facitis quae dico
 
 6:47
-omnis qui venit ad me
-et audit sermones meos
-et facit eos
-ostendam vobis cui similis est
+omnis qui venit ad me et audit sermones meos et facit eos ostendam vobis cui similis est
 
 6:48
-similis est homini aedificanti domum qui fodit in altum
-et posuit fundamenta supra petram
+similis est homini aedificanti domum qui fodit in altum et posuit fundamenta supra petram
 inundatione autem facta inlisum est flumen domui illi
 et non potuit eam movere
 fundata enim erat supra petram
 
 6:49
-qui autem audivit
-et non fecit
-similis est homini aedificanti domum suam supra terram sine fundamento
+qui autem audivit et non fecit similis est homini aedificanti domum suam supra terram sine fundamento
 in quam inlisus est fluvius
 et continuo concidit
 et facta est ruina domus illius magna

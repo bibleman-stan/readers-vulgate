@@ -37,14 +37,10 @@ et in domo iterum discipuli eius de eodem interrogaverunt eum
 
 10:11
 et dicit illis
-quicumque dimiserit uxorem suam
-et aliam duxerit
-adulterium committit super eam
+quicumque dimiserit uxorem suam et aliam duxerit adulterium committit super eam
 
 10:12
-et si uxor dimiserit virum suum
-et alii nupserit
-moechatur
+et si uxor dimiserit virum suum et alii nupserit moechatur
 
 10:13
 et offerebant illi parvulos
@@ -166,8 +162,7 @@ da nobis ut unus ad dexteram tuam et alius ad sinistram tuam sedeamus in gloria 
 10:38
 Iesus autem ait eis
 nescitis quid petatis
-potestis bibere calicem quem ego bibo
-aut baptismum quo ego baptizor baptizari
+potestis bibere calicem quem ego bibo aut baptismum quo ego baptizor baptizari
 
 10:39
 at illi dixerunt ei

@@ -1,9 +1,5 @@
 13:1
-erant autem in ecclesia quae erat Antiochiae prophetae et doctores in quibus Barnabas
-et Symeon qui vocabatur Niger
-et Lucius Cyrenensis
-et Manaen qui erat Herodis tetrarchae conlactaneus
-et Saulus
+erant autem in ecclesia quae erat Antiochiae prophetae et doctores in quibus Barnabas et Symeon qui vocabatur Niger et Lucius Cyrenensis et Manaen qui erat Herodis tetrarchae conlactaneus et Saulus
 
 13:2
 ministrantibus autem illis Domino et ieiunantibus dixit Spiritus Sanctus
@@ -99,9 +95,7 @@ et qui in vobis timent Deum
 vobis verbum salutis huius missum est
 
 13:27
-qui enim habitabant Hierusalem et principes eius hunc ignorantes
-et voces prophetarum quae per omne sabbatum leguntur
-iudicantes impleverunt
+qui enim habitabant Hierusalem et principes eius hunc ignorantes et voces prophetarum quae per omne sabbatum leguntur iudicantes impleverunt
 et nullam causam mortis invenientes in eum petierunt a Pilato ut interficerent eum
 
 13:29
@@ -169,9 +163,7 @@ et contradicebant his quae a Paulo dicebantur blasphemantes
 13:46
 tunc constanter Paulus et Barnabas dixerunt
 vobis oportebat primum loqui verbum Dei
-sed quoniam repellitis illud
-et indignos vos iudicastis aeternae vitae
-ecce convertimur ad gentes
+sed quoniam repellitis illud et indignos vos iudicastis aeternae vitae ecce convertimur ad gentes
 
 13:47
 sic enim praecepit nobis Dominus

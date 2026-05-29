@@ -15,8 +15,7 @@ si peccaverit frater tuus increpa illum
 et si paenitentiam egerit dimitte illi
 
 17:4
-et si septies in die peccaverit in te
-et septies in die conversus fuerit ad te dicens
+et si septies in die peccaverit in te et septies in die conversus fuerit ad te dicens
 paenitet me
 dimitte illi
 
@@ -47,8 +46,7 @@ et post haec tu manducabis
 et bibes
 
 17:9
-numquid gratiam habet servo illi
-quia fecit quae sibi imperaverat
+numquid gratiam habet servo illi quia fecit quae sibi imperaverat
 non puto
 
 17:10
@@ -89,9 +87,7 @@ nonne decem mundati sunt
 et novem ubi sunt
 
 17:18
-non est inventus qui rediret
-et daret gloriam Deo
-nisi hic alienigena
+non est inventus qui rediret et daret gloriam Deo nisi hic alienigena
 
 17:19
 et ait illi

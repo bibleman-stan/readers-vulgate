@@ -1,7 +1,5 @@
 21:1
-et cum adpropinquassent Hierosolymis
-et venissent Bethfage ad montem Oliveti
-tunc Iesus misit duos discipulos dicens eis
+et cum adpropinquassent Hierosolymis et venissent Bethfage ad montem Oliveti tunc Iesus misit duos discipulos dicens eis
 
 21:2
 ite in castellum quod contra vos est
@@ -98,9 +96,7 @@ quomodo continuo aruit
 21:21
 respondens autem Iesus ait eis
 amen dico vobis
-si habueritis fidem
-et non haesitaveritis
-non solum de ficulnea facietis
+si habueritis fidem et non haesitaveritis non solum de ficulnea facietis
 sed et si monti huic dixeritis
 tolle
 et iacta te in mare
@@ -168,11 +164,7 @@ ut crederetis ei
 
 21:33
 aliam parabolam audite
-homo erat pater familias qui plantavit vineam
-et sepem circumdedit ei
-et fodit in ea torcular
-et aedificavit turrem
-et locavit eam agricolis
+homo erat pater familias qui plantavit vineam et sepem circumdedit ei et fodit in ea torcular et aedificavit turrem et locavit eam agricolis
 et peregre profectus est
 
 21:34
@@ -219,8 +211,7 @@ a Domino factum est istud
 et est mirabile in oculis nostris
 
 21:43
-ideo dico vobis quia auferetur a vobis regnum Dei
-et dabitur genti facienti fructus eius
+ideo dico vobis quia auferetur a vobis regnum Dei et dabitur genti facienti fructus eius
 
 21:44
 et qui ceciderit super lapidem istum confringetur
@@ -230,6 +221,5 @@ super quem vero ceciderit conteret eum
 et cum audissent principes sacerdotum et Pharisaei parabolas eius cognoverunt quod de ipsis diceret
 
 21:46
-et quaerentes eum tenere timuerunt turbas
-quoniam sicut prophetam eum habebant
+et quaerentes eum tenere timuerunt turbas quoniam sicut prophetam eum habebant
 

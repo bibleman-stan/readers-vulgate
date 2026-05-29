@@ -1,8 +1,6 @@
 10:1
 amen amen dico vobis
-qui non intrat per ostium in ovile ovium
-sed ascendit aliunde
-ille fur est et latro
+qui non intrat per ostium in ovile ovium sed ascendit aliunde ille fur est et latro
 
 10:2
 qui autem intrat per ostium pastor est ovium
@@ -15,13 +13,11 @@ et educit eas
 
 10:4
 et cum proprias oves emiserit ante eas vadit
-et oves illum sequuntur
-quia sciunt vocem eius
+et oves illum sequuntur quia sciunt vocem eius
 
 10:5
 alienum autem non sequuntur
-sed fugient ab eo
-quia non noverunt vocem alienorum
+sed fugient ab eo quia non noverunt vocem alienorum
 
 10:6
 hoc proverbium dixit eis Iesus
@@ -66,8 +62,7 @@ et lupus rapit
 et dispergit oves
 
 10:13
-mercennarius autem fugit quia mercennarius est
-et non pertinet ad eum de ovibus
+mercennarius autem fugit quia mercennarius est et non pertinet ad eum de ovibus
 
 10:14
 ego sum pastor bonus
@@ -171,9 +166,7 @@ dii estis
 10:35
 si illos dixit deos ad quos sermo Dei factus est
 et non potest solvi scriptura
-quem Pater sanctificavit
-et misit in mundum
-vos dicitis quia
+quem Pater sanctificavit et misit in mundum vos dicitis quia
 blasphemas
 quia dixi
 Filius Dei sum

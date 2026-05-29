@@ -78,6 +78,18 @@ def _morph(api, w):
     return api.F.morph.v(w) or ""
 
 
+def _person_num(api, w):
+    """(Person, Number) feature pair from a word's morph, for detecting whether a
+    coordinate shares its conjunct's subject."""
+    p = n = ""
+    for tok in _morph(api, w).split("|"):
+        if tok.startswith("Person="):
+            p = tok
+        elif tok.startswith("Number="):
+            n = tok
+    return (p, n)
+
+
 def is_finite(api, w):
     """A word is a finite predicate if its FEATS carry VerbForm=Fin, or it is a
     VERB/AUX with no non-finite VerbForm tag (defensive: a finite verb missing
@@ -139,6 +151,118 @@ def subtree_has_finite(api, head, children_of):
     return False
 
 
+def _has_own_subject(api, w, children_of):
+    """True if clause-head w has its own overt subject child (nsubj/csubj) -- a
+    full parallel clause, not a shared-subject coordinate continuation."""
+    for c in children_of.get(w, ()):
+        if api.F.udrel.v(c) in ("nsubj", "nsubj:pass", "csubj", "csubj:pass"):
+            return True
+    return False
+
+
+def _coordinate_is_new_assertion(api, w):
+    """Veto on the inheritance-bind: a coordinate whose subject person/number
+    SHIFTS vs its conjunct, inside a content/relative (ccomp/acl) frame, is a NEW
+    independent assertion flattened into a speech/relative line -- the over-merge
+    the gate flagged (John 3:11 "quod scimus loquimur ... et ... non accipitis",
+    we->you; Matt 17:12 "Helias venit et non cognoverunt", sing->plur). Standing
+    it is the safe under-merge side. Same-subject coordinates (John 3:11's
+    "testamur", Person=1 like "loquimur") are NOT vetoed -> stay bound."""
+    gov = api.E.head.f(w)
+    if not gov:
+        return False
+    if _person_num(api, w) == _person_num(api, gov[0]):
+        return False
+    seen, c = {w}, w
+    while True:
+        g = api.E.head.f(c)
+        if not g:
+            return False
+        g = g[0]
+        if g in seen:
+            return False
+        seen.add(g)
+        if api.F.udrel.v(g) == "conj":
+            c = g
+            continue
+        return api.F.udrel.v(g) in ("ccomp", "acl", "acl:relcl")
+
+
+# Content-taking matrix verbs (speech / cognition / perception / emotion). When
+# one of these governs a quod/quoniam clause, PROIEL sometimes tags that clause
+# advcl though it is really an OBJECT (content-"that") clause -- binding it
+# over-merges. Suppressing the bind for these governors errs to STAND (the safe,
+# under-merge side of the red line). Closed list set by the 2026-05-29 over-merge
+# adversarial gate.
+_CONTENT_VERBS = {
+    "dico", "ago", "loquor", "narro", "confiteor", "fateor", "nuntio",
+    "respondeo", "clamo", "praedico", "testor", "scribo", "moneo", "inquam",
+    "scio", "nescio", "cognosco", "nosco", "intellego", "existimo", "puto",
+    "credo", "arbitror", "reor", "memini", "recordor", "ignoro", "cogito",
+    "iudico", "spero", "confido",
+    "video", "audio", "sentio", "animadverto",
+    "gaudeo", "laudo", "gratulor", "glorior", "miror", "doleo", "queror",
+    "gratias",
+}
+
+
+def _causal_ground_marks(api, w, children_of):
+    """The `mark` children of advcl-head w whose lemma is a true causal
+    subordinator (quia/quoniam/quod). enim/nam are discourse ADVs (not marks)
+    and are excluded; declarative/recitative quoniam after a verb of
+    knowing/saying is parsed ccomp (not advcl) and never reaches here."""
+    out = []
+    for c in children_of.get(w, ()):
+        if api.F.udrel.v(c) == "mark":
+            if (api.F.lemma.v(c) or "").lower() in ("quia", "quoniam", "quod"):
+                out.append(c)
+    return out
+
+
+def _is_causal_anaphoric_ground(api, w, children_of):
+    """Audited SAFE sub-class of the causal-bind rule: a FOLLOWING causal advcl
+    binds BACKWARD into its main clause (one ATU) ONLY when it is a short, flat,
+    anaphoric ground -- the Beatitudes pattern ("beati mites / quoniam ipsi
+    possidebunt terram" -> one line). The four guards keep it off the over-merge
+    red line the adversarial audit drew (a blanket following-causal-bind
+    over-merges 50-70%: discourse enim/nam, recitative quoniam, and long or
+    new-referent grounds are self-standing ATUs):
+      1. marker is a true causal subordinator (quia/quoniam/quod);
+      2. no NEW proper-noun referent in the subtree (anaphoric ground only);
+      3. flat: no nested finite clause-head in the subtree;
+      4. short: subtree <= 8 words.
+    """
+    if not _causal_ground_marks(api, w, children_of):
+        return False
+    # content-clause guard: a content-taking matrix verb means the quod/quoniam
+    # clause is an object clause mis-tagged advcl, not a causal ground -> stand.
+    gov = api.E.head.f(w)
+    if gov and (api.F.lemma.v(gov[0]) or "").lower() in _CONTENT_VERBS:
+        return False
+    stack, sub, seen = [w], [], set()
+    while stack:
+        n = stack.pop()
+        if n in seen:
+            continue
+        seen.add(n)
+        sub.append(n)
+        stack.extend(children_of.get(n, ()))
+    if len(sub) > 8:
+        return False
+    if any(api.F.upos.v(n) == "PROPN" for n in sub):
+        return False
+    if any((api.F.lemma.v(n) or "").lower() == "inquam" for n in sub):
+        return False  # recitative parenthetical (inquit/inquiunt), not a ground
+    _NESTED = {"advcl", "advcl:cmp", "ccomp", "acl", "acl:relcl",
+               "conj", "csubj", "csubj:pass", "parataxis"}
+    for n in sub:
+        if n is w:
+            continue
+        if api.F.udrel.v(n) in _NESTED and is_finite(api, n):
+            return False
+    return True
+
+
 def _clause_head_of(api, w):
     """The clause-head that directly governs w's clause membership: w itself if
     it is a clause-head, else the nearest clause-head among its governors."""
@@ -187,6 +311,7 @@ def generate(book_code, chap):
         return w < gov[0]
 
     bind = {}  # clause_head -> bool (True = binds to governor, not its own ATU)
+    _conj_pending = []  # conj members resolved in a 2nd pass (coord inheritance)
     for w in clause_heads:
         rel = F.udrel.v(w)
         if F.is_root.v(w) == 1:
@@ -196,11 +321,18 @@ def generate(book_code, chap):
             bind[w] = False
             continue
         if rel == "conj":
-            # R2: a conj member stands only if its subtree carries a finite verb.
-            bind[w] = not subtree_has_finite(api, w, children_of)
+            _conj_pending.append(w)  # coordination inheritance, resolved below
             continue
         if rel in ("advcl", "advcl:cmp"):
-            if is_finite(api, w):
+            if not precedes_governor(w) and _is_causal_anaphoric_ground(api, w, children_of):
+                # R3: a short, flat, anaphoric causal ground FOLLOWING its main
+                # clause binds BACKWARD into it (one ATU) -- the Beatitudes
+                # pattern ("beati mites / quoniam ipsi possidebunt terram").
+                # Guarded sub-class only (see _is_causal_anaphoric_ground); the
+                # general following-causal class over-merges and is left to
+                # stand (-> v2 adjudication, not a blanket rule).
+                bind[w] = True
+            elif is_finite(api, w):
                 # R1: finite frame preceding its governor binds FORWARD (rides
                 # the main clause); finite advcl following its head stands.
                 bind[w] = precedes_governor(w)
@@ -211,6 +343,50 @@ def generate(book_code, chap):
             bind[w] = True
             continue
         bind[w] = False
+
+    # --- 2nd pass: COORDINATION INHERITANCE. A coordinate (conj) member segments
+    # like the conjunct it attaches to. If the conjunct BINDS (a verb inside a
+    # relative/complement/non-finite clause -- "qui esuriunt ET sitiunt") the
+    # coordinate binds too, keeping the coordination in one ATU. If the conjunct
+    # STANDS (coordinate MAIN clauses / sequential event-chains -- "venit ET vidit
+    # ET dixit") the coordinate stands, so each predication is its own ATU. A
+    # gapped coordinate (no finite verb of its own) always binds (shared predicate
+    # -- "neque ex sanguinibus / neque ex voluntate carnis"). Replaces the rejected
+    # broad rule (bind-if-no-own-subject), which over-merged 2552 coordinates
+    # corpus-wide (event-chains, parallel cola, rhetorical series). ---
+    def _conjunct_bind(w):
+        # A conj member STANDS only if its coordination head is itself a standing
+        # ATU root (coordinate MAIN clauses / event-chains -- "venit ET vidit").
+        # If that head BINDS, or is NOT a clause-head of its own (a clausal-subject
+        # or relative verb that rides a governor -- "qui esuriunt ET sitiunt",
+        # where esuriunt is nsubj of beati), the coordinate binds too.
+        seen = {w}
+        c = w
+        while True:
+            gov = E.head.f(c)
+            if not gov:
+                return False
+            g = gov[0]
+            if g in seen:
+                return False
+            seen.add(g)
+            if F.udrel.v(g) == "conj":
+                c = g
+                continue
+            stands_alone = is_clause_head(api, g) and not bind.get(g, False)
+            return not stands_alone
+
+    # Combined guard: a coordinate with its OWN subject is a full parallel clause
+    # / colon ("omnes...fuerunt ET omnes...transierunt", 1Cor 10:1) and STANDS even
+    # when its conjunct binds; only a SHARED-subject coordinate follows the
+    # conjunct. (Pure inheritance alone over-bound ~721 such parallel clauses.)
+    for w in _conj_pending:
+        if not subtree_has_finite(api, w, children_of):
+            bind[w] = True
+        elif _has_own_subject(api, w, children_of):
+            bind[w] = False
+        else:
+            bind[w] = _conjunct_bind(w) and not _coordinate_is_new_assertion(api, w)
 
     def atu_root(w):
         """Innermost STANDING clause-head on w's chain (w's clause-head first,

@@ -1,7 +1,5 @@
 1:1
-Paulus servus Dei apostolus autem Iesu Christi secundum fidem electorum Dei
-et agnitionem veritatis quae secundum pietatem est
-in spem vitae aeternae quam promisit qui non mentitur Deus ante tempora saecularia
+Paulus servus Dei apostolus autem Iesu Christi secundum fidem electorum Dei et agnitionem veritatis quae secundum pietatem est in spem vitae aeternae quam promisit qui non mentitur Deus ante tempora saecularia
 
 1:3
 manifestavit autem temporibus suis verbum suum in praedicatione quae credita est mihi secundum praeceptum salvatoris nostri Dei
@@ -26,8 +24,7 @@ sed hospitalem benignum sobrium iustum sanctum continentem
 
 1:9
 amplectentem eum qui secundum doctrinam est fidelem sermonem
-ut potens sit et exhortari in doctrina sana
-et eos qui contradicunt arguere
+ut potens sit et exhortari in doctrina sana et eos qui contradicunt arguere
 
 1:10
 sunt enim multi et inoboedientes vaniloqui et seductores

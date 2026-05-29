@@ -1,7 +1,5 @@
 4:1
-ut ergo cognovit Iesus quia audierunt Pharisaei quia Iesus plures discipulos facit
-et baptizat
-quam Iohannes
+ut ergo cognovit Iesus quia audierunt Pharisaei quia Iesus plures discipulos facit et baptizat quam Iohannes
 quamquam Iesus non baptizaret sed discipuli eius
 reliquit Iudaeam
 et abiit iterum in Galilaeam
@@ -213,8 +211,7 @@ et erat quidam regulus cuius filius infirmabatur Capharnaum
 
 4:47
 hic cum audisset quia Iesus adveniret a Iudaea in Galilaeam abiit ad eum
-et rogabat eum ut descenderet
-et sanaret filium eius
+et rogabat eum ut descenderet et sanaret filium eius
 incipiebat enim mori
 
 4:48

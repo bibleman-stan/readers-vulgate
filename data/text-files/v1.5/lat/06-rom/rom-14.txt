@@ -36,9 +36,7 @@ et nemo sibi moritur
 14:8
 si ve enim vivimus Domino vivimus
 si ve morimur Domino morimur
-si ve ergo vivimus
-si ve morimur
-Domini sumus
+si ve ergo vivimus si ve morimur Domini sumus
 
 14:9
 in hoc enim Christus et mortuus est
@@ -83,8 +81,7 @@ qui enim in hoc servit Christo placet Deo
 et probatus est hominibus
 
 14:19
-itaque quae pacis sunt sectemur
-et quae aedificationis sunt in invicem
+itaque quae pacis sunt sectemur et quae aedificationis sunt in invicem
 
 14:20
 noli propter escam destruere opus Dei

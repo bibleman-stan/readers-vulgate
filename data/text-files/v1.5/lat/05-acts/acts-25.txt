@@ -34,9 +34,7 @@ Iudaeis non nocui
 sicut tu melius nosti
 
 25:11
-si enim nocui
-aut dignum morte aliquid feci
-non recuso mori
+si enim nocui aut dignum morte aliquid feci non recuso mori
 si vero nihil est eorum quae hii accusant me nemo potest me illis donare
 Caesarem appello
 
@@ -65,8 +63,7 @@ cum ergo huc convenissent sine ulla dilatione sequenti die sedens pro tribunali 
 de quo cum stetissent accusatores nullam causam deferebant de quibus ego suspicabar malum
 
 25:19
-quaestiones vero quasdam de sua superstitione habebant adversus eum
-et de quodam Iesu defuncto quem adfirmabat Paulus vivere
+quaestiones vero quasdam de sua superstitione habebant adversus eum et de quodam Iesu defuncto quem adfirmabat Paulus vivere
 
 25:20
 haesitans autem ego de huius modi quaestione dicebam si vellet ire Hierosolymam et ibi iudicari de istis
@@ -83,15 +80,11 @@ inquit
 audies eum
 
 25:23
-altera autem die cum venisset Agrippa et Bernice cum multa ambitione
-et introissent in auditorium cum tribunis et viris principalibus civitatis
-et iubente Festo adductus est Paulus
+altera autem die cum venisset Agrippa et Bernice cum multa ambitione et introissent in auditorium cum tribunis et viris principalibus civitatis et iubente Festo adductus est Paulus
 
 25:24
 et dixit Festus
-Agrippa rex
-et omnes qui simul adestis nobis cum viri
-videtis hunc de quo omnis multitudo Iudaeorum interpellavit me Hierosolymis petens et hic clamantes non oportere eum vivere amplius
+Agrippa rex et omnes qui simul adestis nobis cum viri videtis hunc de quo omnis multitudo Iudaeorum interpellavit me Hierosolymis petens et hic clamantes non oportere eum vivere amplius
 
 25:25
 ego vero conperi nihil dignum eum morte admisisse

@@ -67,8 +67,7 @@ sed quod odi illud facio
 si autem quod nolo illud facio consentio legi quoniam bona
 
 7:17
-nunc autem iam non ego operor illud
-sed quod habitat in me peccatum
+nunc autem iam non ego operor illud sed quod habitat in me peccatum
 
 7:18
 scio enim quia non habitat in me
@@ -82,15 +81,13 @@ non enim quod volo bonum hoc facio
 sed quod nolo malum hoc ago
 
 7:20
-si autem quod nolo illud facio non ego operor illud
-sed quod habitat in me peccatum
+si autem quod nolo illud facio non ego operor illud sed quod habitat in me peccatum
 
 7:22
 condelector enim legi Dei secundum interiorem hominem
 
 7:23
-video autem aliam legem in membris meis repugnantem legi mentis meae
-et captivantem me in lege peccati quae est in membris meis
+video autem aliam legem in membris meis repugnantem legi mentis meae et captivantem me in lege peccati quae est in membris meis
 
 7:24
 infelix ego homo

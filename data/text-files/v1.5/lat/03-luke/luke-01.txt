@@ -1,7 +1,6 @@
 1:1
 quoniam quidem multi conati sunt ordinare narrationem quae in nobis conpletae sunt rerum
-sicut tradiderunt nobis qui ab initio ipsi viderunt
-et ministri fuerunt sermonis
+sicut tradiderunt nobis qui ab initio ipsi viderunt et ministri fuerunt sermonis
 visum est et mihi adsecuto a principio omnibus diligenter ex ordine tibi scribere optime Theophile
 ut cognoscas eorum verborum de quibus eruditus es veritatem
 
@@ -79,8 +78,7 @@ et ipse erat innuens illis
 et permansit mutus
 
 1:23
-et factum est ut impleti sunt dies officii eius
-abiit in domum suam
+et factum est ut impleti sunt dies officii eius abiit in domum suam
 
 1:24
 post hos autem dies concepit Elisabeth uxor eius
@@ -126,8 +124,7 @@ et regni eius non erit finis
 
 1:34
 dixit autem Maria ad angelum
-quomodo fiet istud
-quoniam virum non cognosco
+quomodo fiet istud quoniam virum non cognosco
 
 1:35
 et respondens angelus dixit ei
@@ -176,8 +173,7 @@ et ait Maria
 magnificat anima mea Dominum
 
 1:47
-et exultavit spiritus meus in Deo salutari meo
-quia respexit humilitatem ancillae suae
+et exultavit spiritus meus in Deo salutari meo quia respexit humilitatem ancillae suae
 
 1:48
 ecce enim ex hoc beatam me dicent omnes generationes
@@ -256,8 +252,7 @@ quia visitavit
 et fecit redemptionem plebi suae
 
 1:69
-et erexit cornu salutis nobis in domo David pueri sui sicut locutus est per os sanctorum qui a saeculo sunt prophetarum eius salutem ex inimicis nostris
-et de manu omnium qui oderunt nos
+et erexit cornu salutis nobis in domo David pueri sui sicut locutus est per os sanctorum qui a saeculo sunt prophetarum eius salutem ex inimicis nostris et de manu omnium qui oderunt nos
 
 1:72
 ad faciendam misericordiam cum patribus nostris

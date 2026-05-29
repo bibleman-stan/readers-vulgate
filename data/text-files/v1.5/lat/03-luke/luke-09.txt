@@ -1,6 +1,5 @@
 9:1
-convocatis autem duodecim apostolis dedit illis virtutem
-et potestatem super omnia daemonia et ut languores curarent
+convocatis autem duodecim apostolis dedit illis virtutem et potestatem super omnia daemonia et ut languores curarent
 
 9:2
 et misit illos praedicare regnum Dei et sanare infirmos
@@ -146,8 +145,7 @@ et dicebant excessum eius quem conpleturus erat in Hierusalem
 
 9:32
 Petrus vero et qui cum illo gravati erant somno
-et evigilantes viderunt maiestatem eius
-et duos viros qui stabant cum illo
+et evigilantes viderunt maiestatem eius et duos viros qui stabant cum illo
 
 9:33
 et factum est
@@ -234,8 +232,7 @@ nam qui minor est inter omnes vos hic maior est
 9:49
 respondens autem Iohannes dixit
 praeceptor vidimus quendam in nomine tuo eicientem daemonia
-et prohibuimus eum
-quia non sequitur nobis cum
+et prohibuimus eum quia non sequitur nobis cum
 
 9:50
 et ait ad illum Iesus
@@ -257,8 +254,7 @@ et non receperunt eum quia facies eius erat euntis Hierusalem
 
 9:54
 cum vidissent autem discipuli eius Iacobus et Iohannes dixerunt
-Domine vis dicimus ut ignis descendat de caelo
-et consumat illos
+Domine vis dicimus ut ignis descendat de caelo et consumat illos
 
 9:55
 et conversus increpavit illos

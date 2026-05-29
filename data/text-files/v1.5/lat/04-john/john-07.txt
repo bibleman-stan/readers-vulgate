@@ -1,7 +1,6 @@
 7:1
 post haec ambulabat Iesus in Galilaeam
-non enim volebat in Iudaeam ambulare
-quia quaerebant eum Iudaei interficere
+non enim volebat in Iudaeam ambulare quia quaerebant eum Iudaei interficere
 
 7:2
 erat autem in proximo dies festus Iudaeorum scenopegia
@@ -103,8 +102,7 @@ et in sabbato circumciditis hominem
 7:23
 si circumcisionem accipit homo in sabbato
 ut non solvatur lex Mosi
-mihi indignamini
-quia totum hominem sanum feci in sabbato
+mihi indignamini quia totum hominem sanum feci in sabbato
 
 7:24
 nolite iudicare secundum faciem
@@ -136,8 +134,7 @@ et ipse me misit
 
 7:30
 quaerebant ergo eum adprehendere
-et nemo misit in illum manus
-quia nondum venerat hora eius
+et nemo misit in illum manus quia nondum venerat hora eius
 
 7:31
 de turba autem multi crediderunt in eum
@@ -161,8 +158,7 @@ et ubi sum ego vos non potestis venire
 
 7:35
 dixerunt ergo Iudaei ad se ipsos
-quo hic iturus est
-quia non inveniemus eum
+quo hic iturus est quia non inveniemus eum
 numquid in dispersionem gentium iturus est et docturus gentes
 
 7:36
@@ -198,9 +194,7 @@ numquid a Galilaea Christus venit
 
 7:42
 nonne scriptura dicit quia
-ex semine David
-et Bethleem castello ubi erat David
-venit Christus
+ex semine David et Bethleem castello ubi erat David venit Christus
 
 7:43
 dissensio itaque facta est in turba propter eum

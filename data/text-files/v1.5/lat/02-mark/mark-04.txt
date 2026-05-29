@@ -19,14 +19,11 @@ et comederunt illud
 
 4:5
 aliud vero cecidit super petrosa ubi non habuit terram multam
-et statim exortum est
-quoniam non habebat altitudinem terrae
+et statim exortum est quoniam non habebat altitudinem terrae
 
 4:6
 et quando exortus est sol exaestuavit
-et eo
-quod non haberet radicem
-exaruit
+et eo quod non haberet radicem exaruit
 
 4:7
 et aliud cecidit in spinas
@@ -131,8 +128,7 @@ dum nescit ille
 ultro enim terra fructificat primum herbam deinde spicam deinde plenum frumentum in spica
 
 4:29
-et cum se produxerit fructus statim mittit falcem
-quoniam adest messis
+et cum se produxerit fructus statim mittit falcem quoniam adest messis
 
 4:30
 et dicebat

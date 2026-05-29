@@ -84,8 +84,7 @@ et video
 
 9:16
 dicebant ergo ex Pharisaeis quidam
-non est hic homo a Deo
-quia sabbatum non custodit
+non est hic homo a Deo quia sabbatum non custodit
 alii dicebant
 quomodo potest homo peccator haec signa facere
 et scisma erat in eis
@@ -109,8 +108,7 @@ quomodo ergo nunc videt
 9:20
 responderunt eis parentes eius
 et dixerunt
-scimus quia hic est filius noster
-et quia caecus natus est
+scimus quia hic est filius noster et quia caecus natus est
 
 9:21
 quomodo autem nunc videat nescimus
@@ -171,9 +169,7 @@ et aperuit meos oculos
 
 9:31
 scimus autem quia peccatores Deus non audit
-sed si quis Dei cultor est
-et voluntatem eius facit
-hunc exaudit
+sed si quis Dei cultor est et voluntatem eius facit hunc exaudit
 
 9:32
 a saeculo non est auditum quia aperuit quis oculos caeci nati

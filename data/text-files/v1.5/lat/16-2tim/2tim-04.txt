@@ -1,7 +1,5 @@
 4:1
-testificor coram Deo
-et Christo Iesu qui iudicaturus est vivos ac mortuos
-et adventum ipsius et regnum eius
+testificor coram Deo et Christo Iesu qui iudicaturus est vivos ac mortuos et adventum ipsius et regnum eius
 
 4:2
 praedica verbum
@@ -11,10 +9,7 @@ obsecra
 increpa in omni patientia et doctrina
 
 4:3
-erit enim tempus cum sanam doctrinam non sustinebunt
-sed ad sua desideria coacervabunt sibi magistros prurientes auribus
-et a veritate quidem auditum avertent
-ad fabulas autem convertentur
+erit enim tempus cum sanam doctrinam non sustinebunt sed ad sua desideria coacervabunt sibi magistros prurientes auribus et a veritate quidem auditum avertent ad fabulas autem convertentur
 
 4:5
 tu vero vigila in omnibus
