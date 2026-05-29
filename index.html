@@ -1,0 +1,3183 @@
+<!DOCTYPE html>
+<html lang="la">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vulgate Reader — Latin New Testament</title>
+<meta name="description" content="A colometric reading edition of the Latin Vulgate New Testament formatted as atomic thought units (ATUs), with the Douay-Rheims English. v1.5 draft.">
+<meta name="theme-color" content="#1c1f24">
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,700;1,7..72,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --line-height: 2.35;
+    --wrap-indent: 0.75em;
+    --verse-gap: 6px;
+    --font-size: 17px;
+    --letter-spacing: 0.02em;
+    --word-spacing: 0.06em;
+    --content-padding: 26px;
+    --bg: #1c1f24;
+    --bg-raised: #22262d;
+    --bg-overlay: rgba(14, 16, 20, 0.97);
+    --text: #d4d0c8;
+    --text-dim: #8899aa;
+    --text-faint: #556;
+    --accent: #7cafc2;
+    --accent-dim: rgba(124, 175, 194, 0.12);
+    --border: rgba(255,255,255,0.06);
+    --border-accent: rgba(124, 175, 194, 0.25);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Literata, Georgia, serif;
+    font-size: var(--font-size);
+    line-height: var(--line-height);
+    max-width: 42em;
+    margin: 0 auto;
+    padding: 1em;
+    padding-top: 96px;  /* 44px topbar + ~46px layer-bar + 6px buffer */
+    letter-spacing: var(--letter-spacing);
+    word-spacing: var(--word-spacing);
+  }
+
+  /* === PROGRESS LINE === */
+  .progress-line {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    background: var(--accent);
+    opacity: 0.25;
+    z-index: 200;
+    width: 0%;
+    transition: width 0.15s;
+  }
+
+  /* === TOP BAR === */
+  .topbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    max-width: 42em;
+    margin: 0 auto;
+    height: 44px;
+    background: rgba(28, 31, 36, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 14px;
+    z-index: 100;
+  }
+
+  .topbar-loc {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    cursor: pointer;
+    padding: 6px 2px;
+    border-radius: 6px;
+    min-width: 0;
+  }
+  .topbar-loc:hover { background: rgba(255,255,255,0.04); }
+
+  .topbar-book {
+    font-size: 0.84em;
+    color: var(--accent);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .topbar-chap {
+    font-size: 0.84em;
+    color: var(--accent);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .topbar-brand {
+    font-size: 0.62em;
+    color: var(--text-faint);
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0.03em;
+  }
+
+  /* === LAYER PILLBOX TOOLBAR (fixed, always visible) ===
+     Outer .layer-bar spans the viewport for full-width bg/blur; inner
+     .layer-bar-inner constrains the pill row to the body's 42em column. */
+  .layer-bar {
+    position: fixed;
+    top: 44px;          /* sits directly under the 44px topbar */
+    left: 0; right: 0;
+    background: rgba(28, 31, 36, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    z-index: 99;        /* below topbar (100) */
+  }
+  .layer-bar-inner {
+    max-width: 42em;
+    margin: 0 auto;
+    padding: 8px 14px;
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    justify-content: safe center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .layer-bar-inner::-webkit-scrollbar { display: none; }
+  .pill {
+    background: rgba(124, 175, 194, 0.08);
+    color: var(--text);
+    border: 1px solid rgba(124, 175, 194, 0.25);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font: 500 0.78em -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    user-select: none;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .pill:hover { background: rgba(124, 175, 194, 0.16); }
+  .pill.active {
+    background: rgba(124, 175, 194, 0.32);
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  /* Refusal flash when toggleLayer rejects turning off the last visible
+     layer (silent rejection feels like a broken button). */
+  @keyframes pill-reject {
+    0%   { background: rgba(124, 175, 194, 0.08);
+           border-color: rgba(124, 175, 194, 0.25); }
+    25%  { background: rgba(220,  90,  90, 0.28);
+           border-color: rgba(220,  90,  90, 0.65); }
+    100% { background: rgba(124, 175, 194, 0.08);
+           border-color: rgba(124, 175, 194, 0.25); }
+  }
+  .pill.reject { animation: pill-reject 0.45s ease-out; }
+
+  /* Hide layer bar on landing — nothing to toggle when there's no
+     Latin/English content yet. Trim body padding-top to match. */
+  body.landing-active .layer-bar { display: none; }
+  body.landing-active { padding-top: 50px; }
+
+  /* === NAV PANEL === */
+  .nav-panel {
+    position: fixed;
+    inset: 0;
+    background: #0e1014;
+    z-index: 300;
+    display: none;
+    flex-direction: column;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nav-panel.open { display: flex; }
+
+  .nav-panel-header {
+    position: sticky;
+    top: 0;
+    background: #0e1014;
+    height: 44px;
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 1;
+    border-bottom: 1px solid var(--border);
+    max-width: 42em;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .nav-panel-close {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background: none;
+    border: none;
+    color: var(--text-faint);
+    cursor: pointer;
+    font-size: 18px;
+  }
+  .nav-panel-close:hover { color: var(--text-dim); }
+
+  .nav-panel-home {
+    margin-left: auto;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background: none;
+    border: none;
+    color: var(--text-faint);
+    cursor: pointer;
+  }
+  .nav-panel-home:hover { color: var(--text-dim); }
+  .nav-panel-home svg { width: 18px; height: 18px; }
+
+  .nav-panel-title {
+    font-size: 0.88em;
+    color: var(--text-dim);
+    font-weight: 400;
+  }
+
+  .nav-panel-body {
+    padding: 0 1em 40px;
+    max-width: 42em;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .nav-book-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 11px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--text-dim);
+    font-size: 0.88em;
+  }
+  .nav-book-row:hover {
+    background: rgba(255,255,255,0.025);
+    color: var(--text);
+  }
+  .nav-book-row.active {
+    color: var(--accent);
+  }
+  .nav-book-chaps {
+    font-size: 0.72em;
+    color: var(--text-faint);
+  }
+
+  .nav-ch-grid {
+    display: none;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 6px 12px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-ch-grid.visible { display: flex; }
+
+  .nav-ch {
+    width: 34px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-size: 0.72em;
+    color: var(--text-faint);
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: inherit;
+  }
+  .nav-ch:hover {
+    background: rgba(255,255,255,0.06);
+    color: var(--text-dim);
+  }
+  .nav-ch.current {
+    color: var(--accent);
+    background: var(--accent-dim);
+  }
+
+  /* === CONTENT AREA === */
+  #content {
+    padding: var(--content-padding);
+    padding-top: 8px;
+  }
+
+  .chapter { margin-bottom: 2em; }
+
+  .verse {
+    margin-bottom: var(--verse-gap);
+  }
+
+  .verse-num {
+    display: block;
+    font-size: 0.6em;
+    color: var(--text-faint);
+    line-height: 1.4;
+    margin-top: 0.4em;
+    user-select: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    letter-spacing: 0.02em;
+  }
+
+  /* Inline verse markers for cross-verse continuation (e.g. Matt 3:1-2
+     where κηρύσσων and λέγων are parallel participles crossing the
+     Stephanus 1551 verse boundary). Rendered as superscript markers
+     inside the merged colometric line. */
+  .verse-marker {
+    font-size: 0.7em;
+    color: var(--text-faint);
+    vertical-align: super;
+    line-height: 0;
+    user-select: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    padding: 0 0.15em;
+  }
+  body.hide-verse-nums .verse-marker { display: none; }
+
+  .line {
+    display: block;
+    text-indent: calc(-1 * var(--wrap-indent));
+    padding-left: var(--wrap-indent);
+  }
+
+  /* === DUAL-TEXT DISPLAY MODES (independent layer toggles) === */
+  /* Both layers hidden by default; pill-bar setLayer adds show-lat / show-en
+     body classes to reveal each layer. With both layers on, Latin becomes
+     a block (forces line break) and English appears below it italic-dim. */
+  .lat, .en { display: none; }
+  body.show-lat .lat { display: inline; }
+  body.show-en .en { display: inline; }
+  body.show-lat.show-en .lat { display: block; }
+  body.show-lat.show-en .en {
+    display: block;
+    font-style: italic;
+    color: var(--text-dim);
+    font-size: 0.88em;
+    margin-top: 2px;
+  }
+
+  /* === PUNCTUATION (hidden by default — editorial, not original) === */
+  .punct {
+    display: none;
+  }
+  body.show-punct .punct {
+    display: inline;
+    opacity: 0.35;
+  }
+
+  /* === CHAPTER NAV BUTTONS === */
+  .chapter-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0 48px;
+  }
+
+  .chapter-nav button {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.82em;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .chapter-nav button:hover {
+    color: var(--text);
+    border-color: var(--border-accent);
+    background: var(--accent-dim);
+  }
+  .chapter-nav button:disabled {
+    opacity: 0.2;
+    cursor: default;
+    background: none;
+    border-color: var(--border);
+  }
+
+  /* === LOADING === */
+  #loading {
+    text-align: center;
+    color: var(--text-faint);
+    padding: 80px 0;
+    font-size: 0.88em;
+  }
+
+  /* === TOPBAR ICONS === */
+  .topbar-icons {
+    display: flex;
+    gap: 2px;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .topbar-icon {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: none;
+    border: none;
+    color: var(--text-faint);
+    cursor: pointer;
+    transition: color 0.15s, background 0.15s;
+  }
+  .topbar-icon:hover {
+    color: var(--text-dim);
+    background: rgba(255,255,255,0.04);
+  }
+  .topbar-icon svg { width: 16px; height: 16px; fill: currentColor; }
+
+  /* === SETTINGS PANEL === */
+  .settings-panel {
+    position: fixed;
+    top: 45px;
+    right: max(calc((100% - 42em) / 2), 14px);
+    width: 240px;
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    z-index: 150;
+    display: none;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  }
+  .settings-panel.open { display: block; }
+
+  .settings-panel label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.78em;
+    color: var(--text-dim);
+    cursor: pointer;
+    padding: 7px 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  }
+  .settings-panel label:hover { color: var(--text); }
+
+  .settings-panel input[type="checkbox"] {
+    accent-color: var(--accent);
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+  }
+
+  /* === SEARCH SCRIM === */
+  .search-scrim {
+    position: fixed;
+    inset: 0;
+    z-index: 240;
+    background: rgba(0,0,0,0.45);
+    display: none;
+  }
+  .search-scrim.open { display: block; }
+
+  /* === SEARCH OVERLAY (slide-in panel) === */
+  .search-overlay {
+    position: fixed;
+    top: 0; right: 0; bottom: 0;
+    width: 85%;
+    max-width: 520px;
+    z-index: 250;
+    background: #1c1f24;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    transform: translateX(100%);
+    transition: transform 0.25s ease;
+    box-shadow: -4px 0 20px rgba(0,0,0,0.5);
+  }
+  .search-overlay.open { transform: translateX(0); }
+
+  .search-header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: #2a2a2a;
+    border-bottom: 1px solid #444;
+  }
+
+  .search-back {
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 1.3em;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .search-header input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1em;
+    padding: 2px 0;
+  }
+  .search-header input::placeholder { color: #666; }
+
+  .search-close {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 1.3em;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .search-body {
+    padding: 16px;
+  }
+
+  .search-status {
+    color: #999;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 0.8em;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .search-status-text { flex: 1; }
+  .search-clear-filters {
+    display: none;
+    color: var(--accent);
+    font-size: 0.9em;
+    cursor: pointer;
+    user-select: none;
+    flex-shrink: 0;
+    padding: 2px 6px;
+    border-radius: 4px;
+    transition: background 0.12s;
+  }
+  .search-clear-filters:hover { background: rgba(124, 175, 194, 0.12); }
+  .search-clear-filters.visible { display: inline-block; }
+
+  .search-result {
+    display: block;
+    padding: 10px 0;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    text-decoration: none;
+    color: inherit;
+  }
+  .search-result:hover { background: rgba(255,255,255,0.03); }
+
+  .search-result-ref {
+    font-size: 0.75em;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 3px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  /* Bilingual-search layer badge: which side (Latin / English) matched. */
+  .search-result-layer {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 0 6px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.88em;
+    font-weight: 500;
+    color: var(--text-faint);
+    letter-spacing: 0.02em;
+  }
+
+  .search-result-text {
+    font-size: 0.85em;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  .search-result-text mark {
+    background: rgba(124, 175, 194, 0.25);
+    color: var(--text);
+    border-radius: 2px;
+    padding: 0 1px;
+  }
+
+  /* Recent searches (empty-query state) */
+  .recent-header {
+    color: var(--text-faint);
+    font-size: 0.75em;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 12px 0 6px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  }
+  .recent-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    color: var(--text-dim);
+  }
+  .recent-row:hover { background: rgba(255,255,255,0.03); color: var(--text); }
+  .recent-row .recent-icon {
+    opacity: 0.45;
+    font-size: 0.9em;
+    flex-shrink: 0;
+  }
+  .recent-row .recent-text {
+    flex: 1;
+    font-size: 0.95em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .recent-row .recent-clear {
+    opacity: 0;
+    color: var(--text-faint);
+    font-size: 1.1em;
+    padding: 0 6px;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .recent-row:hover .recent-clear { opacity: 0.6; }
+  .recent-row .recent-clear:hover { opacity: 1; color: var(--text); }
+
+  /* Per-book bar chart (secondary filter after corpus) */
+  #search-book-chart {
+    padding: 6px 0 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 8px;
+  }
+  #search-book-chart:empty { display: none; }
+  body.light-mode #search-book-chart { border-color: rgba(0,0,0,0.1); }
+  .search-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 0;
+    cursor: pointer;
+    font-size: 0.82em;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  }
+  .search-bar-row:hover .search-bar-fill { opacity: 0.8; }
+  .search-bar-label {
+    min-width: 95px;
+    width: 95px;
+    text-align: right;
+    color: var(--text-faint);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 0;
+  }
+  .search-bar-row.active-filter .search-bar-label {
+    color: var(--text);
+    font-weight: 700;
+  }
+  .search-bar-track {
+    flex: 1;
+    height: 10px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  body.light-mode .search-bar-track { background: rgba(0,0,0,0.1); }
+  .search-bar-fill {
+    display: block;
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    min-width: 2px;
+    opacity: 0.55;
+    transition: width 0.2s ease, opacity 0.15s;
+  }
+  .search-bar-row.active-filter .search-bar-fill { opacity: 1; }
+  .search-bar-num {
+    min-width: 32px;
+    text-align: left;
+    color: var(--text-faint);
+    font-size: 0.82em;
+    flex-shrink: 0;
+  }
+  .search-bar-row.active-filter .search-bar-num { color: var(--text); }
+
+  /* === SEARCH OPERATOR BUTTONS === */
+  .search-ops {
+    display: flex;
+    gap: 6px;
+    padding: 8px 14px;
+    background: #2a2a2a;
+    border-bottom: 1px solid #444;
+    flex-wrap: wrap;
+  }
+
+  .search-op {
+    padding: 3px 10px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.06);
+    color: var(--text-faint);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 0.72em;
+    cursor: pointer;
+    user-select: none;
+    letter-spacing: 0.03em;
+    transition: background 0.15s, color 0.15s;
+  }
+  .search-op:hover {
+    background: rgba(255,255,255,0.1);
+    color: var(--text-dim);
+  }
+
+  .search-loading {
+    text-align: center;
+    color: var(--text-faint);
+    padding: 30px 0;
+    font-size: 0.85em;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  /* === CORPUS FILTER CHIPS === */
+  .corpus-filters {
+    display: flex;
+    gap: 5px;
+    padding: 6px 14px;
+    background: #2a2a2a;
+    border-bottom: 1px solid #444;
+    flex-wrap: wrap;
+  }
+  .corpus-chip {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.06);
+    color: var(--text-faint);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 0.7em;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid transparent;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .corpus-chip:hover {
+    background: rgba(255,255,255,0.1);
+    color: var(--text-dim);
+  }
+  .corpus-chip.active {
+    background: rgba(124,175,194,0.2);
+    color: var(--accent);
+    border-color: rgba(124,175,194,0.4);
+  }
+  .corpus-chip.sub-filter {
+    display: none;
+    font-size: 0.65em;
+    padding: 1px 8px;
+  }
+  .corpus-chip.sub-filter.visible {
+    display: inline-block;
+  }
+
+  .lemma-info {
+    font-size: 0.78em;
+    color: var(--accent);
+    padding: 4px 14px 2px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    opacity: 0.85;
+  }
+
+  /* === VERSE POPOVER === */
+  .verse-popover-scrim { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 350; display: none; }
+  .verse-popover-scrim.open { display: block; }
+  .verse-popover { position: fixed; bottom: 0; left: 0; right: 0; max-width: 42em; margin: 0 auto; background: var(--bg-raised); border-radius: 12px 12px 0 0; padding: 20px; z-index: 360; transform: translateY(100%); transition: transform 0.25s ease; max-height: 60vh; overflow-y: auto; }
+  .verse-popover.open { transform: translateY(0); }
+  .verse-popover-title { font-size: 0.88em; color: var(--accent); font-weight: 600; margin-bottom: 4px; cursor: pointer; }
+  .verse-popover-subtitle { font-size: 0.72em; color: var(--text-faint); margin-bottom: 12px; }
+  .verse-popover-grid { display: flex; flex-wrap: wrap; gap: 4px; }
+  .verse-popover-num { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 6px; font-size: 0.72em; color: var(--text-faint); cursor: pointer; border: 1px solid transparent; background: none; font-family: inherit; }
+  .verse-popover-num:hover { background: rgba(255,255,255,0.06); color: var(--text-dim); }
+
+  /* === VERSE NUMBER VISIBILITY === */
+  body.hide-verse-nums .verse-num { display: none; }
+
+  /* === LANDING PAGE === */
+  .landing {
+    display: none;
+    padding: 1.5em var(--content-padding) 3em;
+  }
+  .landing.visible { display: block; }
+
+  .landing-title {
+    font-size: 1.25em;
+    color: var(--accent);
+    font-weight: 400;
+    margin-bottom: 0.15em;
+    line-height: 1.3;
+  }
+  .landing-books-label {
+    font-size: 0.65em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-faint);
+    margin: 2.2em 0 0.8em;
+    font-weight: 600;
+  }
+
+  .landing-section-label {
+    grid-column: 1 / -1;
+    font-size: 0.6em;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-faint);
+    margin: 0.8em 0 0.2em;
+    font-weight: 600;
+  }
+  .landing-section-label:first-child {
+    margin-top: 0;
+  }
+
+  .landing-books {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 7px;
+    max-width: 420px;
+  }
+
+  .landing-book {
+    padding: 9px 4px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-family: Literata, Georgia, serif;
+    font-size: 0.7em;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.15s;
+    line-height: 1.3;
+  }
+  .landing-book:hover {
+    background: var(--accent-dim);
+    color: var(--text);
+    border-color: var(--border-accent);
+  }
+  .landing-book.active {
+    background: var(--accent-dim);
+    color: var(--text);
+    border-color: var(--border-accent);
+  }
+
+  .landing-expand {
+    display: none;
+    grid-column: 1 / -1;
+    padding: 10px 4px 14px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+  }
+  .landing-expand.visible { display: block; }
+  .landing-expand .landing-ch-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .landing-expand .landing-ch {
+    width: 34px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-size: 0.72em;
+    color: var(--text-faint);
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: inherit;
+  }
+  .landing-expand .landing-ch:hover {
+    background: rgba(255,255,255,0.06);
+    color: var(--text-dim);
+  }
+
+  /* === TEXT SIZE BUTTONS === */
+  .size-row {
+    display: flex;
+    gap: 6px;
+    margin-top: 4px;
+  }
+  .size-btn {
+    flex: 1;
+    padding: 7px 0;
+    border-radius: 8px;
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-faint);
+    cursor: pointer;
+    font-family: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    transition: all 0.15s;
+  }
+  .size-btn:hover {
+    border-color: rgba(255,255,255,0.1);
+    color: var(--text-dim);
+  }
+  .size-btn.active {
+    border-color: var(--border-accent);
+    color: var(--accent);
+    background: var(--accent-dim);
+  }
+  .size-btn .letter {
+    font-size: 0.88em;
+    font-weight: 600;
+  }
+  .size-btn .label {
+    font-size: 0.68em;
+    opacity: 0.6;
+  }
+
+  /* === SEARCH RETURN BUTTON === */
+  #search-return-btn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 180;
+    background: rgba(40,40,40,0.92);
+    color: var(--accent);
+    border: 1px solid var(--border-accent);
+    border-radius: 20px;
+    padding: 8px 18px;
+    font-size: 0.82em;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    white-space: nowrap;
+    transition: opacity 0.3s;
+  }
+  #search-return-btn.visible { display: block; }
+  #search-return-btn:hover { background: rgba(60,60,60,0.95); }
+
+  /* === BACK TO TOP BUTTON === */
+  #back-to-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: rgba(58,58,58,0.85);
+    color: #999;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    z-index: 20;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    transition: opacity 0.2s;
+  }
+  #back-to-top:hover { background: rgba(80,80,80,0.95); color: #ccc; }
+
+  /* === FLOATING CHAPTER ARROWS === */
+  .float-nav {
+    display: none;
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 54px;
+    line-height: 54px;
+    text-align: center;
+    font-size: 1.3em;
+    background: rgba(30,30,30,0.6);
+    color: #888;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    z-index: 15;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .float-nav.active { display: block; opacity: 0.6; }
+  .float-nav:hover { opacity: 1; background: rgba(40,40,40,0.85); color: #ccc; }
+  .float-nav-prev { left: 4px; }
+  .float-nav-next { right: 4px; }
+
+  @media (max-width: 600px) {
+    .float-nav { width: 26px; height: 44px; line-height: 44px; font-size: 1.1em; opacity: 0.4; }
+    .float-nav.active { opacity: 0.4; }
+  }
+
+  @media (max-width: 480px) {
+    body { padding: 0.5em; padding-top: 96px; }
+    #content { padding: 16px; padding-top: 8px; }
+    .layer-bar-inner { padding: 6px 8px; gap: 5px; }
+    .pill { padding: 6px 11px; font-size: 0.74em; }
+    .nav-book-row { padding: 10px 8px; font-size: 0.82em; }
+    .settings-panel { right: 8px; }
+  }
+
+  @media (max-width: 380px) {
+    .landing-books {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  /* === HELP OVERLAY === */
+  .help-overlay {
+    position: fixed;
+    inset: 0;
+    background: #0e1014;
+    z-index: 300;
+    display: none;
+    flex-direction: column;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .help-overlay.open { display: flex; }
+  .help-header {
+    position: sticky; top: 0; background: #0e1014;
+    height: 44px; padding: 0 14px;
+    display: flex; align-items: center; gap: 8px;
+    z-index: 1; border-bottom: 1px solid var(--border);
+    max-width: 42em; margin: 0 auto; width: 100%;
+  }
+  .help-close {
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 6px; background: none; border: none;
+    color: var(--text-faint); cursor: pointer; font-size: 18px;
+  }
+  .help-close:hover { color: var(--text-dim); }
+  .help-title { font-size: 0.88em; color: var(--text-dim); font-weight: 400; }
+  .help-body {
+    padding: 0 1.5em 3em; max-width: 42em; margin: 0 auto; width: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 0.88em; color: #b8b2a8; line-height: 1.7;
+  }
+  .help-body h2 {
+    font-size: 1.05em; font-weight: 600; color: #dce4ec;
+    margin: 1.8em 0 0.5em; letter-spacing: 0.01em;
+  }
+  .help-body h2:first-child { margin-top: 1em; }
+  .help-body p { margin: 0 0 0.7em; }
+  .help-body .help-card {
+    background: rgba(255,255,255,0.025); border: 1px solid var(--border);
+    border-radius: 8px; padding: 0.8em 1em; margin: 0.6em 0;
+  }
+  .help-body .help-card-name {
+    font-weight: 600; font-size: 0.92em; color: var(--accent); margin-bottom: 0.2em;
+  }
+  .help-body .help-card-desc { font-size: 0.88em; color: #999; line-height: 1.6; }
+  .help-body ul { margin: 0.3em 0 0.7em 1.2em; padding: 0; }
+  .help-body li { margin-bottom: 0.3em; }
+  .help-body code {
+    background: rgba(255,255,255,0.06); padding: 1px 5px; border-radius: 3px;
+    font-size: 0.92em; font-family: Consolas, 'Courier New', monospace; color: var(--text-dim);
+  }
+  .help-body a { color: var(--accent); text-decoration: none; }
+  .help-body a:hover { text-decoration: underline; }
+  .help-back-link { display: inline-block; color: var(--accent); font-size: 0.9em; margin-top: 1.5em; cursor: pointer; }
+</style>
+</head>
+<body>
+
+<!-- Floating chapter arrows -->
+<a id="float-prev" class="float-nav float-nav-prev" href="#" onclick="goChapter(-1); return false;">&lsaquo;</a>
+<a id="float-next" class="float-nav float-nav-next" href="#" onclick="goChapter(1); return false;">&rsaquo;</a>
+
+<!-- Search return button -->
+<button id="search-return-btn" onclick="searchReturn()">&#8592; Return to previous position</button>
+
+<!-- Back to top button -->
+<a href="#" id="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;" title="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+</a>
+
+<!-- Progress line -->
+<div class="progress-line" id="progress-line"></div>
+
+<!-- Top bar -->
+<div class="topbar">
+  <div style="display:flex; align-items:center; gap:8px; min-width:0;">
+    <button class="topbar-icon" id="btn-home" onclick="openNav()" aria-label="Menu" title="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <div class="topbar-loc" id="topbar-loc" onclick="openNav()">
+      <span class="topbar-book" id="topbar-book">Mark</span>
+      <span class="topbar-chap" id="topbar-chap">1</span>
+    </div>
+  </div>
+  <div class="topbar-icons">
+    <button class="topbar-icon" id="btn-search" onclick="toggleSearch()" aria-label="Search" title="Search (Ctrl+F)">
+      <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+    </button>
+    <button class="topbar-icon" id="btn-listen" onclick="toggleListen()" aria-label="Listen" title="Listen (audio — coming soon)">
+      <svg viewBox="0 0 24 24"><path d="M12 1c-4.97 0-9 4.03-9 9v7c0 1.66 1.34 3 3 3h3v-8H5v-2c0-3.87 3.13-7 7-7s7 3.13 7 7v2h-4v8h3c1.66 0 3-1.34 3-3v-7c0-4.97-4.03-9-9-9z"/></svg>
+    </button>
+    <button class="topbar-icon" id="btn-settings" onclick="toggleSettings()" aria-label="Settings" title="Settings">
+      <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.49.49 0 00-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.48.48 0 00-.48-.41h-3.84a.48.48 0 00-.48.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.49.49 0 00-.59.22L2.74 8.87a.48.48 0 00.12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.26.41.48.41h3.84c.24 0 .44-.17.48-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1115.6 12 3.61 3.61 0 0112 15.6z"/></svg>
+    </button>
+    <button class="topbar-icon" id="btn-help" onclick="openHelp()" aria-label="Help" title="Help">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- Layer pillbox toolbar — fixed below topbar, always visible. Each pill
+     toggles its layer independently; setLayer guards against turning off
+     the last visible layer (shake animation on rejected click). -->
+<div class="layer-bar" id="layer-bar">
+  <div class="layer-bar-inner">
+    <button class="pill" data-layer="lat" onclick="toggleLayer(this)">Lat</button>
+    <button class="pill" data-layer="en" onclick="toggleLayer(this)">Eng</button>
+  </div>
+</div>
+
+<!-- Settings panel -->
+<div class="settings-panel" id="settings-panel">
+  <label><input type="checkbox" id="setting-punct" onchange="togglePunct(this.checked)"> Show punctuation</label>
+  <label><input type="checkbox" id="setting-verses" checked onchange="toggleVerseNums(this.checked)"> Show verse numbers</label>
+  <div style="margin-top:8px; padding-top:8px; border-top:1px solid var(--border);">
+    <div style="font-size:0.78em; color:var(--text-dim); margin-bottom:6px; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">Text size</div>
+    <div class="size-row">
+      <button class="size-btn" onclick="setTextSize('small')">
+        <span class="letter" style="font-size:0.8em;">A</span>
+        <span class="label">Small</span>
+      </button>
+      <button class="size-btn active" onclick="setTextSize('medium')">
+        <span class="letter" style="font-size:1.05em;">A</span>
+        <span class="label">Medium</span>
+      </button>
+      <button class="size-btn" onclick="setTextSize('large')">
+        <span class="letter" style="font-size:1.35em;">A</span>
+        <span class="label">Large</span>
+      </button>
+    </div>
+  </div>
+  <div style="margin-top:8px; padding-top:8px; border-top:1px solid var(--border);">
+    <div style="display:flex; align-items:center; justify-content:space-between;">
+      <div>
+        <div style="font-size:0.78em; color:var(--text-dim);">Refresh content</div>
+        <div style="font-size:0.65em; color:var(--text-faint);">Clear cache and reload</div>
+      </div>
+      <button id="flush-btn" onclick="flushAndReload()" style="background:#705050; color:var(--text); border:none; border-radius:12px; padding:6px 14px; font-size:0.78em; cursor:pointer;">Refresh</button>
+    </div>
+  </div>
+</div>
+
+<!-- Search scrim + panel -->
+<div class="search-scrim" id="search-scrim" onclick="closeSearch()"></div>
+<div class="search-overlay" id="search-overlay">
+  <div class="search-header">
+    <button class="search-back" onclick="closeSearch()">&#8592;</button>
+    <input type="text" id="search-input" placeholder="Search Latin or English..." autocomplete="off" spellcheck="false">
+    <button class="search-close" onclick="closeSearch()">&#10005;</button>
+  </div>
+  <div class="search-ops">
+    <span class="search-op" onclick="insertSearchOp(' AND ')">AND</span>
+    <span class="search-op" onclick="insertSearchOp(' OR ')">OR</span>
+    <span class="search-op" onclick="insertSearchOp(' NOT ')">NOT</span>
+    <span class="search-op" onclick="insertSearchOp('(', ')')">( )</span>
+    <span class="search-op" onclick="insertSearchOp('&quot;', '&quot;')">&quot; &quot;</span>
+    <span class="search-op" onclick="insertSearchOp(' NEAR5 ')">NEAR</span>
+  </div>
+  <div class="corpus-filters" id="corpus-filters">
+    <span class="corpus-chip" data-corpus="synoptics" onclick="toggleCorpusFilter(this)">Synoptics</span>
+    <span class="corpus-chip" data-corpus="john" onclick="toggleCorpusFilter(this)">John</span>
+    <span class="corpus-chip" data-corpus="luke-acts" onclick="toggleCorpusFilter(this)">Luke-Acts</span>
+    <span class="corpus-chip" data-corpus="pauline" onclick="toggleCorpusFilter(this)">Pauline</span>
+    <span class="corpus-chip sub-filter" data-corpus="disputed" onclick="toggleCorpusFilter(this)">Disputed</span>
+    <span class="corpus-chip" data-corpus="general" onclick="toggleCorpusFilter(this)">General</span>
+    <span class="corpus-chip" data-corpus="johannine" onclick="toggleCorpusFilter(this)">Johannine</span>
+    <span class="corpus-chip" data-corpus="revelation" onclick="toggleCorpusFilter(this)">Revelation</span>
+  </div>
+  <div class="lemma-info" id="lemma-info"></div>
+  <div class="search-body">
+    <div class="search-status">
+      <span class="search-status-text" id="search-status"></span>
+      <span class="search-clear-filters" id="search-clear-filters" onclick="clearAllFilters()">Clear filters ×</span>
+    </div>
+    <div id="search-book-chart"></div>
+    <div id="search-results"></div>
+  </div>
+</div>
+
+<!-- Verse popover -->
+<div class="verse-popover-scrim" id="verse-popover-scrim" onclick="closeVersePopover()"></div>
+<div class="verse-popover" id="verse-popover">
+  <div class="verse-popover-title" id="verse-popover-title"></div>
+  <div class="verse-popover-subtitle">Select a verse:</div>
+  <div class="verse-popover-grid" id="verse-popover-grid"></div>
+</div>
+
+<!-- Help overlay -->
+<div class="help-overlay" id="help-overlay">
+  <div class="help-header">
+    <button class="help-close" onclick="closeHelp()">&times;</button>
+    <span class="help-title">Help</span>
+  </div>
+  <div class="help-body">
+    <p style="font-style: italic; color: var(--accent); font-size: 1.02em; margin: 0 0 1.4em;">Each line, one atomic thought.</p>
+
+    <div style="background:rgba(124,175,194,0.10); border:1px solid var(--border); border-radius:8px; padding:12px 14px; margin-bottom:1.4em; font-size:0.9em; color:var(--text-dim);">
+      <strong style="color:var(--accent);">Draft edition (v1.5).</strong> The ATU line-breaks are produced mechanically from a gold Latin syntax treebank and have not yet passed editorial review. Treat the segmentation as a working draft.
+    </div>
+
+    <h2>Reading Modes</h2>
+    <div class="help-card">
+      <div class="help-card-name">Latin (default)</div>
+      <div class="help-card-desc">The Latin Vulgate New Testament formatted as atomic thought units (ATUs) &mdash; one thought, one breath per line.</div>
+    </div>
+    <div class="help-card">
+      <div class="help-card-name">English</div>
+      <div class="help-card-desc">The Douay-Rheims (1582 Rheims) New Testament &mdash; the Vulgate's own English &mdash; shown verse-by-verse beneath the Latin.</div>
+    </div>
+    <div class="help-card">
+      <div class="help-card-name">Both</div>
+      <div class="help-card-desc">Latin and English interleaved, with the English in dimmer italic below the Latin.</div>
+    </div>
+    <p>To switch modes: tap the Latin or English pill in the layer bar at the top of the screen. Both pills lit shows interleaved Latin + English; either pill alone shows only that layer. The reader prevents turning off the last visible layer (a brief refusal flash signals the click was registered but blocked).</p>
+
+    <h2>What Is an Atomic Thought Unit (ATU)?</h2>
+    <p>Each line in this edition represents one ATU &mdash; one thought, one breath, one image. The texts of the New Testament were composed for oral delivery, not silent reading.</p>
+    <p>Modern formatting &mdash; verse numbers, paragraph breaks, editorial punctuation &mdash; was added centuries after composition and can obscure the original structure. This edition recovers the compositional flow using Latin grammatical analysis, placing natural break points where the grammar itself dictates: at subordinate clauses, discourse markers, participial phrases, and parallel structures.</p>
+
+    <h2>Navigation</h2>
+    <ul>
+      <li>Tap the menu icon, the book name, or the chapter number in the top bar to open the navigation panel.</li>
+      <li>Tap a chapter number, then select a verse to jump directly to it.</li>
+      <li>URL format: <code>#book-chapter-verse</code> (e.g., <code>#acts-2-38</code>)</li>
+      <li>Tap the home icon inside the navigation panel to return to the landing page.</li>
+      <li>Use arrow keys or the floating arrows at screen edges to move between chapters.</li>
+    </ul>
+
+    <h2>Search (bilingual)</h2>
+    <ul>
+      <li>Tap the magnifying glass icon or press <code>Ctrl+F</code> to open search.</li>
+      <li>Search matches <strong>both</strong> the Latin and the Douay-Rheims English &mdash; a query hits a verse if either layer matches, and each result shows the layer that matched.</li>
+      <li>Type Latin without worrying about case or macrons.</li>
+      <li>Use quotes for an exact phrase: <code>"regnum caelorum"</code>.</li>
+      <li>Boolean operators: <code>AND</code>, <code>OR</code>, <code>NOT</code>, <code>NEAR5</code>, parentheses (Latin layer).</li>
+      <li>Corpus filters: narrow results to Gospels, Pauline, etc.</li>
+      <li>Tap a result to navigate directly to that verse.</li>
+    </ul>
+
+    <h2>Settings</h2>
+    <ul>
+      <li><strong>Punctuation:</strong> Show or hide editorial punctuation (hidden by default &mdash; it is not original to the text).</li>
+      <li><strong>Verse numbers:</strong> Show or hide verse reference numbers.</li>
+      <li><strong>Text size:</strong> Small, Medium, or Large.</li>
+    </ul>
+    <p>Latin/English layer toggles live in the layer bar at the top of the screen, not in this Settings panel.</p>
+
+    <h2>About</h2>
+    <p><strong>Latin text &amp; segmentation:</strong> derived from the gold <em>UD_Latin-PROIEL</em> dependency treebank of Jerome's Vulgate New Testament (CC BY-NC-SA). The treebank covers the Gospels, Acts and Revelation in full and the Epistles in part, so a few short letters appear with only their sampled verses.</p>
+    <p><strong>English:</strong> the Original Douay-Rheims (Old Testament 1609 / New Testament 1582), the unrevised historic translation made from the Vulgate &mdash; public domain (CC0).</p>
+    <p><strong>Method:</strong> ATUs derived mechanically from Latin grammatical structure (the v1.5 binding-rule stage), following the colometric tradition of formatting for oral delivery. This is a pre-editorial draft.</p>
+    <p>For more information, see the <a href="https://github.com/bibleman-stan/readers-vulgate" target="_blank">project on GitHub</a>.</p>
+
+    <p><a class="help-back-link" href="#" onclick="closeHelp(); return false;">&larr; Back to reading</a></p>
+  </div>
+</div>
+
+<!-- Nav panel -->
+<div class="nav-panel" id="nav-panel">
+  <div class="nav-panel-header">
+    <button class="nav-panel-close" onclick="closeNav()">&times;</button>
+    <span class="nav-panel-title">Latin New Testament</span>
+    <button class="nav-panel-home" onclick="closeNav(); showLanding();" aria-label="Home" title="Home">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+    </button>
+  </div>
+  <div class="nav-panel-body" id="nav-body"></div>
+</div>
+
+<!-- Landing page -->
+<div class="landing" id="landing">
+  <div class="landing-title">Latin Vulgate</div>
+  <div class="landing-books-label">Select a book</div>
+  <div class="landing-books" id="landing-books"></div>
+  <div class="landing-draft-note" style="margin-top:28px; text-align:center; font-size:0.8em; color:var(--text-faint); line-height:1.6;">
+    Colometric reading edition &middot; Latin Vulgate + Douay-Rheims English<br>
+    <strong>v1.5 draft</strong> &mdash; mechanical segmentation, editorial review pending
+  </div>
+</div>
+
+<!-- Main content -->
+<div id="content">
+  <div id="loading">Loading...</div>
+  <div id="text-container"></div>
+  <div class="chapter-nav">
+    <button id="btn-prev" onclick="goChapter(-1)">&larr; Previous</button>
+    <button id="btn-next" onclick="goChapter(1)">Next &rarr;</button>
+  </div>
+</div>
+
+<script>
+const BOOKS = {
+  'matt': { name: 'Matthew', short: 'Mt', chapters: 28 },
+  'mark': { name: 'Mark', short: 'Mk', chapters: 16 },
+  'luke': { name: 'Luke', short: 'Lk', chapters: 24 },
+  'john': { name: 'John', short: 'Jn', chapters: 21 },
+  'acts': { name: 'Acts', short: 'Ac', chapters: 28 },
+  'rom': { name: 'Romans', short: 'Rm', chapters: 16 },
+  '1cor': { name: '1 Corinthians', short: '1Co', chapters: 16 },
+  '2cor': { name: '2 Corinthians', short: '2Co', chapters: 13 },
+  'gal': { name: 'Galatians', short: 'Ga', chapters: 6 },
+  'eph': { name: 'Ephesians', short: 'Ep', chapters: 6 },
+  'phil': { name: 'Philippians', short: 'Ph', chapters: 4 },
+  'col': { name: 'Colossians', short: 'Col', chapters: 2 },
+  '1thess': { name: '1 Thessalonians', short: '1Th', chapters: 5 },
+  '2thess': { name: '2 Thessalonians', short: '2Th', chapters: 3 },
+  '1tim': { name: '1 Timothy', short: '1Ti', chapters: 6 },
+  '2tim': { name: '2 Timothy', short: '2Ti', chapters: 4 },
+  'titus': { name: 'Titus', short: 'Tit', chapters: 3 },
+  'phlm': { name: 'Philemon', short: 'Phm', chapters: 1 },
+  'heb': { name: 'Hebrews', short: 'Hb', chapters: 13 },
+  'jas': { name: 'James', short: 'Ja', chapters: 5 },
+  '1pet': { name: '1 Peter', short: '1Pt', chapters: 5 },
+  '2pet': { name: '2 Peter', short: '2Pt', chapters: 3 },
+  '1john': { name: '1 John', short: '1Jn', chapters: 5 },
+  '2john': { name: '2 John', short: '2Jn', chapters: 1 },
+  '3john': { name: '3 John', short: '3Jn', chapters: 1 },
+  'jude': { name: 'Jude', short: 'Jd', chapters: 1 },
+  'rev': { name: 'Revelation', short: 'Rv', chapters: 22 },
+};
+
+const BOOK_KEYS = Object.keys(BOOKS);
+let currentBook = 'mark';
+let currentChapter = 1;
+let bookCache = {};
+let expandedBook = null;
+let verseCountCache = {};  // {book: {chapter: verseCount}}
+
+// --- Hash routing ---
+
+function parseHash() {
+  const hash = location.hash.replace('#', '');
+  if (!hash || hash === 'home') return { book: null, chapter: null, verse: null };
+  const parts = hash.split('-');
+  // Try 3-part: book-chapter-verse (e.g., acts-2-38)
+  // Or 2-part: book-chapter (e.g., acts-2)
+  // Books with numeric prefixes: 1cor-3, 2tim-4-1
+  if (parts.length >= 3) {
+    // Could be book-ch-verse OR numbook-ch (like 1cor-3)
+    const lastNum = parseInt(parts[parts.length - 1], 10);
+    const secondLastNum = parseInt(parts[parts.length - 2], 10);
+    const bookCandidate2 = parts.slice(0, -2).join('-');
+    const bookCandidate1 = parts.slice(0, -1).join('-');
+
+    // Try book-ch-verse first
+    if (BOOKS[bookCandidate2] && secondLastNum >= 1 && secondLastNum <= BOOKS[bookCandidate2].chapters) {
+      return { book: bookCandidate2, chapter: secondLastNum, verse: lastNum };
+    }
+    // Fall back to book-ch (e.g., 1cor-3)
+    if (BOOKS[bookCandidate1] && lastNum >= 1 && lastNum <= BOOKS[bookCandidate1].chapters) {
+      return { book: bookCandidate1, chapter: lastNum, verse: null };
+    }
+  }
+  if (parts.length >= 2) {
+    const ch = parseInt(parts[parts.length - 1], 10);
+    const book = parts.slice(0, -1).join('-');
+    if (BOOKS[book] && ch >= 1 && ch <= BOOKS[book].chapters) {
+      return { book, chapter: ch, verse: null };
+    }
+  }
+  return { book: null, chapter: null, verse: null };
+}
+
+function setHash(book, chapter, verse) {
+  if (verse) {
+    location.hash = book + '-' + chapter + '-' + verse;
+  } else {
+    location.hash = book + '-' + chapter;
+  }
+}
+
+// --- Topbar ---
+
+// SBL-style medium abbreviations for the topbar location label. Kept
+// distinct from BOOKS[…].short (which is 2-char and powers the dense
+// landing-page book grid). Family-wide convention: book labels in the
+// topbar are abbreviated (matches tanakh-reader "Deut 6" style).
+const BOOK_DISP = {
+  matt:'Matt', mark:'Mark', luke:'Luke', john:'John', acts:'Acts',
+  rom:'Rom', '1cor':'1 Cor', '2cor':'2 Cor', gal:'Gal', eph:'Eph',
+  phil:'Phil', col:'Col', '1thess':'1 Thess', '2thess':'2 Thess',
+  '1tim':'1 Tim', '2tim':'2 Tim', titus:'Titus', phlm:'Phlm',
+  heb:'Heb', jas:'Jas', '1pet':'1 Pet', '2pet':'2 Pet',
+  '1john':'1 John', '2john':'2 John', '3john':'3 John',
+  jude:'Jude', rev:'Rev',
+};
+
+function updateTopbar() {
+  var disp = BOOK_DISP[currentBook] || BOOKS[currentBook].name;
+  document.getElementById('topbar-book').textContent = disp;
+  document.getElementById('topbar-chap').textContent = currentChapter;
+  document.title = BOOKS[currentBook].name + ' ' + currentChapter + ' — Vulgate Reader';
+}
+
+// --- Progress line ---
+
+function updateProgress() {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  document.getElementById('progress-line').style.width = pct + '%';
+}
+
+// --- Navigation ---
+
+async function navigate(book, chapter, verse) {
+  currentBook = book;
+  currentChapter = chapter;
+  setHash(book, chapter, verse);
+  updateTopbar();
+  updateNavButtons();
+  updateFloatNav();
+  await loadBook(book);
+  if (verse) {
+    scrollToVerse(chapter, verse);
+  } else {
+    scrollToChapter(chapter);
+  }
+}
+
+async function loadBook(slug) {
+  const container = document.getElementById('text-container');
+  const loading = document.getElementById('loading');
+
+  if (bookCache[slug]) {
+    container.innerHTML = bookCache[slug];
+    return;
+  }
+
+  loading.style.display = 'block';
+  container.innerHTML = '';
+
+  try {
+    const resp = await fetch('books/' + slug + '.html');
+    if (!resp.ok) throw new Error('Not found');
+    const html = await resp.text();
+    bookCache[slug] = html;
+    container.innerHTML = html;
+  } catch (e) {
+    container.innerHTML = '<p style="color:var(--text-faint);text-align:center;padding:60px 0;">Could not load ' + BOOKS[slug].name + '.</p>';
+  } finally {
+    loading.style.display = 'none';
+  }
+}
+
+function scrollToChapter(ch) {
+  const el = document.getElementById('ch-' + ch);
+  if (el) {
+    const y = el.getBoundingClientRect().top + window.scrollY - 56;
+    window.scrollTo({ top: y, behavior: 'auto' });
+  } else {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }
+}
+
+function scrollToVerse(ch, verse) {
+  const el = document.getElementById('v-' + ch + '-' + verse);
+  if (el) {
+    const y = el.getBoundingClientRect().top + window.scrollY - 56;
+    window.scrollTo({ top: y, behavior: 'auto' });
+  } else {
+    scrollToChapter(ch);
+  }
+}
+
+function goChapter(delta) {
+  let newCh = currentChapter + delta;
+  let newBook = currentBook;
+
+  if (newCh < 1) {
+    const idx = BOOK_KEYS.indexOf(currentBook);
+    if (idx <= 0) return;
+    newBook = BOOK_KEYS[idx - 1];
+    newCh = BOOKS[newBook].chapters;
+  } else if (newCh > BOOKS[currentBook].chapters) {
+    const idx = BOOK_KEYS.indexOf(currentBook);
+    if (idx >= BOOK_KEYS.length - 1) return;
+    newBook = BOOK_KEYS[idx + 1];
+    newCh = 1;
+  }
+
+  navigate(newBook, newCh);
+}
+
+function updateNavButtons() {
+  const idx = BOOK_KEYS.indexOf(currentBook);
+  document.getElementById('btn-prev').disabled = (idx === 0 && currentChapter === 1);
+  document.getElementById('btn-next').disabled = (idx === BOOK_KEYS.length - 1 && currentChapter === BOOKS[currentBook].chapters);
+}
+
+// --- Nav panel ---
+
+function openNav() {
+  buildNavPanel();
+  document.getElementById('nav-panel').classList.add('open');
+}
+
+function closeNav() {
+  document.getElementById('nav-panel').classList.remove('open');
+}
+
+function buildNavPanel() {
+  const body = document.getElementById('nav-body');
+  body.innerHTML = '';
+
+  for (const slug of BOOK_KEYS) {
+    const book = BOOKS[slug];
+    const isActive = (slug === currentBook);
+
+    // Book row
+    const row = document.createElement('div');
+    row.className = 'nav-book-row' + (isActive ? ' active' : '');
+    row.innerHTML = '<span>' + book.name + '</span><span class="nav-book-chaps">' + book.chapters + ' ch</span>';
+    row.onclick = () => toggleBookChapters(slug);
+    body.appendChild(row);
+
+    // Chapter grid
+    const grid = document.createElement('div');
+    grid.className = 'nav-ch-grid';
+    grid.id = 'nav-grid-' + slug;
+
+    if (book.chapters === 1) {
+      row.onclick = () => { showVersePopover(slug, 1); };
+    } else {
+      for (let i = 1; i <= book.chapters; i++) {
+        const ch = document.createElement('button');
+        ch.className = 'nav-ch' + (isActive && i === currentChapter ? ' current' : '');
+        ch.textContent = i;
+        ch.onclick = ((s, c) => () => { showVersePopover(s, c); })(slug, i);
+        grid.appendChild(ch);
+      }
+    }
+
+    body.appendChild(grid);
+
+    // Auto-expand current book
+    if (isActive && book.chapters > 1) {
+      grid.classList.add('visible');
+      expandedBook = slug;
+    }
+  }
+}
+
+function toggleBookChapters(slug) {
+  if (BOOKS[slug].chapters === 1) return;
+
+  const grid = document.getElementById('nav-grid-' + slug);
+  if (!grid) return;
+
+  if (expandedBook && expandedBook !== slug) {
+    const prev = document.getElementById('nav-grid-' + expandedBook);
+    if (prev) prev.classList.remove('visible');
+  }
+
+  grid.classList.toggle('visible');
+  expandedBook = grid.classList.contains('visible') ? slug : null;
+}
+
+// --- Verse popover ---
+
+function buildVerseCountsFromHtml(slug, html) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString('<div>' + html + '</div>', 'text/html');
+  const verses = doc.querySelectorAll('.verse');
+  const counts = {};
+  for (const v of verses) {
+    const id = v.id || '';
+    const m = id.match(/^v-(\d+)-(\d+)$/);
+    if (!m) continue;
+    const ch = parseInt(m[1]);
+    const vNum = parseInt(m[2]);
+    if (!counts[ch] || vNum > counts[ch]) counts[ch] = vNum;
+  }
+  verseCountCache[slug] = counts;
+  return counts;
+}
+
+function getVerseCounts(slug) {
+  if (verseCountCache[slug]) return verseCountCache[slug];
+  if (bookCache[slug]) {
+    return buildVerseCountsFromHtml(slug, bookCache[slug]);
+  }
+  return null;
+}
+
+async function showVersePopover(slug, chapterNum) {
+  let counts = getVerseCounts(slug);
+  if (!counts) {
+    // Need to fetch the book HTML first
+    try {
+      const resp = await fetch('books/' + slug + '.html');
+      if (!resp.ok) throw new Error('Not found');
+      const html = await resp.text();
+      bookCache[slug] = html;
+      counts = buildVerseCountsFromHtml(slug, html);
+    } catch (e) {
+      // Fallback: just navigate to chapter start
+      closeNav();
+      navigate(slug, chapterNum);
+      return;
+    }
+  }
+
+  const verseCount = counts[chapterNum] || 0;
+  if (verseCount === 0) {
+    // No verse data, just navigate
+    closeNav();
+    navigate(slug, chapterNum);
+    return;
+  }
+
+  const titleEl = document.getElementById('verse-popover-title');
+  titleEl.textContent = BOOKS[slug].name + ' ' + chapterNum;
+  titleEl.onclick = function() {
+    closeVersePopover();
+    closeNav();
+    navigate(slug, chapterNum);
+  };
+
+  const grid = document.getElementById('verse-popover-grid');
+  grid.innerHTML = '';
+  for (let v = 1; v <= verseCount; v++) {
+    const btn = document.createElement('button');
+    btn.className = 'verse-popover-num';
+    btn.textContent = v;
+    btn.onclick = ((s, c, vn) => function() {
+      closeVersePopover();
+      closeNav();
+      navigate(s, c, vn);
+    })(slug, chapterNum, v);
+    grid.appendChild(btn);
+  }
+
+  document.getElementById('verse-popover-scrim').classList.add('open');
+  document.getElementById('verse-popover').classList.add('open');
+}
+
+function closeVersePopover() {
+  document.getElementById('verse-popover-scrim').classList.remove('open');
+  document.getElementById('verse-popover').classList.remove('open');
+}
+
+// --- Flush and reload ---
+
+function flushAndReload() {
+  var btn = document.getElementById('flush-btn');
+  if (btn) { btn.textContent = 'Clearing...'; btn.disabled = true; }
+  // Clear in-memory caches
+  bookCache = {};
+  verseCountCache = {};
+  searchIndex = null;
+  searchIndexLoading = false;
+  lemmaIndex = null;
+  lemmaIndexLoading = false;
+  // Clear browser caches
+  if ('caches' in window) {
+    caches.keys().then(function(names) {
+      return Promise.all(names.map(function(n) { return caches.delete(n); }));
+    }).then(function() { window.location.reload(true); });
+  } else {
+    window.location.reload(true);
+  }
+}
+
+// --- Settings ---
+
+function toggleSettings() {
+  const panel = document.getElementById('settings-panel');
+  panel.classList.toggle('open');
+  // Close other overlays if opening settings
+  if (panel.classList.contains('open')) { closeSearch(); closeHelp(); }
+}
+
+function closeSettings() {
+  document.getElementById('settings-panel').classList.remove('open');
+}
+
+function togglePunct(on) {
+  document.body.classList.toggle('show-punct', on);
+  localStorage.setItem('vulgate-show-punct', on ? '1' : '0');
+}
+
+function toggleVerseNums(on) {
+  document.body.classList.toggle('hide-verse-nums', !on);
+  localStorage.setItem('vulgate-show-verses', on ? '1' : '0');
+}
+
+// --- Text size ---
+
+const TEXT_SIZES = { small: '15px', medium: '17px', large: '19px' };
+
+function setTextSize(size) {
+  document.documentElement.style.setProperty('--font-size', TEXT_SIZES[size]);
+  localStorage.setItem('vulgate-text-size', size);
+  document.querySelectorAll('.size-btn').forEach(function(btn) {
+    const label = btn.querySelector('.label');
+    if (label) btn.classList.toggle('active', label.textContent.toLowerCase() === size);
+  });
+}
+
+// Two independent layer toggles: Latin / English. Each maps to a body
+// class (show-*) and a localStorage key (vulgate-show-*). Default: Latin on,
+// English off.
+const LAYER_DEFAULTS = { lat: true, en: false };
+
+function setLayer(layer, on, persist) {
+  document.body.classList.toggle('show-' + layer, on);
+  if (persist !== false) {
+    localStorage.setItem('vulgate-show-' + layer, on ? '1' : '0');
+  }
+  const btn = document.querySelector('.pill[data-layer="' + layer + '"]');
+  if (btn) btn.classList.toggle('active', on);
+}
+
+function toggleLayer(btn) {
+  const layer = btn.dataset.layer;
+  const on = !btn.classList.contains('active');
+  // Don't allow turning off the last visible layer — leaves the reader
+  // looking blank ("did I break something?"). Brief refusal flash so the
+  // user sees the click registered but was overruled.
+  if (!on) {
+    const visibleLayers = Object.keys(LAYER_DEFAULTS).filter(
+      k => document.body.classList.contains('show-' + k)
+    );
+    if (visibleLayers.length <= 1) {
+      btn.classList.remove('reject');
+      void btn.offsetWidth;  // force reflow so animation restarts on repeat clicks
+      btn.classList.add('reject');
+      return;
+    }
+  }
+  setLayer(layer, on, true);
+}
+
+function loadSettings() {
+  const punct = localStorage.getItem('vulgate-show-punct') === '1';
+  const verses = localStorage.getItem('vulgate-show-verses') !== '0'; // default ON
+  document.getElementById('setting-punct').checked = punct;
+  document.getElementById('setting-verses').checked = verses;
+  document.body.classList.toggle('show-punct', punct);
+  document.body.classList.toggle('hide-verse-nums', !verses);
+  // Load text size
+  const savedSize = localStorage.getItem('vulgate-text-size') || 'medium';
+  setTextSize(savedSize);
+  // Load each layer toggle from localStorage (or default). Don't re-persist
+  // defaults — that would lock returning users out of any future default change.
+  for (const layer of Object.keys(LAYER_DEFAULTS)) {
+    const stored = localStorage.getItem('vulgate-show-' + layer);
+    const on = stored === null ? LAYER_DEFAULTS[layer] : stored === '1';
+    setLayer(layer, on, false);
+  }
+}
+
+// Listen — TTS audio playback. Placeholder; feature still to be built.
+window.toggleListen = function() {
+  alert('Listen (audio playback) is coming soon.');
+};
+
+// --- Search (Boolean query parser + cross-book index) ---
+
+let searchTimeout = null;
+let searchIndex = null;    // Array of { book, bookName, chapter, verse, text }
+let searchIndexLoading = false;
+let lastSearchTerms = [];  // for highlighting
+let lemmaIndex = null;     // { lemma_to_forms, form_to_lemma }
+let lemmaIndexLoading = false;
+
+// --- Search state: last hits + per-book chart filter ---
+// lastHits is populated by performSearch so the book-chart and corpus
+// filter click handlers can re-filter without re-running the query.
+let lastHits = [];
+let lastSearchQuery = '';
+let activeBook = null; // book slug (e.g. 'rom') or null for all books
+
+// --- Corpus filter groups ---
+const CORPUS_GROUPS = {
+  'synoptics': ['matt', 'mark', 'luke'],
+  'john': ['john'],
+  'luke-acts': ['luke', 'acts'],
+  'pauline': ['rom', '1cor', '2cor', 'gal', 'eph', 'phil', 'col', '1thess', '2thess', '1tim', '2tim', 'titus', 'phlm'],
+  'disputed': ['eph', 'col', '2thess', '1tim', '2tim', 'titus'],
+  'general': ['heb', 'jas', '1pet', '2pet', 'jude'],
+  'johannine': ['john', '1john', '2john', '3john', 'rev'],
+  'revelation': ['rev']
+};
+let activeCorpusFilters = new Set();
+
+function toggleCorpusFilter(el) {
+  const corpus = el.dataset.corpus;
+  if (activeCorpusFilters.has(corpus)) {
+    activeCorpusFilters.delete(corpus);
+    el.classList.remove('active');
+    // If deactivating Pauline, also deactivate Disputed
+    if (corpus === 'pauline') {
+      activeCorpusFilters.delete('disputed');
+      const disputedChip = document.querySelector('.corpus-chip[data-corpus="disputed"]');
+      if (disputedChip) {
+        disputedChip.classList.remove('active', 'visible');
+      }
+    }
+  } else {
+    activeCorpusFilters.add(corpus);
+    el.classList.add('active');
+  }
+  // Show/hide Disputed sub-filter based on Pauline state
+  const disputedChip = document.querySelector('.corpus-chip[data-corpus="disputed"]');
+  if (disputedChip) {
+    if (activeCorpusFilters.has('pauline')) {
+      disputedChip.classList.add('visible');
+    } else {
+      disputedChip.classList.remove('visible');
+    }
+  }
+  // Corpus change: the active book may no longer be in the allowed set.
+  // Reset it so the user isn't stuck filtered to a book outside the corpus.
+  activeBook = null;
+  // Re-run search with current query
+  const input = document.getElementById('search-input');
+  if (input && input.value.trim().length >= 2) {
+    performSearch(input.value);
+  } else {
+    updateClearFiltersVisibility();
+  }
+}
+
+function getCorpusAllowedBooks() {
+  if (activeCorpusFilters.size === 0) return null; // null = no filter, allow all
+  const allowed = new Set();
+  for (const corpus of activeCorpusFilters) {
+    if (CORPUS_GROUPS[corpus]) {
+      for (const slug of CORPUS_GROUPS[corpus]) {
+        allowed.add(slug);
+      }
+    }
+  }
+  // If Disputed is active (sub-filter of Pauline), restrict Pauline books to disputed only
+  if (activeCorpusFilters.has('disputed') && activeCorpusFilters.has('pauline')) {
+    const paulineAll = CORPUS_GROUPS['pauline'];
+    const disputedSet = new Set(CORPUS_GROUPS['disputed']);
+    // Remove undisputed Pauline books (keep disputed ones + any from other active filters)
+    for (const slug of paulineAll) {
+      if (!disputedSet.has(slug)) {
+        // Only remove if no OTHER active filter includes this book
+        let keptByOther = false;
+        for (const corpus of activeCorpusFilters) {
+          if (corpus !== 'pauline' && corpus !== 'disputed' && CORPUS_GROUPS[corpus] && CORPUS_GROUPS[corpus].includes(slug)) {
+            keptByOther = true;
+            break;
+          }
+        }
+        if (!keptByOther) allowed.delete(slug);
+      }
+    }
+  }
+  return allowed;
+}
+
+function stripDiacritics(str) {
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+}
+
+function escapeHtml(str) {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+// --- Lemma index: fetch and expand search terms ---
+
+async function loadLemmaIndex() {
+  if (lemmaIndex || lemmaIndexLoading) return;
+  lemmaIndexLoading = true;
+  try {
+    const resp = await fetch('data/lemma_index.json');
+    if (resp.ok) {
+      lemmaIndex = await resp.json();
+    }
+  } catch (e) {
+    console.error('Failed to load lemma index', e);
+  }
+  lemmaIndexLoading = false;
+}
+
+// Given a diacritic-stripped search term, return all inflected forms (also stripped).
+// Returns { lemma, forms } or null if no expansion found.
+function expandLemma(strippedTerm) {
+  if (!lemmaIndex) return null;
+  // Check if term is itself a lemma
+  if (lemmaIndex.lemma_to_forms[strippedTerm]) {
+    return { lemma: strippedTerm, forms: lemmaIndex.lemma_to_forms[strippedTerm] };
+  }
+  // Check if term is a known inflected form
+  const lemma = lemmaIndex.form_to_lemma[strippedTerm];
+  if (lemma && lemmaIndex.lemma_to_forms[lemma]) {
+    return { lemma: lemma, forms: lemmaIndex.lemma_to_forms[lemma] };
+  }
+  // Prefix/stem match: find lemmas starting with the same stem.
+  // Handles deponent verbs (user types -ω but lemma is -ομαι),
+  // alternate forms, and partial stems.
+  if (strippedTerm.length >= 4) {
+    // Try progressively shorter prefixes
+    for (let plen = strippedTerm.length; plen >= 4; plen--) {
+      const prefix = strippedTerm.substring(0, plen);
+      const allForms = [];
+      const matchedLemmas = [];
+      for (const lem in lemmaIndex.lemma_to_forms) {
+        if (lem.startsWith(prefix)) {
+          matchedLemmas.push(lem);
+          allForms.push(...lemmaIndex.lemma_to_forms[lem]);
+        }
+      }
+      if (matchedLemmas.length > 0 && matchedLemmas.length <= 5) {
+        // Found a reasonable number of stem matches
+        const uniqueForms = [...new Set(allForms)];
+        return { lemma: matchedLemmas.join('/'), forms: uniqueForms };
+      }
+    }
+  }
+  return null;
+}
+
+// --- Search index: fetch all 27 book HTML files, extract verses ---
+
+async function buildSearchIndex() {
+  if (searchIndex) return;
+  if (searchIndexLoading) return;
+  searchIndexLoading = true;
+
+  const statusEl = document.getElementById('search-status');
+  statusEl.innerHTML = '<div class="search-loading">Building search index...</div>';
+
+  const index = [];
+  const parser = new DOMParser();
+
+  for (const slug of BOOK_KEYS) {
+    try {
+      let html;
+      if (bookCache[slug]) {
+        html = bookCache[slug];
+      } else {
+        const resp = await fetch('books/' + slug + '.html');
+        if (!resp.ok) continue;
+        html = await resp.text();
+        bookCache[slug] = html;
+      }
+
+      const doc = parser.parseFromString('<div>' + html + '</div>', 'text/html');
+      const verses = doc.querySelectorAll('.verse');
+
+      for (const verse of verses) {
+        const id = verse.id || '';
+        const m = id.match(/^v-(\d+)-(\d+)$/);
+        if (!m) continue;
+
+        const ch = parseInt(m[1]);
+        const vNum = parseInt(m[2]);
+
+        // Get Latin and English text separately for bilingual search
+        const lines = verse.querySelectorAll('.line');
+        let latText = '';
+        let enText = '';
+        for (const line of lines) {
+          const latSpan = line.querySelector('.lat');
+          const enSpan = line.querySelector('.en');
+          if (latSpan) {
+            const clone = latSpan.cloneNode(true);
+            const puncts = clone.querySelectorAll('.punct');
+            for (const p of puncts) p.remove();
+            latText += (latText ? ' ' : '') + clone.textContent.trim();
+          }
+          if (enSpan) {
+            const t = enSpan.textContent.trim();
+            if (t) enText += (enText ? ' ' : '') + t;
+          }
+        }
+
+        if (latText || enText) {
+          index.push({
+            book: slug,
+            bookName: BOOKS[slug].name,
+            chapter: ch,
+            verse: vNum,
+            text: latText,
+            textStripped: stripDiacritics(latText),
+            enText: enText,
+            enTextLower: enText.toLowerCase()
+          });
+        }
+      }
+    } catch (e) {
+      console.error('Failed to index ' + slug, e);
+    }
+  }
+
+  searchIndex = index;
+  searchIndexLoading = false;
+  statusEl.textContent = '';
+}
+
+// --- Insert operator at cursor ---
+
+function insertSearchOp(before, after) {
+  const input = document.getElementById('search-input');
+  input.focus();
+  const start = input.selectionStart;
+  const end = input.selectionEnd;
+  const val = input.value;
+  if (after) {
+    const selected = val.substring(start, end);
+    const insert = before + selected + after;
+    input.value = val.substring(0, start) + insert + val.substring(end);
+    if (selected.length > 0) {
+      input.selectionStart = input.selectionEnd = start + insert.length;
+    } else {
+      input.selectionStart = input.selectionEnd = start + before.length;
+    }
+  } else {
+    input.value = val.substring(0, start) + before + val.substring(end);
+    input.selectionStart = input.selectionEnd = start + before.length;
+  }
+  input.dispatchEvent(new Event('input'));
+}
+
+// --- Toggle / Open / Close ---
+
+function toggleSearch() {
+  const overlay = document.getElementById('search-overlay');
+  if (overlay.classList.contains('open')) {
+    closeSearch();
+  } else {
+    openSearch();
+  }
+}
+
+function openSearch() {
+  closeSettings();
+  document.getElementById('search-scrim').classList.add('open');
+  document.getElementById('search-overlay').classList.add('open');
+  const input = document.getElementById('search-input');
+  input.value = '';
+  // Bilingual search: a query matches across BOTH the Latin text and the
+  // Douay-Rheims English layer, independent of the current display mode.
+  input.placeholder = 'Search Latin or English...';
+  input.focus();
+  document.getElementById('search-status').textContent = '';
+  document.getElementById('search-results').innerHTML = '';
+  const chartEl = document.getElementById('search-book-chart');
+  if (chartEl) chartEl.innerHTML = '';
+  lastHits = [];
+  lastSearchQuery = '';
+  activeBook = null;
+  // Build index on first open
+  if (!searchIndex && !searchIndexLoading) {
+    buildSearchIndex();
+  }
+  // Load lemma index alongside search index
+  if (!lemmaIndex && !lemmaIndexLoading) {
+    loadLemmaIndex();
+  }
+  document.getElementById('lemma-info').textContent = '';
+  // Show recent searches while the input is empty (after focus settles)
+  setTimeout(renderRecentSearches, 50);
+}
+
+// --- Recent searches cache (localStorage) ---
+// Maintain a small rolling list of recent queries that surfaces when the
+// search input is empty. Click a row to re-run the query; click the × to
+// remove just that entry.
+const RECENT_KEY = 'gnt-recent-searches';
+const MAX_RECENT = 10;
+
+function getRecentSearches() {
+  try {
+    const data = localStorage.getItem(RECENT_KEY);
+    return data ? JSON.parse(data) : [];
+  } catch (e) { return []; }
+}
+
+function saveRecentSearch(query) {
+  if (!query || query.trim().length < 2) return;
+  const q = query.trim();
+  let recent = getRecentSearches();
+  // Remove duplicate if already present (exact match on the raw query)
+  recent = recent.filter(r => r !== q);
+  recent.unshift(q);
+  if (recent.length > MAX_RECENT) recent = recent.slice(0, MAX_RECENT);
+  try { localStorage.setItem(RECENT_KEY, JSON.stringify(recent)); } catch (e) {}
+}
+
+function removeRecentSearch(query) {
+  const recent = getRecentSearches().filter(r => r !== query);
+  try { localStorage.setItem(RECENT_KEY, JSON.stringify(recent)); } catch (e) {}
+  renderRecentSearches();
+}
+
+function renderRecentSearches() {
+  const container = document.getElementById('search-results');
+  const recent = getRecentSearches();
+  if (!container) return;
+  // Only render when input is empty (don't overwrite active search results)
+  const input = document.getElementById('search-input');
+  if (input && input.value.trim().length > 0) return;
+  container.innerHTML = '';
+  if (recent.length === 0) return;
+
+  const header = document.createElement('div');
+  header.className = 'recent-header';
+  header.textContent = 'Recent Searches';
+  container.appendChild(header);
+
+  recent.forEach(q => {
+    const row = document.createElement('div');
+    row.className = 'recent-row';
+
+    const icon = document.createElement('span');
+    icon.className = 'recent-icon';
+    icon.textContent = '\u23F1'; // stopwatch glyph
+    row.appendChild(icon);
+
+    const text = document.createElement('span');
+    text.className = 'recent-text';
+    text.textContent = q;
+    row.appendChild(text);
+
+    const clear = document.createElement('span');
+    clear.className = 'recent-clear';
+    clear.textContent = '\u00D7'; // × multiplication sign
+    clear.title = 'Remove from recent';
+    clear.addEventListener('click', function(e) {
+      e.stopPropagation();
+      removeRecentSearch(q);
+    });
+    row.appendChild(clear);
+
+    row.addEventListener('click', function() {
+      const inp = document.getElementById('search-input');
+      inp.value = q;
+      performSearch(q);
+    });
+
+    container.appendChild(row);
+  });
+}
+
+function closeSearch() {
+  document.getElementById('search-overlay').classList.remove('open');
+  document.getElementById('search-scrim').classList.remove('open');
+  document.getElementById('search-input').blur();
+}
+
+// --- Boolean query detection ---
+
+function hasBooleanOps(query) {
+  return /\b(AND|OR|NOT|NEAR\d+)\b/.test(query) || /[()]/.test(query);
+}
+
+// --- Wildcard phrase-template detection (family-standard from bofm). ---
+// Activates ONLY when the entire query is in double-quotes AND contains
+// a standalone '*' or '?' token. Examples:
+//   "according to ? faith"   →  ? matches any single word
+//   "faith * mountains"      →  * matches any sequence of words
+// Literal tokens are matched diacritic-insensitively.
+function hasWildcards(query) {
+  var q = query.trim();
+  if (q.charAt(0) !== '"' || q.charAt(q.length - 1) !== '"') return false;
+  var inner = q.slice(1, -1);
+  return /(?:^|\s)[?*](?:\s|$)/.test(inner);
+}
+
+function buildWildcardRegex(query) {
+  var inner = query.trim().replace(/^"|"$/g, '');
+  var words = stripDiacritics(inner).split(/\s+/);
+  var parts = [];
+  var literalTerms = [];
+  for (var i = 0; i < words.length; i++) {
+    if (words[i] === '?') {
+      parts.push('\\S+');
+    } else if (words[i] === '*') {
+      parts.push('\\S+(?:\\s+\\S+)*');
+    } else {
+      parts.push(words[i].replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+      literalTerms.push(words[i]);
+    }
+  }
+  return {
+    regex: new RegExp('\\b' + parts.join('\\s+') + '\\b', 'gi'),
+    literalTerms: literalTerms,
+  };
+}
+
+// --- Word splitting (strips punctuation for word-position matching) ---
+
+function getWords(text) {
+  // Strip punctuation but keep letters (any script) and spaces
+  return text.replace(/[^\p{L}\p{N}\s]/gu, '').split(/\s+/).filter(w => w.length > 0);
+}
+
+// --- Term matching helpers (diacritic-stripped) ---
+
+function termWordPositions(term, verseTextStripped) {
+  const words = getWords(verseTextStripped);
+
+  if (term.charAt(0) === '"' && term.charAt(term.length - 1) === '"') {
+    // Exact phrase
+    const phrase = stripDiacritics(term.slice(1, -1)).split(/\s+/).filter(w => w);
+    const positions = [];
+    for (let i = 0; i <= words.length - phrase.length; i++) {
+      let match = true;
+      for (let p = 0; p < phrase.length; p++) {
+        if (words[i + p] !== phrase[p]) { match = false; break; }
+      }
+      if (match) positions.push(i);
+    }
+    return positions;
+  } else {
+    // Single word — expand via lemma index
+    const stripped = stripDiacritics(term);
+    const expansion = expandLemma(stripped);
+    const formsToMatch = expansion ? expansion.forms : [stripped];
+    const positions = [];
+    for (let i = 0; i < words.length; i++) {
+      for (const form of formsToMatch) {
+        if (words[i] === form) { positions.push(i); break; }
+      }
+    }
+    return positions;
+  }
+}
+
+// Set-based NEAR: takes two lists of terms (not single strings) and
+// returns true if any term from the left set is within `distance` words
+// of any term from the right set. This is the correct semantics for
+// parenthesized sub-expressions like `(might OR mighty) NEAR5 God` —
+// the old single-string version was buggy because it only kept the
+// last term parsed on each side.
+function nearMatchSets(leftTerms, rightTerms, distance, verseTextStripped) {
+  if (!leftTerms.length || !rightTerms.length) return false;
+  // Flatten all word positions on each side via the shared term matcher
+  const leftPositions = [];
+  for (const t of leftTerms) {
+    const ps = termWordPositions(t, verseTextStripped);
+    for (const p of ps) leftPositions.push(p);
+  }
+  if (leftPositions.length === 0) return false;
+  const rightPositions = [];
+  for (const t of rightTerms) {
+    const ps = termWordPositions(t, verseTextStripped);
+    for (const p of ps) rightPositions.push(p);
+  }
+  if (rightPositions.length === 0) return false;
+  for (let i = 0; i < leftPositions.length; i++) {
+    for (let j = 0; j < rightPositions.length; j++) {
+      if (Math.abs(leftPositions[i] - rightPositions[j]) <= distance) return true;
+    }
+  }
+  return false;
+}
+
+function termMatchesVerse(term, verseTextStripped) {
+  if (term.charAt(0) === '"' && term.charAt(term.length - 1) === '"') {
+    const phrase = stripDiacritics(term.slice(1, -1));
+    return verseTextStripped.indexOf(phrase) !== -1;
+  }
+  // Single word: strip diacritics and match as substring bounded by non-letter
+  const stripped = stripDiacritics(term);
+  // Expand via lemma index
+  const expansion = expandLemma(stripped);
+  const formsToMatch = expansion ? expansion.forms : [stripped];
+  // Use word-boundary-like matching (match whole words)
+  const words = getWords(verseTextStripped);
+  for (let i = 0; i < words.length; i++) {
+    for (const form of formsToMatch) {
+      if (words[i] === form) return true;
+    }
+  }
+  return false;
+}
+
+// --- Recursive descent Boolean query parser ---
+
+function parseBooleanQuery(query) {
+  const tokens = [];
+  const re = /"[^"]*"|\bAND\b|\bOR\b|\bNOT\b|\bNEAR\d+\b|[()]|[^\s()]+/g;
+  let m;
+  while ((m = re.exec(query)) !== null) {
+    tokens.push(m[0]);
+  }
+
+  // Collect all non-operator terms for highlighting
+  const highlightTerms = [];
+  for (let i = 0; i < tokens.length; i++) {
+    const tok = tokens[i];
+    if (tok !== 'AND' && tok !== 'OR' && tok !== 'NOT' && tok !== '(' && tok !== ')' && !/^NEAR\d+$/.test(tok)) {
+      if (tok.charAt(0) === '"' && tok.charAt(tok.length - 1) === '"') {
+        highlightTerms.push(stripDiacritics(tok.slice(1, -1)));
+      } else {
+        highlightTerms.push(stripDiacritics(tok));
+      }
+    }
+  }
+
+  let pos = 0;
+
+  // Each parse* function returns { matcher, terms } where:
+  //   matcher : (verseText) => boolean
+  //   terms   : string[] — the list of atomic terms this sub-expression
+  //             covers, used by NEAR for set-based proximity matching.
+  //
+  // Parenthesized groups, OR, AND, and implicit-AND all UNION their
+  // operand term lists so that `(might OR mighty) NEAR5 God` correctly
+  // checks both "might" and "mighty" against "God" — an earlier version
+  // only kept the last single term parsed and would silently drop
+  // "might" from the NEAR check. NOT nodes return an empty term list
+  // since you can't reasonably be "near" what's absent.
+  function wrap(matcher, terms) { return { matcher, terms }; }
+
+  function parseOr() {
+    let left = parseAnd();
+    while (pos < tokens.length && tokens[pos] === 'OR') {
+      pos++;
+      const right = parseAnd();
+      const lm = left.matcher, rm = right.matcher;
+      left = wrap(v => lm(v) || rm(v), left.terms.concat(right.terms));
+    }
+    return left;
+  }
+
+  function parseAnd() {
+    let left = parseNot();
+    while (pos < tokens.length && (tokens[pos] === 'AND' || /^NEAR\d+$/.test(tokens[pos]))) {
+      const op = tokens[pos];
+      pos++;
+      if (/^NEAR\d+$/.test(op)) {
+        const dist = parseInt(op.replace('NEAR', ''), 10);
+        const right = parseNot();
+        const lts = left.terms;
+        const rts = right.terms;
+        left = wrap(
+          v => nearMatchSets(lts, rts, dist, v),
+          lts.concat(rts)
+        );
+      } else {
+        const right = parseNot();
+        const lm = left.matcher, rm = right.matcher;
+        left = wrap(v => lm(v) && rm(v), left.terms.concat(right.terms));
+      }
+    }
+    // Implicit AND: adjacent terms with no operator
+    while (pos < tokens.length && tokens[pos] !== 'OR' && tokens[pos] !== 'AND' && tokens[pos] !== ')' && !/^NEAR\d+$/.test(tokens[pos])) {
+      const right = parseNot();
+      const lm = left.matcher, rm = right.matcher;
+      left = wrap(v => lm(v) && rm(v), left.terms.concat(right.terms));
+    }
+    return left;
+  }
+
+  function parseNot() {
+    if (pos < tokens.length && tokens[pos] === 'NOT') {
+      pos++;
+      const inner = parseTerm();
+      const im = inner.matcher;
+      // NOT's term list is empty for NEAR purposes — a negated operand
+      // doesn't contribute atomic terms to proximity matching.
+      return wrap(v => !im(v), []);
+    }
+    return parseTerm();
+  }
+
+  function parseTerm() {
+    if (pos >= tokens.length) return wrap(() => false, []);
+    const tok = tokens[pos];
+    if (tok === '(') {
+      pos++;
+      const inner = parseOr();
+      if (pos < tokens.length && tokens[pos] === ')') pos++;
+      return inner; // parentheses don't change terms or matcher
+    }
+    pos++;
+    return wrap(
+      verseText => termMatchesVerse(tok, verseText),
+      [tok]
+    );
+  }
+
+  const result = parseOr();
+  return { matcher: result.matcher, highlightTerms };
+}
+
+// --- Main search function ---
+
+function performSearch(query) {
+  const statusEl = document.getElementById('search-status');
+  const resultsEl = document.getElementById('search-results');
+  const chartEl = document.getElementById('search-book-chart');
+
+  if (!query || query.trim().length < 2) {
+    statusEl.textContent = '';
+    resultsEl.innerHTML = '';
+    if (chartEl) chartEl.innerHTML = '';
+    lastHits = [];
+    lastSearchQuery = '';
+    activeBook = null;
+    lastSearchTerms = [];
+    document.getElementById('lemma-info').textContent = '';
+    updateClearFiltersVisibility();
+    // When the input is fully empty, show the recent searches cache
+    if (!query || query.length === 0) renderRecentSearches();
+    return;
+  }
+
+  // New query: clear per-book filter (but allow corpus filter to persist)
+  if (query !== lastSearchQuery) {
+    activeBook = null;
+  }
+  lastSearchQuery = query;
+
+  // Persist this query to the recent-searches cache
+  saveRecentSearch(query);
+
+  if (!searchIndex) {
+    statusEl.innerHTML = '<div class="search-loading">Building search index...</div>';
+    // Retry after index loads
+    const checkInterval = setInterval(() => {
+      if (searchIndex) {
+        clearInterval(checkInterval);
+        performSearch(query);
+      }
+    }, 200);
+    return;
+  }
+
+  statusEl.textContent = 'Searching...';
+  resultsEl.innerHTML = '';
+  const lemmaInfoEl = document.getElementById('lemma-info');
+  lemmaInfoEl.textContent = '';
+
+  const isWildcard = hasWildcards(query);
+  const isBoolean = !isWildcard && hasBooleanOps(query);
+  const isExact = !isWildcard && /^".*"$/.test(query.trim());
+  let boolMatcher = null;
+  let wildcardData = null;
+  const lemmaExpansions = []; // track expansions for UI indicator
+
+  if (isWildcard) {
+    wildcardData = buildWildcardRegex(query);
+    // Highlight the literal (non-?/*) terms via the existing diacritic-aware
+    // path; wildcard placeholders are not highlighted. No lemma expansion in
+    // wildcard mode — pattern fidelity beats fuzzy match here.
+    lastSearchTerms = wildcardData.literalTerms;
+  } else if (isBoolean) {
+    const parsed = parseBooleanQuery(query);
+    boolMatcher = parsed.matcher;
+    lastSearchTerms = parsed.highlightTerms;
+    // Expand highlight terms via lemma index
+    const expandedTerms = [];
+    for (const t of lastSearchTerms) {
+      const exp = expandLemma(t);
+      if (exp) {
+        for (const f of exp.forms) expandedTerms.push(f);
+        lemmaExpansions.push({ input: t, lemma: exp.lemma, count: exp.forms.length });
+      } else {
+        expandedTerms.push(t);
+      }
+    }
+    lastSearchTerms = [...new Set(expandedTerms)];
+  } else if (isExact) {
+    const exact = stripDiacritics(query.trim().replace(/^"|"$/g, ''));
+    lastSearchTerms = [exact];
+  } else {
+    // Simple search: split into words, each must match (implicit AND)
+    const words = query.trim().split(/\s+/).filter(w => w.length > 0);
+    const rawTerms = words.map(w => stripDiacritics(w));
+    // Expand each term via lemma for highlighting
+    const expandedTerms = [];
+    for (const t of rawTerms) {
+      const exp = expandLemma(t);
+      if (exp) {
+        for (const f of exp.forms) expandedTerms.push(f);
+        lemmaExpansions.push({ input: t, lemma: exp.lemma, count: exp.forms.length });
+      } else {
+        expandedTerms.push(t);
+      }
+    }
+    lastSearchTerms = [...new Set(expandedTerms)];
+  }
+
+  // Show lemma expansion info
+  if (lemmaExpansions.length > 0) {
+    lemmaInfoEl.textContent = lemmaExpansions.map(e =>
+      e.lemma + ' \u2192 ' + e.count + ' forms'
+    ).join('  \u00b7  ');
+  }
+
+  const hits = [];
+  const corpusAllowed = getCorpusAllowedBooks();
+  // Precompute the English query words once (case-insensitive substring AND).
+  const enQueryWords = query.trim().toLowerCase().split(/\s+/).filter(w => w.length > 0);
+
+  for (const entry of searchIndex) {
+    // Corpus filter: skip books not in any active filter group
+    if (corpusAllowed && !corpusAllowed.has(entry.book)) continue;
+
+    // Bilingual search: a verse is a hit if EITHER its Latin layer OR its
+    // Douay-Rheims English layer matches the query (additive — broadens
+    // coverage; the matched layer is recorded so the result shows which side hit).
+    let matchedLat = false;
+
+    if (wildcardData) {
+      // Wildcard phrase-template: regex test against the diacritic-stripped
+      // verse text. Reset lastIndex since /g regex state is per-call.
+      wildcardData.regex.lastIndex = 0;
+      matchedLat = wildcardData.regex.test(entry.textStripped);
+    } else if (boolMatcher) {
+      matchedLat = boolMatcher(entry.textStripped);
+    } else if (isExact) {
+      const phrase = stripDiacritics(query.trim().replace(/^"|"$/g, ''));
+      matchedLat = entry.textStripped.indexOf(phrase) !== -1;
+    } else {
+      // All terms must appear (implicit AND for multi-word)
+      // Each original term must have at least one form match
+      matchedLat = true;
+      const verseWords = getWords(entry.textStripped);
+      const rawWords = query.trim().split(/\s+/).filter(w => w.length > 0);
+      for (const w of rawWords) {
+        const stripped = stripDiacritics(w);
+        const exp = expandLemma(stripped);
+        const formsToMatch = exp ? exp.forms : [stripped];
+        let found = false;
+        for (const vw of verseWords) {
+          for (const form of formsToMatch) {
+            if (vw === form) { found = true; break; }
+          }
+          if (found) break;
+        }
+        if (!found) { matchedLat = false; break; }
+      }
+    }
+
+    // English layer: case-insensitive substring match, every word required.
+    // Skipped in wildcard mode (the wildcard template is Latin-phrase-shaped).
+    let matchedEn = false;
+    if (!wildcardData && entry.enText && enQueryWords.length > 0) {
+      matchedEn = enQueryWords.every(w => entry.enTextLower.indexOf(w) !== -1);
+    }
+
+    if (matchedLat || matchedEn) {
+      // Record which layer(s) matched so renderFilteredResults can show the
+      // hitting side. Latin is the primary layer when both match.
+      entry._matchLat = matchedLat;
+      entry._matchEn = matchedEn;
+      hits.push(entry);
+    }
+  }
+
+  // Store hits at module level so the book-chart click handlers can
+  // re-filter the display without re-running the query.
+  lastHits = hits;
+
+  // Render the per-book bar chart (second-tier filter)
+  renderBookChart();
+
+  // Render the (possibly book-filtered) results
+  renderFilteredResults();
+
+  // Update the Clear-filters link visibility
+  updateClearFiltersVisibility();
+}
+
+// --- Per-book bar chart (second-tier filter within corpus) ---
+// A group-then-book bar-chart pattern. The reader has corpus chips
+// for top-tier filtering (Pauline, Synoptics, etc.); this adds the second
+// tier — individual books within the hit set — as a click-to-filter bar
+// chart below the search status line.
+function renderBookChart() {
+  const container = document.getElementById('search-book-chart');
+  if (!container) return;
+  container.innerHTML = '';
+  if (!lastHits || lastHits.length === 0) return;
+
+  // Count hits per book slug
+  const bookCounts = {};
+  for (const entry of lastHits) {
+    bookCounts[entry.book] = (bookCounts[entry.book] || 0) + 1;
+  }
+  const bookSlugs = Object.keys(bookCounts);
+  // Don't render a chart if only one book has hits — there's nothing to filter
+  if (bookSlugs.length < 2) return;
+
+  // Maintain canonical NT book order for display
+  const orderedBooks = [
+    'matt','mark','luke','john','acts',
+    'rom','1cor','2cor','gal','eph','phil','col','1thess','2thess','1tim','2tim','titus','phlm',
+    'heb','jas','1pet','2pet','1john','2john','3john','jude','rev'
+  ];
+  const sortedSlugs = orderedBooks.filter(s => bookCounts[s] > 0);
+
+  let maxCount = 0;
+  for (const slug of sortedSlugs) {
+    if (bookCounts[slug] > maxCount) maxCount = bookCounts[slug];
+  }
+
+  for (const slug of sortedSlugs) {
+    const count = bookCounts[slug];
+    const row = makeBarRow(
+      getBookDisplayName(slug),
+      count,
+      maxCount,
+      slug === activeBook,
+      () => toggleBookFilter(slug)
+    );
+    container.appendChild(row);
+  }
+}
+
+function getBookDisplayName(slug) {
+  // Find any hit from this book to retrieve its proper display name
+  for (const h of lastHits) {
+    if (h.book === slug) return h.bookName;
+  }
+  return slug;
+}
+
+function makeBarRow(label, count, maxCount, isActive, clickFn) {
+  const row = document.createElement('div');
+  row.className = 'search-bar-row' + (isActive ? ' active-filter' : '');
+
+  const lbl = document.createElement('span');
+  lbl.className = 'search-bar-label';
+  lbl.textContent = label;
+
+  const track = document.createElement('span');
+  track.className = 'search-bar-track';
+  const fill = document.createElement('span');
+  fill.className = 'search-bar-fill';
+  const pct = maxCount > 0 ? Math.max(2, Math.round((count / maxCount) * 100)) : 0;
+  fill.style.width = pct + '%';
+  track.appendChild(fill);
+
+  const num = document.createElement('span');
+  num.className = 'search-bar-num';
+  num.textContent = count;
+
+  row.appendChild(lbl);
+  row.appendChild(track);
+  row.appendChild(num);
+  row.addEventListener('click', clickFn);
+  return row;
+}
+
+function toggleBookFilter(slug) {
+  if (activeBook === slug) {
+    activeBook = null; // deselect → show all
+  } else {
+    activeBook = slug;
+  }
+  renderBookChart();
+  renderFilteredResults();
+  updateClearFiltersVisibility();
+}
+
+// Show or hide the "Clear filters ×" link based on whether any
+// corpus chip or the per-book bar-chart filter is active.
+function updateClearFiltersVisibility() {
+  const el = document.getElementById('search-clear-filters');
+  if (!el) return;
+  const hasFilter = activeCorpusFilters.size > 0 || activeBook !== null;
+  if (hasFilter) {
+    el.classList.add('visible');
+  } else {
+    el.classList.remove('visible');
+  }
+}
+
+// Clear all active filters (both corpus chips and the per-book
+// bar-chart filter) and re-run the current search to refresh results.
+function clearAllFilters() {
+  // Deselect every corpus chip
+  activeCorpusFilters.clear();
+  document.querySelectorAll('.corpus-chip.active').forEach(chip => {
+    chip.classList.remove('active');
+  });
+  // Hide the Disputed sub-filter (it's only visible when Pauline is active)
+  const disputedChip = document.querySelector('.corpus-chip[data-corpus="disputed"]');
+  if (disputedChip) disputedChip.classList.remove('visible');
+  // Clear the per-book filter
+  activeBook = null;
+  // Re-run the current search so results reflect the unfiltered state
+  const input = document.getElementById('search-input');
+  if (input && input.value.trim().length >= 2) {
+    performSearch(input.value);
+  } else {
+    // No active query — just hide the clear-filters chip
+    updateClearFiltersVisibility();
+  }
+}
+
+// --- Render results list from lastHits + activeBook filter ---
+function renderFilteredResults() {
+  const statusEl = document.getElementById('search-status');
+  const resultsEl = document.getElementById('search-results');
+  resultsEl.innerHTML = '';
+
+  const filteredHits = activeBook
+    ? lastHits.filter(h => h.book === activeBook)
+    : lastHits;
+
+  const totalCount = filteredHits.length;
+  const displayLimit = 100;
+
+  if (totalCount === 0) {
+    statusEl.textContent = 'No results found.';
+    return;
+  }
+
+  // Status line with corpus + book filter annotation
+  let filterLabel = '';
+  if (activeCorpusFilters.size > 0) {
+    const names = [...activeCorpusFilters].map(f => f.charAt(0).toUpperCase() + f.slice(1));
+    filterLabel = ' in ' + names.join(', ');
+  }
+  if (activeBook) {
+    const bookName = getBookDisplayName(activeBook);
+    filterLabel += ' · ' + bookName;
+  }
+  // If we had to filter down from lastHits, mention both numbers
+  if (activeBook && lastHits.length !== totalCount) {
+    statusEl.textContent = 'Showing ' + totalCount + ' of ' + lastHits.length + ' verses' + filterLabel;
+  } else {
+    statusEl.textContent = totalCount + ' verse' + (totalCount !== 1 ? 's' : '') + ' found' + filterLabel;
+  }
+
+  const shown = Math.min(totalCount, displayLimit);
+  for (let i = 0; i < shown; i++) {
+    const entry = filteredHits[i];
+    const ref = entry.bookName + ' ' + entry.chapter + ':' + entry.verse;
+
+    const card = document.createElement('div');
+    card.className = 'search-result';
+
+    const refDiv = document.createElement('div');
+    refDiv.className = 'search-result-ref';
+    refDiv.textContent = ref;
+    // Layer badge: show which side(s) of the bilingual index matched.
+    const badge = document.createElement('span');
+    badge.className = 'search-result-layer';
+    if (entry._matchLat && entry._matchEn) {
+      badge.textContent = 'Lat + Eng';
+    } else if (entry._matchLat) {
+      badge.textContent = 'Lat';
+    } else {
+      badge.textContent = 'Eng';
+    }
+    refDiv.appendChild(badge);
+
+    const textDiv = document.createElement('div');
+    textDiv.className = 'search-result-text';
+    // Render the layer that actually matched. Latin is shown when it hit;
+    // otherwise the English layer is shown (English-only match). When both
+    // hit, Latin is the primary display layer.
+    if (entry._matchLat) {
+      textDiv.innerHTML = highlightSearchResult(entry.text, lastSearchTerms);
+    } else {
+      const qw = lastSearchQuery.trim().toLowerCase().split(/\s+/).filter(w => w.length > 0);
+      textDiv.innerHTML = highlightSearchResult(entry.enText, qw);
+    }
+
+    card.appendChild(refDiv);
+    card.appendChild(textDiv);
+
+    ((book, ch, v) => {
+      card.onclick = () => {
+        savePositionForReturn();
+        closeSearch();
+        navigate(book, ch, v).then(() => showReturnButton());
+      };
+    })(entry.book, entry.chapter, entry.verse);
+
+    resultsEl.appendChild(card);
+  }
+
+  if (totalCount > displayLimit) {
+    const more = document.createElement('div');
+    more.style.cssText = 'color:var(--text-faint); text-align:center; padding:20px 0; font-size:0.85em;';
+    more.textContent = (totalCount - displayLimit) + ' more results...';
+    resultsEl.appendChild(more);
+  }
+}
+
+// --- Highlight matching terms in verse text ---
+
+function highlightSearchResult(originalText, terms) {
+  if (!terms || terms.length === 0) return escapeHtml(originalText);
+
+  // Build NFD mapping for diacritic-aware highlighting
+  const nfd = originalText.normalize('NFD');
+  const strippedChars = [];
+  const origIndices = [];
+
+  for (let i = 0; i < nfd.length; i++) {
+    const code = nfd.charCodeAt(i);
+    if (code >= 0x0300 && code <= 0x036f) continue;
+    strippedChars.push(nfd[i].toLowerCase());
+    origIndices.push(i);
+  }
+
+  const strippedStr = strippedChars.join('');
+
+  // Find all match ranges in the stripped string
+  const ranges = [];
+  for (const term of terms) {
+    let idx = 0;
+    while (idx <= strippedStr.length - term.length) {
+      const found = strippedStr.indexOf(term, idx);
+      if (found === -1) break;
+      ranges.push([found, found + term.length]);
+      idx = found + 1;
+    }
+  }
+
+  if (ranges.length === 0) return escapeHtml(originalText);
+
+  // Merge overlapping ranges
+  ranges.sort((a, b) => a[0] - b[0]);
+  const merged = [ranges[0]];
+  for (let i = 1; i < ranges.length; i++) {
+    const last = merged[merged.length - 1];
+    if (ranges[i][0] <= last[1]) {
+      last[1] = Math.max(last[1], ranges[i][1]);
+    } else {
+      merged.push(ranges[i]);
+    }
+  }
+
+  // Map stripped indices back to NFD indices, build output
+  let result = '';
+  let prevEnd = 0;
+
+  for (const [start, end] of merged) {
+    const nfdStart = origIndices[start];
+    const nfdEnd = (end < origIndices.length) ? origIndices[end] : nfd.length;
+
+    const before = nfd.slice(prevEnd === 0 ? 0 : (origIndices[prevEnd] || nfd.length), nfdStart).normalize('NFC');
+    const matched = nfd.slice(nfdStart, nfdEnd).normalize('NFC');
+
+    if (prevEnd === 0) {
+      result += escapeHtml(nfd.slice(0, nfdStart).normalize('NFC'));
+    } else {
+      result += escapeHtml(before);
+    }
+    result += '<mark>' + escapeHtml(matched) + '</mark>';
+    prevEnd = end;
+  }
+
+  // Append remainder
+  const lastNfdEnd = (prevEnd < origIndices.length) ? origIndices[prevEnd] : nfd.length;
+  result += escapeHtml(nfd.slice(lastNfdEnd).normalize('NFC'));
+
+  return result;
+}
+
+// --- Keyboard Shortcuts ---
+
+document.addEventListener('keydown', function(e) {
+  // Ctrl+F or / opens search
+  if ((e.ctrlKey && e.key === 'f') || (e.key === '/' && !e.ctrlKey && !e.altKey && !e.metaKey)) {
+    // Don't intercept / if already typing in an input
+    if (e.key === '/' && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
+    e.preventDefault();
+    openSearch();
+    return;
+  }
+
+  // Escape closes help, verse popover, search, or settings
+  if (e.key === 'Escape') {
+    const helpOverlay = document.getElementById('help-overlay');
+    if (helpOverlay.classList.contains('open')) {
+      closeHelp();
+      return;
+    }
+    const versePopover = document.getElementById('verse-popover');
+    if (versePopover.classList.contains('open')) {
+      closeVersePopover();
+      return;
+    }
+    const searchOverlay = document.getElementById('search-overlay');
+    if (searchOverlay.classList.contains('open')) {
+      closeSearch();
+      return;
+    }
+    const settingsPanel = document.getElementById('settings-panel');
+    if (settingsPanel.classList.contains('open')) {
+      closeSettings();
+      return;
+    }
+  }
+
+  // Arrow keys for chapter nav (only when not in input fields)
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  if (e.key === 'ArrowLeft') { goChapter(-1); }
+  if (e.key === 'ArrowRight') { goChapter(1); }
+});
+
+// Search input handler with debounce
+document.getElementById('search-input').addEventListener('input', function(e) {
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(() => performSearch(e.target.value), 200);
+});
+
+// Close settings when clicking outside
+document.addEventListener('click', function(e) {
+  const panel = document.getElementById('settings-panel');
+  const btn = document.getElementById('btn-settings');
+  if (panel.classList.contains('open') && !panel.contains(e.target) && !btn.contains(e.target)) {
+    closeSettings();
+  }
+});
+
+// --- Search return button ---
+
+let searchReturnState = null;
+let searchReturnTimer = null;
+
+function savePositionForReturn() {
+  searchReturnState = {
+    book: currentBook,
+    chapter: currentChapter,
+    scrollY: window.scrollY
+  };
+}
+
+function showReturnButton() {
+  const btn = document.getElementById('search-return-btn');
+  if (!btn) return;
+  btn.classList.add('visible');
+  clearTimeout(searchReturnTimer);
+  searchReturnTimer = setTimeout(() => { hideReturnButton(); }, 10000);
+}
+
+function hideReturnButton() {
+  const btn = document.getElementById('search-return-btn');
+  if (btn) btn.classList.remove('visible');
+  clearTimeout(searchReturnTimer);
+  searchReturnState = null;
+}
+
+function searchReturn() {
+  if (!searchReturnState) return;
+  const st = searchReturnState;
+  hideReturnButton();
+  navigate(st.book, st.chapter).then(() => {
+    setTimeout(() => { window.scrollTo({ top: st.scrollY, behavior: 'smooth' }); }, 100);
+  });
+}
+
+// --- Floating chapter arrows ---
+
+function updateFloatNav() {
+  const prev = document.getElementById('float-prev');
+  const next = document.getElementById('float-next');
+  if (!prev || !next) return;
+  const landing = document.getElementById('landing');
+  if (landing && landing.classList.contains('visible')) {
+    prev.classList.remove('active');
+    next.classList.remove('active');
+    return;
+  }
+  const idx = BOOK_KEYS.indexOf(currentBook);
+  if (currentChapter > 1 || idx > 0) { prev.classList.add('active'); } else { prev.classList.remove('active'); }
+  if (currentChapter < BOOKS[currentBook].chapters || idx < BOOK_KEYS.length - 1) { next.classList.add('active'); } else { next.classList.remove('active'); }
+}
+
+// --- Landing page ---
+
+const BOOK_SECTIONS = [
+  { label: 'Gospels', keys: ['matt', 'mark', 'luke', 'john'] },
+  { label: 'History', keys: ['acts'] },
+  { label: 'Pauline Epistles', keys: ['rom', '1cor', '2cor', 'gal', 'eph', 'phil', 'col', '1thess', '2thess', '1tim', '2tim', 'titus', 'phlm'] },
+  { label: 'General Epistles', keys: ['heb', 'jas', '1pet', '2pet', '1john', '2john', '3john', 'jude'] },
+  { label: 'Prophecy', keys: ['rev'] },
+];
+
+let landingExpanded = null;
+
+function buildLandingBooks() {
+  const grid = document.getElementById('landing-books');
+  grid.innerHTML = '';
+
+  for (const section of BOOK_SECTIONS) {
+    const label = document.createElement('div');
+    label.className = 'landing-section-label';
+    label.textContent = section.label;
+    grid.appendChild(label);
+
+    for (const slug of section.keys) {
+      const book = BOOKS[slug];
+      const btn = document.createElement('div');
+      btn.className = 'landing-book';
+      btn.setAttribute('data-book', slug);
+      btn.textContent = book.short || book.name;
+      btn.title = book.name;
+      btn.onclick = () => toggleLandingBook(slug);
+      grid.appendChild(btn);
+
+      // Expandable chapter picker
+      const expand = document.createElement('div');
+      expand.className = 'landing-expand';
+      expand.id = 'landing-expand-' + slug;
+      const chGrid = document.createElement('div');
+      chGrid.className = 'landing-ch-grid';
+
+      if (book.chapters === 1) {
+        // Single-chapter book: show verse popover directly
+        btn.onclick = () => {
+          hideLanding();
+          showVersePopover(slug, 1);
+        };
+      } else {
+        for (let c = 1; c <= book.chapters; c++) {
+          const ch = document.createElement('button');
+          ch.className = 'landing-ch';
+          ch.textContent = c;
+          ch.onclick = ((s, cn) => (e) => {
+            e.stopPropagation();
+            hideLanding();
+            showVersePopover(s, cn);
+          })(slug, c);
+          chGrid.appendChild(ch);
+        }
+        expand.appendChild(chGrid);
+        grid.appendChild(expand);
+      }
+    }
+  }
+}
+
+function toggleLandingBook(slug) {
+  const expand = document.getElementById('landing-expand-' + slug);
+  if (!expand) return;
+  const wasVisible = expand.classList.contains('visible');
+  // Close all others
+  document.querySelectorAll('.landing-expand.visible').forEach(e => e.classList.remove('visible'));
+  document.querySelectorAll('.landing-book.active').forEach(b => b.classList.remove('active'));
+  if (!wasVisible) {
+    expand.classList.add('visible');
+    const btn = document.querySelector('.landing-book[data-book="' + slug + '"]');
+    if (btn) btn.classList.add('active');
+  } else {
+    landingExpanded = null;
+  }
+}
+
+function showLanding() {
+  // Close any open overlays
+  closeNav();
+  closeSettings();
+  closeSearch();
+  closeVersePopover();
+  closeHelp();
+  // Show landing, hide content
+  document.getElementById('landing').classList.add('visible');
+  document.getElementById('content').style.display = 'none';
+  // Body-level flag — CSS hides the layer-bar (no Latin/English content
+  // to toggle on landing) and trims the topbar-only padding-top.
+  document.body.classList.add('landing-active');
+  // Update topbar
+  document.getElementById('topbar-loc').style.display = 'none';
+  document.getElementById('btn-home').style.display = 'none';
+  document.getElementById('progress-line').style.width = '0%';
+  // Hide floating nav
+  document.getElementById('float-prev').classList.remove('active');
+  document.getElementById('float-next').classList.remove('active');
+  // Clear hash
+  if (location.hash && location.hash !== '#home') {
+    history.replaceState(null, '', location.pathname);
+  }
+  window.scrollTo({ top: 0 });
+}
+
+function hideLanding() {
+  document.getElementById('landing').classList.remove('visible');
+  document.getElementById('content').style.display = '';
+  document.body.classList.remove('landing-active');
+  document.getElementById('topbar-loc').style.display = '';
+  document.getElementById('btn-home').style.display = '';
+}
+
+
+// --- Help overlay ---
+
+function openHelp() {
+  closeNav();
+  closeSettings();
+  closeSearch();
+  closeVersePopover();
+  document.getElementById('help-overlay').classList.add('open');
+}
+
+function closeHelp() {
+  document.getElementById('help-overlay').classList.remove('open');
+}
+
+// --- Init ---
+
+const backToTopBtn = document.getElementById('back-to-top');
+window.addEventListener('scroll', function() {
+  updateProgress();
+  // Back-to-top button visibility
+  if (backToTopBtn) backToTopBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+}, { passive: true });
+
+window.addEventListener('hashchange', () => {
+  const { book, chapter, verse } = parseHash();
+  if (book === null) {
+    showLanding();
+    return;
+  }
+  if (book !== currentBook || chapter !== currentChapter || verse) {
+    hideLanding();
+    navigate(book, chapter, verse);
+  }
+});
+
+(function init() {
+  loadSettings();
+  buildLandingBooks();
+  const { book, chapter, verse } = parseHash();
+  if (book === null) {
+    showLanding();
+  } else {
+    hideLanding();
+    navigate(book, chapter, verse);
+  }
+})();
+
+// Register the service worker for offline use + faster repeat loads.
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('sw.js').catch(function() {});
+  });
+}
+</script>
+
+</body>
+</html>

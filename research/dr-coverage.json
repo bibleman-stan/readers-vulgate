@@ -1,0 +1,20 @@
+{
+  "tf_verses": 6510,
+  "dr_aligned": 6505,
+  "dr_mismatches_total": 5,
+  "dr_mismatches_by_book": {
+    "matt": [
+      "17:27"
+    ],
+    "john": [
+      "11:57"
+    ],
+    "2cor": [
+      "1:24",
+      "7:18"
+    ],
+    "3john": [
+      "1:15"
+    ]
+  }
+}

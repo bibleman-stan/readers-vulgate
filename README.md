@@ -1,14 +1,36 @@
-# readers-vulgate — Latin Vulgate colometric reader (SUBSTRATE-FIRST; not yet started)
+# readers-vulgate — Latin Vulgate colometric reader
 
 Sibling to readers-tanakh / readers-gnt / readers-bofm. Part of the ATU (Atomic Thought
 Unit) colometry program. **Operated by the unified orchestrator-Claude at `C:\Users\bibleman\`.**
 
-## STATUS: substrate-assembly phase — NO ATU/sense-line work yet
+## Reader site — v1.5 DRAFT (deploy target: vulgate-reader.com, GitHub Pages)
 
-Per the program's hard-won lesson (the BoFM over-merge ordeal, 2026-05-27): **do not draw
-a single ATU boundary until the textual fabric reaches a parity threshold.** Sense-lining on
-a thin/noisy parse produces systematic over-merges. Fabric first; superstructure second.
-See `~/repos/atu-method/docs/substrate.md` (the Textual Fabric Doctrine) when written.
+A web reader ported from gnt-reader (same look / CSS / layout / UX). Latin Vulgate ATU lines
+with the Douay-Rheims (1582 Rheims NT) English, and a **bilingual search** that matches either
+layer (each result shows which layer hit).
+
+- **Latin text + ATU segmentation:** the v1.5 mechanical generator (`scripts/vulgate_generate.py`)
+  over the gold UD_Latin-PROIEL Text-Fabric at `data/tf/0.1`. This is a **pre-editorial draft**
+  (segmentation pending a §7.3 audit). Known v1.5 bug: beatitudes Matt 5:3 & 5:10 are wrongly
+  fused — *not* fixed in this build.
+- **English:** Original Douay-Rheims (CC0), cloned to `private/original-douay-rheims/` (gitignored).
+  Verse-level layer for this first build (whole DR verse under the verse's first ATU line).
+- **Coverage:** the PROIEL Vulgate TF is gold but PARTIAL — Gospels/Acts/Revelation near-complete,
+  Epistles sampled. 6,510 Latin verses emitted; 6,505 (99.9%) align with DR. Five versification
+  mismatches (Matt 17:27, John 11:57, 2 Cor 1:24 & 7:18, 3 John 1:15). See `research/dr-coverage.json`.
+
+**Build:** `scripts/build_content.py` (Latin + DR text-files) → `scripts/build_books.py`
+(→ `books/*.html`). `index.html` + `sw.js` are the web app. Deferred: per-ATU English interleave,
+a Latin lemma index for inflected-form search, an editorial v2/v3 pass, the empty interior
+chapters of the few sampled epistles.
+
+## Substrate doctrine (governs editorial refinement of the draft above)
+
+Per the program's hard-won lesson (the BoFM over-merge ordeal, 2026-05-27): the v1.5 reader is
+a **mechanical draft**, deployed-then-refined. Because the Latin fabric here is GOLD
+(hand-tagged PROIEL syntax), the v1.5 mechanical layer is on solid substrate — but the ATU
+boundaries are still a draft requiring an editorial pass before any "final" claim. Fabric
+quality bounds the claims. See `~/repos/atu-method/docs/substrate.md` (the Textual Fabric Doctrine).
 
 ## Substrate plan (assemble + VERIFY before any colometry)
 
