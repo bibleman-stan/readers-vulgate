@@ -42,6 +42,7 @@ DR_DIR = os.path.join(REPO_ROOT, "private", "original-douay-rheims", "bible", "r
 if SCRIPT_DIR not in sys.path:
     sys.path.insert(0, SCRIPT_DIR)
 import vulgate_generate as vg  # noqa: E402
+import vulgate_overrides  # noqa: E402
 
 # TF book_code -> (web slug, numbered-folder index, DR raw json filename)
 # Order is canonical NT order; slugs match the GNT family convention.
@@ -211,6 +212,9 @@ def main():
             # group ATU lines by verse ref, preserving order
             by_verse = []
             seen_ref = {}
+            # Per-verse node accumulator for the override parity gate:
+            # verse_text = " ".join(api.T.text(w) for w in all words of verse).
+            verse_words = defaultdict(list)
             for ln in lines:
                 ref = ln["ref"]              # "5:3"
                 txt = vg.render(api, ln)
@@ -218,6 +222,21 @@ def main():
                     seen_ref[ref] = len(by_verse)
                     by_verse.append([ref, [], ln["verse"]])
                 by_verse[seen_ref[ref]][1].append(txt)
+                verse_words[ref].extend(ln["words"])
+
+            # Render-stage adjudication overrides: per verse, if an override
+            # exists AND its joined alnum (NFD-normalized, Mn-stripped,
+            # [a-z0-9]) equals the v0 verse text's same normalization, swap
+            # the mechanical ATU lines for the adjudicated ones. Otherwise
+            # the mechanical lines stand. See scripts/vulgate_overrides.py +
+            # data/text-files/v1.5-adjudicated/README.md.
+            for i, (ref, atu_lines, vnum) in enumerate(by_verse):
+                ov_ref = vulgate_overrides.ref_for(book_code, chap, vnum)
+                v0_text = " ".join(api.T.text(w).strip()
+                                   for w in verse_words[ref]).strip()
+                ov_lines = vulgate_overrides.apply_override(v0_text, ov_ref)
+                if ov_lines is not None:
+                    by_verse[i] = [ref, ov_lines, vnum]
 
             tf_vnums = sorted({vn for _, _, vn in by_verse})
             lat_blocks = []
