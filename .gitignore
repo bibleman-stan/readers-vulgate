@@ -13,3 +13,4 @@ Thumbs.db
 
 # Text-Fabric compiled binary cache
 data/tf/**/.tf/
+scratch/

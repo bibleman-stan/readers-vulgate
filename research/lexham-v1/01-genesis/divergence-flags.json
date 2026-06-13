@@ -1,0 +1,2505 @@
+{
+  "book": "Genesis",
+  "source": "Lexham OT discourse propositions, mapped to Tweedale Clementine Vulgate text",
+  "v1_partition_policy": "RAW Lexham proposition list, one ATU line per proposition; no Topic-merge applied",
+  "convergence_legend": {
+    "full_agreement": "T == L == V_merged (Tanakh, LXX, Vulgate agree)",
+    "vulgate_finer_predictable": "V_raw > T=L, but Topic-merge collapses to T=L",
+    "tanakh_lxx_diverge": "T != L source-side disagreement (not Vulgate-internal)",
+    "lxx_fallback": "Source mismatch resolved by falling back to LXX-side count",
+    "vulgate_diverges": "Vulgate finer than T=L even after merge -- the verses listed below"
+  },
+  "summary": {
+    "verses_total": 1525,
+    "full_agreement": 372,
+    "vulgate_finer_predictable_merged": 111,
+    "vulgate_diverges": 355
+  },
+  "vulgate_diverges": {
+    "1:14": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "1:15": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "1:16": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (1) even after merge"
+    },
+    "1:17": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "1:22": {
+      "t": 5,
+      "l": 5,
+      "v_raw": 7,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (5) even after merge"
+    },
+    "1:24": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (4) even after merge"
+    },
+    "1:26": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 8,
+      "v_merged": 8,
+      "notes": "Vulgate finer (8) than T=L (3) even after merge"
+    },
+    "1:27": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (3) even after merge"
+    },
+    "1:30": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (2) even after merge"
+    },
+    "2:2": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (2) even after merge"
+    },
+    "2:3": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "2:15": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (2) even after merge"
+    },
+    "2:16": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (2) even after merge"
+    },
+    "2:20": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 6,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (2) even after merge"
+    },
+    "2:24": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "3:1": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 6,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (4) even after merge"
+    },
+    "3:2": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "3:3": {
+      "t": 5,
+      "l": 5,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate coarser (4) than T=L (5)"
+    },
+    "3:15": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 6,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "3:20": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 5,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (2) even after merge"
+    },
+    "3:23": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "3:24": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (3) even after merge"
+    },
+    "4:8": {
+      "t": 5,
+      "l": 5,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate coarser (4) than T=L (5)"
+    },
+    "4:17": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (4) even after merge"
+    },
+    "5:29": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 5,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (2) even after merge"
+    },
+    "6:1": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 1,
+      "v_merged": 1,
+      "notes": "Vulgate coarser (1) than T=L (3)"
+    },
+    "6:5": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "6:9": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 5,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "6:10": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (1) even after merge"
+    },
+    "6:18": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 7,
+      "v_merged": 7,
+      "notes": "Vulgate finer (7) than T=L (2) even after merge"
+    },
+    "7:3": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "7:5": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "7:6": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 4,
+      "v_merged": 2,
+      "notes": "Vulgate coarser (2) than T=L (3)"
+    },
+    "7:7": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (1) even after merge"
+    },
+    "7:9": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "7:11": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 5,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (2) even after merge"
+    },
+    "7:12": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "7:13": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 7,
+      "v_merged": 7,
+      "notes": "Vulgate finer (7) than T=L (1) even after merge"
+    },
+    "7:15": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (1) even after merge"
+    },
+    "7:18": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "7:19": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 4,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "7:20": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "8:1": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 7,
+      "v_merged": 7,
+      "notes": "Vulgate finer (7) than T=L (3) even after merge"
+    },
+    "8:4": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (1) even after merge"
+    },
+    "8:5": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 4,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "8:7": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (2) even after merge"
+    },
+    "8:14": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "8:15": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "8:16": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (1) even after merge"
+    },
+    "8:18": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (1) even after merge"
+    },
+    "8:22": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 3,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "9:9": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "9:15": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "9:16": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "9:17": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "9:20": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate coarser (2) than T=L (3)"
+    },
+    "9:24": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate coarser (2) than T=L (3)"
+    },
+    "10:5": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 1,
+      "v_merged": 1,
+      "notes": "Vulgate coarser (1) than T=L (3)"
+    },
+    "10:10": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (1) even after merge"
+    },
+    "10:11": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (2) even after merge"
+    },
+    "10:14": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "10:18": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "11:5": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "11:11": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate coarser (2) than T=L (3)"
+    },
+    "11:15": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate coarser (2) than T=L (3)"
+    },
+    "11:17": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate coarser (2) than T=L (3)"
+    },
+    "11:19": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate coarser (2) than T=L (3)"
+    },
+    "11:21": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate coarser (2) than T=L (3)"
+    },
+    "11:23": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate coarser (2) than T=L (3)"
+    },
+    "11:25": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate coarser (2) than T=L (3)"
+    },
+    "11:31": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 8,
+      "v_merged": 8,
+      "notes": "Vulgate finer (8) than T=L (4) even after merge"
+    },
+    "12:1": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (2) even after merge"
+    },
+    "12:3": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 5,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "12:5": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 7,
+      "v_merged": 7,
+      "notes": "Vulgate finer (7) than T=L (3) even after merge"
+    },
+    "12:6": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "12:16": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 9,
+      "v_merged": 8,
+      "notes": "Vulgate finer (8) than T=L (2) even after merge"
+    },
+    "12:17": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "13:2": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 5,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (1) even after merge"
+    },
+    "13:6": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "13:8": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (3) even after merge"
+    },
+    "13:11": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate coarser (3) than T=L (4)"
+    },
+    "14:1": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (1) even after merge"
+    },
+    "14:2": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (2) even after merge"
+    },
+    "14:4": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (2) even after merge"
+    },
+    "14:6": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "14:8": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 7,
+      "v_merged": 7,
+      "notes": "Vulgate finer (7) than T=L (3) even after merge"
+    },
+    "14:9": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (2) even after merge"
+    },
+    "14:11": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (2) even after merge"
+    },
+    "14:20": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "14:21": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "15:1": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 9,
+      "v_merged": 7,
+      "notes": "Vulgate finer (7) than T=L (4) even after merge"
+    },
+    "15:2": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 7,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (4) even after merge"
+    },
+    "15:3": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 7,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (3) even after merge"
+    },
+    "15:7": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (2) even after merge"
+    },
+    "15:9": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 7,
+      "v_merged": 7,
+      "notes": "Vulgate finer (7) than T=L (2) even after merge"
+    },
+    "15:15": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 3,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "15:18": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 6,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (2) even after merge"
+    },
+    "16:3": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "16:7": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "16:8": {
+      "t": 5,
+      "l": 5,
+      "v_raw": 8,
+      "v_merged": 8,
+      "notes": "Vulgate finer (8) than T=L (5) even after merge"
+    },
+    "16:12": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 6,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (4) even after merge"
+    },
+    "17:7": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (1) even after merge"
+    },
+    "17:8": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "17:9": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 4,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "17:12": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 6,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (1) even after merge"
+    },
+    "17:19": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (4) even after merge"
+    },
+    "17:21": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 4,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (1) even after merge"
+    },
+    "17:23": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 7,
+      "v_merged": 7,
+      "notes": "Vulgate finer (7) than T=L (3) even after merge"
+    },
+    "17:26": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "17:27": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 3,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "18:5": {
+      "t": 7,
+      "l": 7,
+      "v_raw": 8,
+      "v_merged": 8,
+      "notes": "Vulgate finer (8) than T=L (7) even after merge"
+    },
+    "18:8": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 7,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (4) even after merge"
+    },
+    "18:12": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (3) even after merge"
+    },
+    "18:13": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (4) even after merge"
+    },
+    "18:14": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (3) even after merge"
+    },
+    "18:15": {
+      "t": 6,
+      "l": 6,
+      "v_raw": 7,
+      "v_merged": 7,
+      "notes": "Vulgate finer (7) than T=L (6) even after merge"
+    },
+    "18:17": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 4,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "18:24": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "18:25": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (4) even after merge"
+    },
+    "18:29": {
+      "t": 5,
+      "l": 5,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate coarser (4) than T=L (5)"
+    },
+    "18:30": {
+      "t": 7,
+      "l": 7,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate coarser (6) than T=L (7)"
+    },
+    "18:31": {
+      "t": 5,
+      "l": 5,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (5) even after merge"
+    },
+    "19:5": {
+      "t": 5,
+      "l": 5,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (5) even after merge"
+    },
+    "19:7": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (2) even after merge"
+    },
+    "19:11": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 4,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "19:12": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 7,
+      "v_merged": 7,
+      "notes": "Vulgate finer (7) than T=L (4) even after merge"
+    },
+    "19:16": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 8,
+      "v_merged": 8,
+      "notes": "Vulgate finer (8) than T=L (2) even after merge"
+    },
+    "19:18": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "19:19": {
+      "t": 5,
+      "l": 5,
+      "v_raw": 8,
+      "v_merged": 7,
+      "notes": "Vulgate finer (7) than T=L (5) even after merge"
+    },
+    "19:21": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (2) even after merge"
+    },
+    "19:23": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 4,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "19:25": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (1) even after merge"
+    },
+    "19:34": {
+      "t": 6,
+      "l": 6,
+      "v_raw": 8,
+      "v_merged": 8,
+      "notes": "Vulgate finer (8) than T=L (6) even after merge"
+    },
+    "20:4": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 5,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "20:5": {
+      "t": 5,
+      "l": 5,
+      "v_raw": 8,
+      "v_merged": 7,
+      "notes": "Vulgate finer (7) than T=L (5) even after merge"
+    },
+    "20:10": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "20:14": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 7,
+      "v_merged": 7,
+      "notes": "Vulgate finer (7) than T=L (3) even after merge"
+    },
+    "20:18": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "21:14": {
+      "t": 6,
+      "l": 6,
+      "v_raw": 8,
+      "v_merged": 8,
+      "notes": "Vulgate finer (8) than T=L (6) even after merge"
+    },
+    "21:25": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "21:29": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "21:30": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 6,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (4) even after merge"
+    },
+    "22:7": {
+      "t": 7,
+      "l": 7,
+      "v_raw": 8,
+      "v_merged": 8,
+      "notes": "Vulgate finer (8) than T=L (7) even after merge"
+    },
+    "22:16": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 6,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (4) even after merge"
+    },
+    "22:17": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (3) even after merge"
+    },
+    "23:2": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (4) even after merge"
+    },
+    "23:5": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "23:9": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (2) even after merge"
+    },
+    "23:10": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 7,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (2) even after merge"
+    },
+    "23:15": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 7,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (4) even after merge"
+    },
+    "23:18": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "23:19": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (3) even after merge"
+    },
+    "24:12": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "24:13": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 5,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "24:24": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 5,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (2) even after merge"
+    },
+    "24:27": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (3) even after merge"
+    },
+    "24:32": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (4) even after merge"
+    },
+    "24:39": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "24:40": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 6,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (4) even after merge"
+    },
+    "24:41": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate coarser (3) than T=L (4)"
+    },
+    "24:46": {
+      "t": 6,
+      "l": 6,
+      "v_raw": 9,
+      "v_merged": 8,
+      "notes": "Vulgate finer (8) than T=L (6) even after merge"
+    },
+    "24:48": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (2) even after merge"
+    },
+    "24:52": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate coarser (2) than T=L (3)"
+    },
+    "24:55": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "24:56": {
+      "t": 5,
+      "l": 5,
+      "v_raw": 7,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (5) even after merge"
+    },
+    "24:59": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (1) even after merge"
+    },
+    "25:3": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "25:8": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (2) even after merge"
+    },
+    "25:9": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (1) even after merge"
+    },
+    "25:12": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "25:13": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "25:16": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (3) even after merge"
+    },
+    "25:18": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (2) even after merge"
+    },
+    "25:26": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 7,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (4) even after merge"
+    },
+    "26:1": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "26:3": {
+      "t": 5,
+      "l": 5,
+      "v_raw": 9,
+      "v_merged": 8,
+      "notes": "Vulgate finer (8) than T=L (5) even after merge"
+    },
+    "26:9": {
+      "t": 8,
+      "l": 8,
+      "v_raw": 7,
+      "v_merged": 7,
+      "notes": "Vulgate coarser (7) than T=L (8)"
+    },
+    "26:24": {
+      "t": 7,
+      "l": 7,
+      "v_raw": 9,
+      "v_merged": 9,
+      "notes": "Vulgate finer (9) than T=L (7) even after merge"
+    },
+    "26:29": {
+      "t": 5,
+      "l": 5,
+      "v_raw": 7,
+      "v_merged": 7,
+      "notes": "Vulgate finer (7) than T=L (5) even after merge"
+    },
+    "27:6": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "27:14": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (3) even after merge"
+    },
+    "27:22": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 7,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (4) even after merge"
+    },
+    "27:32": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 6,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (4) even after merge"
+    },
+    "27:38": {
+      "t": 5,
+      "l": 5,
+      "v_raw": 7,
+      "v_merged": 7,
+      "notes": "Vulgate finer (7) than T=L (5) even after merge"
+    },
+    "27:42": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (4) even after merge"
+    },
+    "27:46": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "28:4": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (1) even after merge"
+    },
+    "28:5": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (2) even after merge"
+    },
+    "28:9": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 7,
+      "v_merged": 7,
+      "notes": "Vulgate finer (7) than T=L (2) even after merge"
+    },
+    "28:14": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 7,
+      "v_merged": 7,
+      "notes": "Vulgate finer (7) than T=L (3) even after merge"
+    },
+    "28:17": {
+      "t": 5,
+      "l": 5,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (5) even after merge"
+    },
+    "28:18": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (4) even after merge"
+    },
+    "28:20": {
+      "t": 5,
+      "l": 5,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (5) even after merge"
+    },
+    "29:4": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (4) even after merge"
+    },
+    "29:17": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 5,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "29:19": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "29:26": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "29:27": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "29:34": {
+      "t": 6,
+      "l": 6,
+      "v_raw": 7,
+      "v_merged": 7,
+      "notes": "Vulgate finer (7) than T=L (6) even after merge"
+    },
+    "30:11": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate coarser (2) than T=L (3)"
+    },
+    "30:17": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "30:20": {
+      "t": 5,
+      "l": 5,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (5) even after merge"
+    },
+    "30:21": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "30:24": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "30:25": {
+      "t": 5,
+      "l": 5,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate coarser (4) than T=L (5)"
+    },
+    "30:27": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "30:32": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (3) even after merge"
+    },
+    "30:35": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (3) even after merge"
+    },
+    "30:39": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (2) even after merge"
+    },
+    "30:43": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 7,
+      "v_merged": 7,
+      "notes": "Vulgate finer (7) than T=L (2) even after merge"
+    },
+    "31:6": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 3,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "31:8": {
+      "t": 6,
+      "l": 6,
+      "v_raw": 8,
+      "v_merged": 8,
+      "notes": "Vulgate finer (8) than T=L (6) even after merge"
+    },
+    "31:24": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (4) even after merge"
+    },
+    "31:25": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 4,
+      "v_merged": 2,
+      "notes": "Vulgate coarser (2) than T=L (3)"
+    },
+    "31:28": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "31:41": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (4) even after merge"
+    },
+    "32:7": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 8,
+      "v_merged": 8,
+      "notes": "Vulgate finer (8) than T=L (3) even after merge"
+    },
+    "32:9": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (4) even after merge"
+    },
+    "32:11": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "32:22": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (2) even after merge"
+    },
+    "32:23": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 1,
+      "v_merged": 1,
+      "notes": "Vulgate coarser (1) than T=L (3)"
+    },
+    "32:32": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "33:3": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 4,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "33:7": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (4) even after merge"
+    },
+    "33:13": {
+      "t": 5,
+      "l": 5,
+      "v_raw": 7,
+      "v_merged": 7,
+      "notes": "Vulgate finer (7) than T=L (5) even after merge"
+    },
+    "34:1": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "34:6": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "34:7": {
+      "t": 5,
+      "l": 5,
+      "v_raw": 7,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (5) even after merge"
+    },
+    "34:19": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "34:22": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (2) even after merge"
+    },
+    "34:30": {
+      "t": 5,
+      "l": 5,
+      "v_raw": 8,
+      "v_merged": 7,
+      "notes": "Vulgate finer (7) than T=L (5) even after merge"
+    },
+    "35:7": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "35:18": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 6,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (4) even after merge"
+    },
+    "35:26": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "35:29": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (3) even after merge"
+    },
+    "36:5": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 7,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (2) even after merge"
+    },
+    "36:6": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 10,
+      "v_merged": 10,
+      "notes": "Vulgate finer (10) than T=L (2) even after merge"
+    },
+    "36:13": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate coarser (2) than T=L (3)"
+    },
+    "36:22": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "36:31": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "37:10": {
+      "t": 5,
+      "l": 5,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (5) even after merge"
+    },
+    "37:14": {
+      "t": 6,
+      "l": 6,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate coarser (5) than T=L (6)"
+    },
+    "37:19": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate coarser (2) than T=L (3)"
+    },
+    "37:28": {
+      "t": 5,
+      "l": 5,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate coarser (4) than T=L (5)"
+    },
+    "37:36": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 3,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "38:1": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 5,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "38:2": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 5,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "38:3": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "38:20": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "38:24": {
+      "t": 7,
+      "l": 7,
+      "v_raw": 8,
+      "v_merged": 8,
+      "notes": "Vulgate finer (8) than T=L (7) even after merge"
+    },
+    "38:28": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 6,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (4) even after merge"
+    },
+    "38:30": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "39:1": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 8,
+      "v_merged": 7,
+      "notes": "Vulgate finer (7) than T=L (2) even after merge"
+    },
+    "39:6": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (4) even after merge"
+    },
+    "39:8": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 7,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (4) even after merge"
+    },
+    "39:10": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "39:11": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "39:12": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (4) even after merge"
+    },
+    "40:2": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "40:3": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (1) even after merge"
+    },
+    "40:7": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (2) even after merge"
+    },
+    "40:9": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate coarser (2) than T=L (3)"
+    },
+    "40:13": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (3) even after merge"
+    },
+    "40:15": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (3) even after merge"
+    },
+    "40:19": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "40:20": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 7,
+      "v_merged": 7,
+      "notes": "Vulgate finer (7) than T=L (3) even after merge"
+    },
+    "41:2": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (2) even after merge"
+    },
+    "41:3": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (2) even after merge"
+    },
+    "41:4": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (2) even after merge"
+    },
+    "41:5": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "41:10": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 5,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (2) even after merge"
+    },
+    "41:14": {
+      "t": 5,
+      "l": 5,
+      "v_raw": 7,
+      "v_merged": 7,
+      "notes": "Vulgate finer (7) than T=L (5) even after merge"
+    },
+    "41:17": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "41:18": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (2) even after merge"
+    },
+    "41:19": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (2) even after merge"
+    },
+    "41:20": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (1) even after merge"
+    },
+    "41:22": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (2) even after merge"
+    },
+    "41:23": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (1) even after merge"
+    },
+    "41:29": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 1,
+      "v_merged": 1,
+      "notes": "Vulgate coarser (1) than T=L (2)"
+    },
+    "41:31": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "41:34": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate coarser (2) than T=L (3)"
+    },
+    "41:36": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "41:38": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "41:39": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "41:40": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 6,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "41:44": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 5,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "41:48": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "41:49": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (3) even after merge"
+    },
+    "41:53": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "42:3": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "42:4": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (3) even after merge"
+    },
+    "42:10": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 5,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "42:14": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate coarser (2) than T=L (3)"
+    },
+    "42:22": {
+      "t": 5,
+      "l": 5,
+      "v_raw": 7,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (5) even after merge"
+    },
+    "42:23": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 3,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "42:24": {
+      "t": 5,
+      "l": 5,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (5) even after merge"
+    },
+    "42:33": {
+      "t": 5,
+      "l": 5,
+      "v_raw": 9,
+      "v_merged": 7,
+      "notes": "Vulgate finer (7) than T=L (5) even after merge"
+    },
+    "42:35": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (4) even after merge"
+    },
+    "42:36": {
+      "t": 6,
+      "l": 6,
+      "v_raw": 10,
+      "v_merged": 7,
+      "notes": "Vulgate finer (7) than T=L (6) even after merge"
+    },
+    "42:38": {
+      "t": 6,
+      "l": 6,
+      "v_raw": 7,
+      "v_merged": 7,
+      "notes": "Vulgate finer (7) than T=L (6) even after merge"
+    },
+    "43:4": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "43:17": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate coarser (2) than T=L (3)"
+    },
+    "43:31": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (3) even after merge"
+    },
+    "44:6": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "44:15": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "44:19": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "44:24": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate coarser (2) than T=L (3)"
+    },
+    "44:25": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate coarser (2) than T=L (3)"
+    },
+    "44:30": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "45:7": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (1) even after merge"
+    },
+    "45:10": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 8,
+      "v_merged": 8,
+      "notes": "Vulgate finer (8) than T=L (2) even after merge"
+    },
+    "45:11": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "45:12": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (2) even after merge"
+    },
+    "45:13": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (3) even after merge"
+    },
+    "45:16": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 5,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "45:26": {
+      "t": 5,
+      "l": 5,
+      "v_raw": 7,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (5) even after merge"
+    },
+    "46:2": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 7,
+      "v_merged": 7,
+      "notes": "Vulgate finer (7) than T=L (4) even after merge"
+    },
+    "46:3": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 6,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (4) even after merge"
+    },
+    "46:5": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 8,
+      "v_merged": 8,
+      "notes": "Vulgate finer (8) than T=L (2) even after merge"
+    },
+    "46:7": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 5,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "46:18": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "46:32": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 8,
+      "v_merged": 7,
+      "notes": "Vulgate finer (7) than T=L (3) even after merge"
+    },
+    "46:34": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 7,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (2) even after merge"
+    },
+    "47:2": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "47:3": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (4) even after merge"
+    },
+    "47:4": {
+      "t": 5,
+      "l": 5,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (5) even after merge"
+    },
+    "47:9": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 7,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (4) even after merge"
+    },
+    "47:11": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "47:12": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (1) even after merge"
+    },
+    "47:13": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 5,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "47:15": {
+      "t": 5,
+      "l": 5,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (5) even after merge"
+    },
+    "47:17": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 7,
+      "v_merged": 7,
+      "notes": "Vulgate finer (7) than T=L (3) even after merge"
+    },
+    "47:21": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 2,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "47:22": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (4) even after merge"
+    },
+    "48:20": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (4) even after merge"
+    },
+    "48:22": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (1) even after merge"
+    },
+    "49:1": {
+      "t": 5,
+      "l": 5,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (5) even after merge"
+    },
+    "49:2": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "49:12": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 8,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (2) even after merge"
+    },
+    "49:16": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 3,
+      "v_merged": 2,
+      "notes": "Vulgate finer (2) than T=L (1) even after merge"
+    },
+    "49:20": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 4,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "49:24": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "49:27": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 7,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (3) even after merge"
+    },
+    "49:30": {
+      "t": 1,
+      "l": 1,
+      "v_raw": 3,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (1) even after merge"
+    },
+    "49:31": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 6,
+      "v_merged": 6,
+      "notes": "Vulgate finer (6) than T=L (3) even after merge"
+    },
+    "50:2": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 1,
+      "v_merged": 1,
+      "notes": "Vulgate coarser (1) than T=L (2)"
+    },
+    "50:7": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (2) even after merge"
+    },
+    "50:8": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 7,
+      "v_merged": 7,
+      "notes": "Vulgate finer (7) than T=L (2) even after merge"
+    },
+    "50:10": {
+      "t": 3,
+      "l": 3,
+      "v_raw": 4,
+      "v_merged": 4,
+      "notes": "Vulgate finer (4) than T=L (3) even after merge"
+    },
+    "50:11": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 6,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (4) even after merge"
+    },
+    "50:14": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (2) even after merge"
+    },
+    "50:16": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 4,
+      "v_merged": 3,
+      "notes": "Vulgate finer (3) than T=L (2) even after merge"
+    },
+    "50:22": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 6,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (2) even after merge"
+    },
+    "50:23": {
+      "t": 2,
+      "l": 2,
+      "v_raw": 12,
+      "v_merged": 10,
+      "notes": "Vulgate finer (10) than T=L (2) even after merge"
+    },
+    "50:24": {
+      "t": 4,
+      "l": 4,
+      "v_raw": 5,
+      "v_merged": 5,
+      "notes": "Vulgate finer (5) than T=L (4) even after merge"
+    }
+  }
+}
