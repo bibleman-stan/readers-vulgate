@@ -30,7 +30,7 @@ Per the program's hard-won lesson (the BoFM over-merge ordeal, 2026-05-27): the 
 a **mechanical draft**, deployed-then-refined. Because the Latin fabric here is GOLD
 (hand-tagged PROIEL syntax), the v1.5 mechanical layer is on solid substrate — but the ATU
 boundaries are still a draft requiring an editorial pass before any "final" claim. Fabric
-quality bounds the claims. See `~/repos/atu-method/docs/substrate.md` (the Textual Fabric Doctrine).
+quality bounds the claims. See `~/repos/atu-method/docs/03-implementation/substrate.md` (the Textual Fabric Doctrine).
 
 ## Substrate plan (assemble + VERIFY before any colometry)
 
