@@ -1,6 +1,7 @@
-# This repo is PUBLIC. Private/working material goes in /private/ (never published).
-/private/*
-!/private/README.md
+# This repo is PUBLIC. Private/working material goes in private/ — never
+# published, never tracked. Substrate data lives in ~/repos/biblical-corpora/
+# (also unpublished); private/ here is repo-local working material only.
+private/
 
 # Python
 __pycache__/
