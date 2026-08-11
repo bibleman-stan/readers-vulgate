@@ -1,7 +1,12 @@
 # This repo is PUBLIC. Private/working material goes in private/ — never
 # published, never tracked. Substrate data lives in ~/repos/biblical-corpora/
 # (also unpublished); private/ here is repo-local working material only.
-private/
+# Private material stays local. The README stub is the exception and IS
+# tracked, so the folder's purpose and layout survive even though its
+# contents cannot. A bare `private/` cannot be negated into -- git will not
+# descend into an ignored directory -- so the contents are ignored instead.
+/private/*
+!/private/README.md
 
 # Python
 __pycache__/
