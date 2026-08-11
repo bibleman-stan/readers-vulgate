@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Vulgate-native ATU generator: ports the readers-gnt nesting-based engine
-(scripts/sblgnt_generate.py) onto the gold UD_Latin-PROIEL Text-Fabric at
+(5-machinery/scripts/sblgnt_generate.py) onto the gold UD_Latin-PROIEL Text-Fabric at
 data/tf/0.1.
 
 ARCHITECTURE (ported, not re-invented)
@@ -42,7 +42,7 @@ This is a FIRST-PASS measurement draft. Not deployed, not committed.
 
 Usage:
   cd C:/Users/bibleman/repos/readers-vulgate
-  PYTHONIOENCODING=utf-8 python scripts/vulgate_generate.py MATT 5
+  PYTHONIOENCODING=utf-8 python 5-machinery/scripts/vulgate_generate.py MATT 5
 """
 import sys
 from tf.fabric import Fabric

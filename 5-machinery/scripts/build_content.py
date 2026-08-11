@@ -3,7 +3,7 @@
 Douay-Rheims (1582 Rheims NT) English verse-layer text-files that feed
 build_books.py.
 
-Latin source  : the v1.5 mechanical ATU generator (scripts/vulgate_generate.py)
+Latin source  : the v1.5 mechanical ATU generator (5-machinery/scripts/vulgate_generate.py)
                 over the gold UD_Latin-PROIEL Text-Fabric at data/tf/0.1.
 English source: the Original Douay-Rheims JSON dataset (CC0) cloned to
                 private/original-douay-rheims/ - the Vulgate's own English.
@@ -23,8 +23,8 @@ reports DR alignment over that set.
 
 Usage:
   cd C:/Users/bibleman/repos/readers-vulgate
-  PYTHONIOENCODING=utf-8 python scripts/build_content.py
-  PYTHONIOENCODING=utf-8 python scripts/build_content.py --book MATT
+  PYTHONIOENCODING=utf-8 python 5-machinery/scripts/build_content.py
+  PYTHONIOENCODING=utf-8 python 5-machinery/scripts/build_content.py --book MATT
 """
 import argparse
 import json
@@ -34,7 +34,22 @@ import sys
 from collections import defaultdict
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-REPO_ROOT = os.path.dirname(SCRIPT_DIR)
+def _find_repo_root():
+    """Repo root by MARKER, not by counting parents.
+
+    Counting encodes this file's depth in the tree, so moving the file silently
+    breaks it and no text-based check notices. Anchoring on .git survives any
+    move. Added 2026-08-10 after a reorg broke three different counted idioms.
+    """
+    from pathlib import Path as _P
+    _here = _P(__file__).resolve()
+    for _p in _here.parents:
+        if (_p / ".git").exists():
+            return _p
+    return _here.parent
+
+
+REPO_ROOT = _find_repo_root()
 LAT_DIR = os.path.join(REPO_ROOT, "data", "text-files", "v1.5", "lat")
 ENG_DIR = os.path.join(REPO_ROOT, "data", "text-files", "v1.5", "eng-dr")
 DR_DIR = os.path.join(REPO_ROOT, "private", "original-douay-rheims", "bible", "raw")
@@ -228,7 +243,7 @@ def main():
             # exists AND its joined alnum (NFD-normalized, Mn-stripped,
             # [a-z0-9]) equals the v0 verse text's same normalization, swap
             # the mechanical ATU lines for the adjudicated ones. Otherwise
-            # the mechanical lines stand. See scripts/vulgate_overrides.py +
+            # the mechanical lines stand. See 5-machinery/scripts/vulgate_overrides.py +
             # data/text-files/v1.5-adjudicated/README.md.
             for i, (ref, atu_lines, vnum) in enumerate(by_verse):
                 ov_ref = vulgate_overrides.ref_for(book_code, chap, vnum)
@@ -286,7 +301,7 @@ def main():
     with open(os.path.join(REPO_ROOT, "research", "dr-coverage.json"),
               "w", encoding="utf-8") as f:
         json.dump(report, f, ensure_ascii=False, indent=2)
-    print("\nWrote research/dr-coverage.json")
+    print("\nWrote 2-evidence/dr-coverage.json")
 
 
 if __name__ == "__main__":

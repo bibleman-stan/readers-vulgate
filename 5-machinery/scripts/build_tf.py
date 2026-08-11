@@ -59,7 +59,22 @@ sys.stdout.reconfigure(encoding="utf-8")
 from tf.convert.walker import CV
 from tf.fabric import Fabric
 
-REPO = Path(__file__).resolve().parent.parent
+def _find_repo_root():
+    """Repo root by MARKER, not by counting parents.
+
+    Counting encodes this file's depth in the tree, so moving the file silently
+    breaks it and no text-based check notices. Anchoring on .git survives any
+    move. Added 2026-08-10 after a reorg broke three different counted idioms.
+    """
+    from pathlib import Path as _P
+    _here = _P(__file__).resolve()
+    for _p in _here.parents:
+        if (_p / ".git").exists():
+            return _p
+    return _here.parent
+
+
+REPO = _find_repo_root()
 CONLLU_DIR = REPO / "private" / "substrate" / "UD_Latin-PROIEL"
 TF_DIR = REPO / "data" / "tf"
 VERSION = "0.1"
@@ -437,7 +452,7 @@ GENERIC_META = dict(
         "reference implementation of the harmonized upos/udrel cross-corpus layer)"
     ),
     source="UD_Latin-PROIEL (gold hand-annotated; CC BY-NC-SA 3.0)",
-    writtenBy="readers-vulgate/scripts/build_tf.py",
+    writtenBy="readers-vulgate/5-machinery/scripts/build_tf.py",
 )
 
 OTEXT = {

@@ -1,6 +1,6 @@
 """Render-stage ATU-line override layer for the Vulgate reader.
 
-Sibling to scripts/bofm_generate.py _overrides() / _apply_override() in BoFM,
+Sibling to 5-machinery/scripts/bofm_generate.py _overrides() / _apply_override() in BoFM,
 but architected around Vulgate's TF-node-list pipeline: overrides are applied
 on the rendered List[str] for each verse INSIDE build_content.py, AFTER
 vg.render(api, ln) materializes the strings — never inside vg.generate().
@@ -23,7 +23,22 @@ import sys
 import unicodedata
 from pathlib import Path
 
-REPO_ROOT = Path(__file__).resolve().parent.parent
+def _find_repo_root():
+    """Repo root by MARKER, not by counting parents.
+
+    Counting encodes this file's depth in the tree, so moving the file silently
+    breaks it and no text-based check notices. Anchoring on .git survives any
+    move. Added 2026-08-10 after a reorg broke three different counted idioms.
+    """
+    from pathlib import Path as _P
+    _here = _P(__file__).resolve()
+    for _p in _here.parents:
+        if (_p / ".git").exists():
+            return _p
+    return _here.parent
+
+
+REPO_ROOT = _find_repo_root()
 ADJUDICATED = REPO_ROOT / "data" / "text-files" / "v1.5-adjudicated" / "overrides.json"
 BYPASS_ENV = "VULGATE_BYPASS_OVERRIDES"
 

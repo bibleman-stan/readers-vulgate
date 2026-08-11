@@ -9,13 +9,13 @@ Each .line span contains a .lat span (Latin) and a .en span (Douay-Rheims
 English), enabling Latin / English / Both display modes in the web app, and a
 bilingual search index that matches either layer.
 
-Ported from readers-gnt/scripts/build_books.py. The Greek-specific pieces -
+Ported from readers-gnt/5-machinery/scripts/build_books.py. The Greek-specific pieces -
 the SBLGNT word-order integrity check and the KJV archaic->modern swap engine -
 are NOT applicable to Latin and have been removed.
 
 Usage:
-    py -3 scripts/build_books.py              # build all books
-    py -3 scripts/build_books.py --book mark  # build one book
+    py -3 5-machinery/scripts/build_books.py              # build all books
+    py -3 5-machinery/scripts/build_books.py --book mark  # build one book
 """
 
 import argparse
@@ -25,8 +25,23 @@ import os
 import re
 from collections import defaultdict
 
+def _find_repo_root():
+    """Repo root by MARKER, not by counting parents.
+
+    Counting encodes this file's depth in the tree, so moving the file silently
+    breaks it and no text-based check notices. Anchoring on .git survives any
+    move. Added 2026-08-10 after a reorg broke three different counted idioms.
+    """
+    from pathlib import Path as _P
+    _here = _P(__file__).resolve()
+    for _p in _here.parents:
+        if (_p / ".git").exists():
+            return _p
+    return _here.parent
+
+
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-REPO_ROOT = os.path.dirname(SCRIPT_DIR)
+REPO_ROOT = _find_repo_root()
 LAT_DIR = os.path.join(REPO_ROOT, "data", "text-files", "v1.5", "lat")
 INPUT_DIR = LAT_DIR
 EN_DIR = os.path.join(REPO_ROOT, "data", "text-files", "v1.5", "eng-dr")

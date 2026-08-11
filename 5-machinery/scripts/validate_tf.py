@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """TF validation suite for the Vulgate Latin Text-Fabric.
 
-Adapted from readers-bofm/scripts/validate_tf.py for the CoNLL-U -> TF case.
+Adapted from readers-bofm/5-machinery/scripts/validate_tf.py for the CoNLL-U -> TF case.
 Release gate: the built TF must pass ALL of these before use.
 
 Checks:
@@ -14,13 +14,28 @@ Checks:
   6. node-counts   -- report all node type counts (informational)
 
 Usage:
-    python scripts/validate_tf.py [version]   (default: 0.1)
+    python 5-machinery/scripts/validate_tf.py [version]   (default: 0.1)
 """
 import sys, re, unicodedata
 from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8")
 
-REPO = Path(__file__).resolve().parent.parent
+def _find_repo_root():
+    """Repo root by MARKER, not by counting parents.
+
+    Counting encodes this file's depth in the tree, so moving the file silently
+    breaks it and no text-based check notices. Anchoring on .git survives any
+    move. Added 2026-08-10 after a reorg broke three different counted idioms.
+    """
+    from pathlib import Path as _P
+    _here = _P(__file__).resolve()
+    for _p in _here.parents:
+        if (_p / ".git").exists():
+            return _p
+    return _here.parent
+
+
+REPO = _find_repo_root()
 VERSION = sys.argv[1] if len(sys.argv) > 1 else "0.1"
 
 from tf.fabric import Fabric
