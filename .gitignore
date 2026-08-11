@@ -8,6 +8,12 @@
 /private/*
 !/private/README.md
 
+# Third-party corpora. Currently empty, and the rule exists so it stays safe if
+# it is ever used: without it, a corpus dropped here would be tracked into a
+# public repo by default. research/README.md is tracked and says what belongs.
+research/*
+!research/README.md
+
 # Python
 __pycache__/
 *.pyc
